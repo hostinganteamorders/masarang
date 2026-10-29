@@ -1,0 +1,12 @@
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+}
+
+.status {
+  min-height: 1.5rem;
+  font-size: 0.98rem;
+  font-weight: 700;
+}

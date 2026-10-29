@@ -1,0 +1,490 @@
+/* ==========================================================================
+   Yayasan Masarang — token desain dan gaya dasar
+
+   Palet (dari yayasan):
+     Restoration  #239D4D  hijau   (Temboan, pemulihan lahan)
+     Conservation #CCE36E  lime    (Tasikoki, penyelamatan satwa)
+     Education    #E87B36  oranye  (edukasi dan masyarakat)
+     Base         #F5F5F5 terang, #242424 gelap
+
+   Warna program dipakai apa adanya untuk isian, garis, dan grafik. Teks kecil di atas terang butuh kontras
+   4,5:1, jadi untuk itu ada varian "-ink" (campuran warna program dengan #242424, hue sama) dan di atas
+   isian warna program teksnya #1C1C1C. Warna program di atas #242424 dipakai langsung (lime 10,9:1,
+   oranye 5,4:1; hijau 4,4:1 sehingga teks kecil hijau di atas gelap memakai --restoration-lit).
+   ========================================================================== */
+
+:root {
+  /* Warna dasar */
+  --light: #f5f5f5;
+  --dark: #242424;
+
+  /* Warna program */
+  --restoration: #239d4d;
+  --conservation: #cce36e;
+  --education: #e87b36;
+
+  /* Varian untuk teks dan tombol (kontras >= 4,5:1) */
+  --restoration-ink: #237e42; /* di atas terang: 4,7:1 */
+  --restoration-lit: #29a052; /* di atas gelap: 4,6:1 */
+  --conservation-ink: #697242; /* di atas terang: 4,7:1 */
+  --education-ink: #a35d30; /* di atas terang: 4,6:1 */
+  --on-fill: #1c1c1c; /* teks di atas isian warna program: hijau 4,9:1, lime 11:1, oranye 5,9:1 */
+
+  /* Netral turunan dari dua warna dasar */
+  --white: #ffffff;
+  --soft: #ebebeb; /* latar bagian selang-seling di atas terang */
+  --soft-deep: #dcdcdc;
+  --raised: #333333; /* kartu di atas #242424 */
+  --muted-on-light: #555555; /* 6,9:1 di atas #F5F5F5 */
+  --muted-on-dark: #b8b8b8; /* 7,8:1 di atas #242424 */
+  --neutral-mid: #8a8a8a;
+  --neutral-dark: #4a4a4a;
+
+  --r-sm: 6px;
+  --r-md: 14px;
+  --r-lg: 28px;
+  --r-pill: 999px;
+
+  --gutter: clamp(1.25rem, 0.5rem + 3.5vw, 3rem);
+  --maxw: 80rem;
+  --header-h: 4.5rem;
+
+  --font-display: var(--font-mona), "Arial Narrow", "Helvetica Neue", system-ui, sans-serif;
+  --font-body: var(--font-atkinson), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Variabel kontekstual: diganti oleh .on-light / .on-dark dst. */
+  --bg: var(--light);
+  --fg: var(--dark);
+  --muted: var(--muted-on-light);
+  --line: rgba(36, 36, 36, 0.2);
+  --line-strong: rgba(36, 36, 36, 0.45);
+  --link: var(--restoration-ink);
+  --focus: var(--restoration-ink);
+  --btn-bg: var(--restoration-ink);
+  --btn-fg: var(--light);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--light);
+  color: var(--dark);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-variant-numeric: lining-nums;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ---------- Tipografi ---------- */
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 760;
+  font-stretch: 75%;
+  line-height: 0.95;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+  /* Jaring pengaman: kata sangat panjang (mis. dalam bahasa Indonesia) dipecah, bukan membuat layar bergeser. */
+  overflow-wrap: break-word;
+}
+
+h1 {
+  font-size: clamp(3.3rem, 1.2rem + 8.4vw, 8.5rem);
+  line-height: 0.9;
+}
+
+h2 {
+  font-size: clamp(2.35rem, 1.1rem + 4.7vw, 4.9rem);
+  line-height: 0.92;
+}
+
+h3 {
+  font-size: clamp(1.65rem, 1.2rem + 1.5vw, 2.4rem);
+  font-stretch: 80%;
+  line-height: 1;
+}
+
+h4 {
+  font-size: 1.3rem;
+  font-stretch: 88%;
+  line-height: 1.1;
+  font-weight: 720;
+}
+
+p {
+  margin: 0;
+}
+
+/* Judul bagian berukuran sedang, untuk kolom sempit (tetap h2 secara semantik) */
+.title-md {
+  font-size: clamp(2.1rem, 1.3rem + 2.7vw, 3.7rem);
+  line-height: 0.96;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.22em;
+}
+
+.link {
+  color: var(--link);
+  font-weight: 600;
+}
+
+.lede {
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.4rem);
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 38em;
+}
+
+.prose p {
+  max-width: 64ch;
+}
+
+.prose p + p {
+  margin-top: 1em;
+}
+
+.num {
+  font-family: var(--font-display);
+  font-stretch: 78%;
+  font-weight: 740;
+  font-variant-numeric: tabular-nums lining-nums;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* Placeholder: garis bawah titik-titik pada angka/teks yang masih contoh */
+.ph {
+  text-decoration: underline dotted;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.22em;
+  text-decoration-skip-ink: none;
+  cursor: help;
+}
+
+/* ---------- Tata letak ---------- */
+
+.container {
+  width: min(100% - 2 * var(--gutter), var(--maxw));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: clamp(4rem, 2.5rem + 6.5vw, 8rem);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.on-light {
+  --bg: var(--light);
+  --fg: var(--dark);
+  --muted: var(--muted-on-light);
+  --line: rgba(36, 36, 36, 0.2);
+  --line-strong: rgba(36, 36, 36, 0.45);
+  --link: var(--restoration-ink);
+  --focus: var(--restoration-ink);
+  --btn-bg: var(--restoration-ink);
+  --btn-fg: var(--light);
+}
+
+.on-soft {
+  --bg: var(--soft);
+  --fg: var(--dark);
+  --muted: var(--muted-on-light);
+  --line: rgba(36, 36, 36, 0.18);
+  --line-strong: rgba(36, 36, 36, 0.42);
+  --link: var(--restoration-ink);
+  --focus: var(--restoration-ink);
+  --btn-bg: var(--restoration-ink);
+  --btn-fg: var(--light);
+}
+
+.on-dark {
+  --bg: var(--dark);
+  --fg: var(--light);
+  --muted: var(--muted-on-dark);
+  --line: rgba(245, 245, 245, 0.2);
+  --line-strong: rgba(245, 245, 245, 0.5);
+  --link: var(--conservation);
+  --focus: var(--conservation);
+  --btn-bg: var(--conservation);
+  --btn-fg: var(--on-fill);
+}
+
+/* Pita berwarna restorasi (hijau): teks gelap, tombol gelap. */
+.on-restoration {
+  --bg: var(--restoration);
+  --fg: var(--on-fill);
+  --muted: var(--on-fill);
+  --line: rgba(28, 28, 28, 0.3);
+  --line-strong: rgba(28, 28, 28, 0.6);
+  --link: var(--on-fill);
+  --focus: var(--on-fill);
+  --btn-bg: var(--dark);
+  --btn-fg: var(--light);
+}
+
+/* Pita berwarna konservasi (lime): teks gelap, tombol gelap. */
+.on-conservation {
+  --bg: var(--conservation);
+  --fg: var(--on-fill);
+  --muted: #3d4a14;
+  --line: rgba(28, 28, 28, 0.28);
+  --line-strong: rgba(28, 28, 28, 0.6);
+  --link: var(--on-fill);
+  --focus: var(--on-fill);
+  --btn-bg: var(--dark);
+  --btn-fg: var(--conservation);
+}
+
+.sectionHead {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 1.25rem clamp(2rem, 6vw, 5rem);
+  align-items: end;
+  margin-bottom: clamp(2.25rem, 4vw, 3.75rem);
+}
+
+.sectionHead > .lede {
+  padding-bottom: 0.35rem;
+}
+
+@media (max-width: 52rem) {
+  .sectionHead {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+/* Baris sumber/tanggal: dipisah garis tipis, bukan titik tengah.
+   Garis pemisah milik tiap butir (kecuali yang pertama) dan digeser 1px ke kiri; wadah memotongnya (overflow),
+   sehingga butir yang turun ke awal baris tidak membawa garis pemisah yang menggantung. */
+.meta {
+  --pad: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0;
+  margin: 0 0 1.1rem calc(-1 * var(--pad));
+  overflow: hidden;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.meta > * {
+  margin-left: -1px;
+  padding: 0 var(--pad);
+  border-left: 1px solid var(--line-strong);
+}
+
+/* ---------- Tombol, chip, kontrol ---------- */
+
+.btn {
+  --_bg: var(--btn-bg);
+  --_fg: var(--btn-fg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.7rem 1.5rem;
+  border: 2px solid var(--_bg);
+  border-radius: var(--r-pill);
+  background: var(--_bg);
+  color: var(--_fg);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.1;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.btn:hover {
+  background: transparent;
+  color: var(--_bg);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--fg);
+  border-color: var(--line-strong);
+}
+
+.btn--ghost:hover {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+
+.btn--small {
+  min-height: 2.5rem;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.95rem;
+}
+
+.btn[disabled],
+.btn[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.chip {
+  padding: 0.5rem 1rem;
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: inherit;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.1;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.chip:hover {
+  border-color: var(--fg);
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--fg);
+  border-color: var(--fg);
+  color: var(--bg);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* ---------- Tabel ---------- */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.table th,
+.table td {
+  padding: 0.85rem 1rem 0.85rem 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.table thead th {
+  border-bottom: 2px solid var(--fg);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.table .right {
+  text-align: right;
+  padding-right: 0;
+  padding-left: 1rem;
+}
+
+/* ---------- Aksesibilitas ---------- */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.75rem 1.1rem;
+  border-radius: var(--r-sm);
+  background: var(--conservation);
+  color: var(--on-fill);
+  font-weight: 700;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

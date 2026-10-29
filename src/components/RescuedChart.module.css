@@ -1,0 +1,111 @@
+.fig {
+  margin: 0;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  font-weight: 700;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.98rem;
+}
+
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.swatch {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 3px;
+}
+
+.swatch[data-series="rescued"],
+.bar[data-series="rescued"] {
+  background: var(--dark);
+}
+
+.swatch[data-series="released"],
+.bar[data-series="released"] {
+  background: var(--restoration);
+}
+
+.flag {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+/* Area batang: tinggi tetap; setiap kolom setinggi area, tinggi batang berupa persen dari tinggi itu. */
+.plot {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.5rem, 2vw, 1.5rem);
+  height: clamp(16rem, 30vw, 22rem);
+}
+
+.group {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.bars {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: clamp(0.3rem, 1vw, 0.75rem);
+  padding-top: 2.6rem;
+  border-bottom: 2px solid var(--fg);
+}
+
+.col {
+  display: flex;
+  align-items: flex-end;
+  width: clamp(2.4rem, 7vw, 5.5rem);
+}
+
+.bar {
+  position: relative;
+  display: block;
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+}
+
+.value {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  padding-bottom: 0.3rem;
+  font-size: clamp(1.4rem, 1rem + 1vw, 1.95rem);
+  transform: translateX(-50%);
+}
+
+.year {
+  color: var(--muted);
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.source {
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}

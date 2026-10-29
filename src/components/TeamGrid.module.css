@@ -1,0 +1,158 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.75rem, 3.5vw, 3rem) clamp(1rem, 2.5vw, 2rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.five {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.card {
+  display: grid;
+  width: 100%;
+  gap: 0.3rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.portrait {
+  margin-bottom: 0.7rem;
+  transition: outline-color 0.15s ease;
+  outline: 3px solid transparent;
+  outline-offset: 4px;
+}
+
+.card:hover .portrait,
+.card:focus-visible .portrait {
+  outline-color: var(--fg);
+}
+
+.card:focus-visible {
+  outline: none;
+}
+
+.name {
+  font-size: clamp(1.7rem, 1.2rem + 1.4vw, 2.4rem);
+  line-height: 1;
+}
+
+.role {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+/* ---------- Dialog ---------- */
+
+.dialog {
+  width: min(100% - 2rem, 52rem);
+  max-height: calc(100dvh - 2rem);
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+  border: 0;
+  border-radius: var(--r-lg);
+  background: var(--soft);
+  color: var(--dark);
+  --muted: var(--muted-on-light);
+  --line: rgba(36, 36, 36, 0.18);
+  --line-strong: rgba(36, 36, 36, 0.45);
+  --fg: var(--dark);
+  --bg: var(--soft);
+  --focus: var(--restoration-ink);
+  --btn-bg: var(--dark);
+  --btn-fg: var(--light);
+}
+
+.dialog::backdrop {
+  background: rgba(36, 36, 36, 0.78);
+}
+
+.sheet {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1;
+  background: var(--soft);
+}
+
+.sheetPortrait {
+  align-self: start;
+}
+
+.detail {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+  padding-top: 2.5rem;
+}
+
+.detailRole {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.detailName {
+  font-size: clamp(2.2rem, 1.6rem + 2.4vw, 3.4rem);
+}
+
+.detailHead {
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-stretch: 100%;
+  font-weight: 700;
+}
+
+@media (max-width: 80rem) {
+  .five {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 62rem) {
+  .grid,
+  .four,
+  .five {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 40rem) {
+  .sheet {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sheetPortrait {
+    max-width: 11rem;
+  }
+
+  .detail {
+    padding-top: 0;
+  }
+
+  .dialog {
+    width: calc(100% - 1.5rem);
+  }
+}

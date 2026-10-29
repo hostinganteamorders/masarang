@@ -1,0 +1,68 @@
+.band {
+  padding-block: clamp(3rem, 2rem + 4vw, 5.5rem);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: 1.5rem clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.figure {
+  display: grid;
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.amount {
+  font-size: clamp(4.5rem, 2rem + 9vw, 10rem);
+  line-height: 0.85;
+  white-space: nowrap;
+  /* ruang untuk garis titik-titik penanda placeholder, supaya tidak menimpa teks di bawahnya */
+  padding-bottom: 0.14em;
+}
+
+.amount :global(.ph) {
+  text-underline-offset: 0.1em;
+  text-decoration-thickness: 3px;
+}
+
+.amountLong {
+  font-size: clamp(3.2rem, 1.2rem + 5.6vw, 7.2rem);
+}
+
+.caption {
+  color: var(--muted);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.band[data-tone="forest"] .amount,
+.band[data-tone="deep"] .amount {
+  color: var(--conservation);
+}
+
+.text {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+
+.title {
+  font-size: clamp(2rem, 1.3rem + 2.6vw, 3.4rem);
+}
+
+.body {
+  max-width: 32rem;
+  color: var(--muted);
+  font-size: 1.15rem;
+}
+
+@media (max-width: 52rem) {
+  .inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,136 @@
+.wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+}
+
+.main {
+  --register-size: clamp(1.15rem, 0.6rem + 1vw, 1.55rem);
+  --register-gap: clamp(0.36rem, 0.2rem + 0.3vw, 0.55rem);
+  display: grid;
+  gap: 1.75rem;
+  min-width: 0;
+}
+
+.toolbar {
+  display: grid;
+  gap: 1rem;
+}
+
+.counts {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--fg);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.swatch,
+.hollow,
+.legendDot {
+  display: inline-block;
+  flex: none;
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+
+.swatch[data-group="primates"] {
+  border-color: var(--education-ink);
+  background: var(--education-ink);
+}
+
+.swatch[data-group="mammals"] {
+  border-color: var(--neutral-dark);
+  background: var(--neutral-dark);
+}
+
+.swatch[data-group="birds"] {
+  border-color: var(--conservation-ink);
+  background: var(--conservation-ink);
+}
+
+.swatch[data-group="reptiles"] {
+  border-color: var(--restoration-ink);
+  background: var(--restoration-ink);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+  margin: 0;
+  padding: 1rem 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legendDot[data-filled="true"] {
+  background: currentColor;
+}
+
+.aside {
+  position: sticky;
+  top: calc(var(--header-h) + 1.25rem);
+}
+
+.sheet {
+  width: min(100%, 34rem);
+  max-width: 100%;
+  max-height: 92vh;
+  margin: auto auto 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  overflow: auto;
+  background: var(--light);
+  color: var(--dark);
+}
+
+.sheet::backdrop {
+  background: rgba(36, 36, 36, 0.7);
+}
+
+.sheetBody {
+  position: relative;
+  padding: 1rem;
+}
+
+.close {
+  position: absolute;
+  z-index: 1;
+  top: 1.7rem;
+  right: 1.7rem;
+  background: var(--white);
+}
+
+@media (min-width: 62.01rem) {
+  .sheet {
+    display: none !important;
+  }
+}
+
+@media (max-width: 62rem) {
+  .wrap {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .aside {
+    display: none;
+  }
+}

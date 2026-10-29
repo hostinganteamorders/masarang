@@ -1,0 +1,40 @@
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+}
+
+.card {
+  display: grid;
+  align-content: start;
+  gap: 0.6rem;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--r-lg);
+}
+
+.amount {
+  font-size: clamp(3rem, 2rem + 3.4vw, 5rem);
+  /* ruang untuk garis titik-titik penanda placeholder di bawah angka */
+  padding-bottom: 0.12em;
+}
+
+.amount :global(.ph) {
+  text-underline-offset: 0.1em;
+  text-decoration-thickness: 3px;
+}
+
+.title {
+  font-size: clamp(1.8rem, 1.3rem + 1.4vw, 2.5rem);
+}
+
+.body {
+  max-width: 28rem;
+  color: var(--muted);
+}
+
+@media (max-width: 52rem) {
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

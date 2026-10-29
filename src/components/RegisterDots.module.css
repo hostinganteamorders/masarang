@@ -1,0 +1,162 @@
+.register {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 2.25rem) clamp(1rem, 2vw, 1.75rem);
+  /* Halaman induk boleh mengubah ukuran titik lewat --register-size / --register-gap. */
+  --size: var(--register-size, 1.1rem);
+  --gap: var(--register-gap, 0.42rem);
+}
+
+.light {
+  --g-primates: var(--education-ink);
+  --g-mammals: var(--neutral-dark);
+  --g-birds: var(--conservation-ink);
+  --g-reptiles: var(--restoration-ink);
+}
+
+.dark {
+  --g-primates: var(--education);
+  --g-mammals: var(--muted-on-dark);
+  --g-birds: var(--conservation);
+  --g-reptiles: var(--restoration-lit);
+}
+
+.compact {
+  --size: 0.72rem;
+  --gap: 0.3rem;
+}
+
+.column {
+  min-width: 0;
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--fg);
+}
+
+.stageName {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.count {
+  font-size: 1.9rem;
+}
+
+.note {
+  min-height: 3.1em;
+  margin: 0.5rem 0 0.9rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.compact .head {
+  border-bottom-width: 1px;
+}
+
+.compact .count {
+  font-size: 1.4rem;
+}
+
+.compact .dots {
+  margin-top: 0.7rem;
+}
+
+.dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dots li {
+  display: block;
+}
+
+.dot {
+  --c: var(--fg);
+  --o: 1;
+  display: block;
+  width: var(--size);
+  height: var(--size);
+  padding: 0;
+  border: 2px solid var(--c);
+  border-radius: 50%;
+  background: transparent;
+  opacity: var(--o);
+  transition:
+    opacity 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+button.dot {
+  cursor: pointer;
+}
+
+button.dot:hover {
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--c);
+}
+
+.compact .dot {
+  border-width: 1.5px;
+}
+
+.dot[data-group="primates"] {
+  --c: var(--g-primates);
+}
+
+.dot[data-group="mammals"] {
+  --c: var(--g-mammals);
+}
+
+.dot[data-group="birds"] {
+  --c: var(--g-birds);
+}
+
+.dot[data-group="reptiles"] {
+  --c: var(--g-reptiles);
+}
+
+.dot[data-filled="true"] {
+  background: var(--c);
+}
+
+.dot[data-released="true"] {
+  --o: 0.6;
+}
+
+.dot[data-dim="true"] {
+  --o: 0.13;
+}
+
+.dot[data-selected="true"] {
+  box-shadow: 0 0 0 3px var(--bg), 0 0 0 5.5px var(--fg);
+}
+
+@media (max-width: 62rem) {
+  .register {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 34rem) {
+  .register {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .compact.register {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .note {
+    min-height: 0;
+  }
+}

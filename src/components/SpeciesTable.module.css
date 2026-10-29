@@ -1,0 +1,124 @@
+.table tfoot th,
+.table tfoot td {
+  border-top: 2px solid var(--fg);
+  border-bottom: 0;
+  font-weight: 800;
+}
+
+.speciesCell {
+  display: table-cell;
+}
+
+.name {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.latin {
+  display: block;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-style: italic;
+}
+
+.num {
+  font-size: 1.1rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.iucn {
+  display: inline-block;
+  min-width: 2.6rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: var(--r-pill);
+  background: var(--restoration);
+  color: var(--light);
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.iucn[data-level="CR"] {
+  background: var(--neutral-dark);
+}
+
+.iucn[data-level="EN"] {
+  background: var(--neutral-dark);
+}
+
+.iucn[data-level="VU"] {
+  background: var(--education);
+  color: var(--dark);
+}
+
+@media (max-width: 40rem) {
+  .table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .table,
+  .table tbody,
+  .table tfoot,
+  .table tr,
+  .table th,
+  .table td {
+    display: block;
+  }
+
+  .table tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0.25rem 1rem;
+    padding-block: 1rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .table th,
+  .table td {
+    padding: 0;
+    border: 0;
+    text-align: left;
+  }
+
+  /* `.right` adalah kelas global dari globals.css, jadi harus dirujuk sebagai :global agar aturan ini berlaku. */
+  .table td:global(.right),
+  .table th:global(.right) {
+    text-align: left;
+    padding-left: 0;
+  }
+
+  .table tbody th,
+  .table tfoot th {
+    grid-column: 1 / -1;
+  }
+
+  .table td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    /* Sel angka berstatus nowrap; label di atasnya tetap boleh turun baris. */
+    white-space: normal;
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .table tfoot tr {
+    border-top: 2px solid var(--fg);
+    border-bottom: 0;
+  }
+
+  .table tfoot th,
+  .table tfoot td {
+    border-top: 0;
+  }
+
+  .table tfoot td:empty {
+    display: none;
+  }
+}

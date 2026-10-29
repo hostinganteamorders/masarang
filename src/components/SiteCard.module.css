@@ -1,0 +1,101 @@
+.card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.dark {
+  --bg: var(--raised);
+  --fg: var(--light);
+  --muted: var(--muted-on-dark);
+  --line: rgba(245, 245, 245, 0.22);
+  --line-strong: rgba(245, 245, 245, 0.5);
+  --btn-bg: var(--conservation);
+  --btn-fg: var(--on-fill);
+  --focus: var(--conservation);
+}
+
+.light {
+  --bg: var(--white);
+  --fg: var(--dark);
+  --muted: var(--muted-on-light);
+  --line: rgba(36, 36, 36, 0.18);
+  --line-strong: rgba(36, 36, 36, 0.45);
+  --btn-bg: var(--restoration-ink);
+  --btn-fg: var(--light);
+  --focus: var(--restoration-ink);
+  border: 1px solid var(--line);
+}
+
+.photo {
+  border-radius: 0;
+}
+
+.body {
+  display: grid;
+  align-content: start;
+  gap: 0.6rem;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  /* Garis warna program: hijau untuk restorasi (Temboan), lime untuk konservasi (Tasikoki). */
+  border-top: 8px solid var(--site);
+}
+
+.place {
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.name {
+  font-size: clamp(3rem, 2rem + 3.6vw, 5rem);
+  line-height: 0.88;
+}
+
+.fullName {
+  font-weight: 700;
+}
+
+.teaser {
+  max-width: 32rem;
+  color: var(--muted);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0.9rem 0 1.1rem;
+  padding: 1rem 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 0.35rem;
+}
+
+.stat dt {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.3;
+}
+
+.value {
+  margin: 0;
+  font-size: clamp(1.9rem, 1.3rem + 1.4vw, 2.7rem);
+}
+
+.unit {
+  margin-left: 0.2em;
+  font-size: 0.5em;
+  font-weight: 600;
+}
+
+.card :global(.btn) {
+  justify-self: start;
+}

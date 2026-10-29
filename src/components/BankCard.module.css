@@ -1,0 +1,39 @@
+.card {
+  display: grid;
+  gap: 1.75rem;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--white);
+  color: var(--dark);
+}
+
+.rows {
+  display: grid;
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 0.3rem;
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.row:first-child {
+  padding-top: 0;
+}
+
+.row dt {
+  color: var(--muted-on-light);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.value {
+  margin: 0;
+  font-size: clamp(1.7rem, 1.2rem + 1.6vw, 2.4rem);
+  overflow-wrap: anywhere;
+}

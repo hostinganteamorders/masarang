@@ -1,0 +1,42 @@
+.lang {
+  display: inline-flex;
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--r-pill);
+  padding: 2px;
+}
+
+.item {
+  min-width: 2.4rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--r-pill);
+  color: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+}
+
+.item:hover {
+  background: var(--line);
+}
+
+.item[aria-current="true"] {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+@media (max-width: 34rem) {
+  .compact {
+    padding: 0;
+  }
+
+  .compact .item[aria-current="true"] {
+    display: none;
+  }
+
+  .compact .item {
+    min-width: 0;
+    padding: 0.5rem 0.85rem;
+  }
+}

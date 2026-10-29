@@ -1,0 +1,140 @@
+/* Baris-baris sama tinggi: lebar tiap foto sebanding dengan rasionya (--r), jadi tinggi satu baris seragam
+   dan foto tidak dipotong. Di layar sempit baris boleh membungkus, dan tiap foto berukuran dasar --base. */
+.grid {
+  --gap: clamp(0.4rem, 1.1vw, 0.8rem);
+  --base: 14rem;
+  display: grid;
+  gap: var(--gap);
+}
+
+.row {
+  display: flex;
+  gap: var(--gap);
+}
+
+.item {
+  position: relative;
+  flex: calc(var(--r) * 1000) 1 0px;
+  min-width: 0;
+  aspect-ratio: var(--r);
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--r-md);
+  background: var(--c);
+  cursor: zoom-in;
+}
+
+.item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--dark);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.item:hover::after {
+  opacity: 0.14;
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* ---------- Lightbox ---------- */
+
+.dialog {
+  width: min(100% - 2rem, 70rem);
+  max-height: calc(100dvh - 2rem);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--r-lg);
+  background: var(--dark);
+  color: var(--light);
+  --fg: var(--light);
+  --bg: var(--dark);
+  --muted: var(--muted-on-dark);
+  --line: rgba(245, 245, 245, 0.22);
+  --line-strong: rgba(245, 245, 245, 0.5);
+  --focus: var(--conservation);
+  --btn-bg: var(--conservation);
+  --btn-fg: var(--on-fill);
+}
+
+.dialog::backdrop {
+  background: rgba(36, 36, 36, 0.88);
+}
+
+.sheet {
+  display: grid;
+}
+
+.stage {
+  position: relative;
+  height: min(70dvh, 46rem);
+}
+
+.full {
+  object-fit: contain;
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.5rem 1.5rem;
+  align-items: center;
+  padding: 1rem 1.25rem;
+}
+
+.caption {
+  font-weight: 700;
+}
+
+.count {
+  grid-column: 1;
+  grid-row: 2;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+@media (max-width: 62rem) {
+  .grid {
+    --base: 13rem;
+  }
+
+  .row {
+    flex-wrap: wrap;
+  }
+
+  .item {
+    flex-basis: calc(var(--r) * var(--base));
+  }
+}
+
+@media (max-width: 40rem) {
+  .grid {
+    --base: 11rem;
+  }
+
+  .bar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .buttons {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}

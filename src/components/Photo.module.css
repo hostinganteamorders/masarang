@@ -1,0 +1,12 @@
+.slot {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  /* Rata-rata warna foto: terlihat sebentar selagi gambar dimuat. */
+  background: var(--c, color-mix(in srgb, var(--fg) 9%, var(--bg)));
+}
+
+.image {
+  object-fit: cover;
+}
