@@ -5,9 +5,33 @@ export type Status = "underway" | "planned" | "done";
 
 export type Milestone = { id: string; label: L10n; status: Status };
 
+/**
+ * Program Restorasi: angka dari daftar tim (Christina Sinadia, 6 Nov 2026). Belum diperiksa terhadap dokumen sumber,
+ * jadi semuanya `ph` sampai data akhirnya dikompilasi.
+ */
+export const restoration = {
+  /** Kawasan konservasi Temboan (ha). */
+  conservationHa: { v: 500, ph: true } as Fact,
+  /** Luas restorasi dalam 4 tahun terakhir (ha). */
+  restoredYears: 4,
+  restoredTemboanHa: { v: 70, ph: true } as Fact,
+  /** "Lebih dari 10 ha": tampilkan sebagai 10+. */
+  restoredKayuwatuMahembangHa: { v: 10, ph: true, more: true } as Fact & { more: true },
+  farmers: { v: 53, ph: true } as Fact,
+  /** Kenaikan pendapatan petani (%). Definisi pembanding belum ditetapkan. */
+  incomeIncreasePct: { v: 35, ph: true } as Fact,
+};
+
+/** Perlindungan hutan Gunung Masarang (ha). Belum ada angkanya. */
+export const forestProtection = { ha: { v: "xx", ph: true } as Fact<string> };
+
 /** Angka utama di beranda (per tanggal pembaruan). */
 export const keyFigures = {
-  siteHa: { v: 600 } as Fact,
+  conservationHa: restoration.conservationHa,
+  restoredTemboanHa: restoration.restoredTemboanHa,
+  restoredOtherHa: restoration.restoredKayuwatuMahembangHa,
+  farmers: restoration.farmers,
+  incomeIncreasePct: restoration.incomeIncreasePct,
   treesPlanted: { v: 18500, ph: true } as Fact,
   survival: { v: 78, ph: true } as Fact,
   rescued: { v: 64, ph: true } as Fact,
@@ -15,7 +39,7 @@ export const keyFigures = {
 };
 
 export const temboan = {
-  areaHa: { v: 600 } as Fact,
+  areaHa: restoration.conservationHa,
   /** Pohon kelapa terpetakan per desa (pemetaan GPS, Juni 2026). */
   coconut: {
     total: 5640,
@@ -57,6 +81,8 @@ export const temboan = {
 export const tasikoki = {
   inCare: { v: 109, ph: true } as Fact,
   released: { v: 36, ph: true } as Fact,
+  /** Jumlah satwa yang ditranslokasi: belum ada angkanya. */
+  translocated: { v: "[n]", ph: true } as Fact<string>,
   students: { v: 1200, ph: true } as Fact,
   wasteHouseholds: { v: "30–40", ph: true } as Fact<string>,
   perYear: [

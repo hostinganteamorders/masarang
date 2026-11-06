@@ -57,3 +57,15 @@
     border-left: 0;
   }
 }
+
+.link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.12em;
+  text-decoration-color: var(--link);
+}
+
+.link:hover {
+  text-decoration-color: currentColor;
+}

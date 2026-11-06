@@ -8,6 +8,7 @@ import { SectionHead } from "@/components/SectionHead";
 import { SpeciesTable } from "@/components/SpeciesTable";
 import { Steps } from "@/components/Steps";
 import { adoptCopy } from "@/content/adopt";
+import { common } from "@/content/common";
 import { sponsorFrom } from "@/data/organisation";
 import { photos } from "@/data/photos";
 import { idrAuto } from "@/lib/format";
@@ -16,12 +17,12 @@ import { resolveLocale } from "@/lib/locale";
 import { fillNode } from "@/lib/node";
 import { pageMetadata } from "@/lib/seo";
 
-export async function generateMetadata({ params }: PageProps<"/[locale]/adopt">): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps<"/[locale]/programs/conservation/adopt">): Promise<Metadata> {
   const locale = await resolveLocale(params);
-  return pageMetadata(locale, "/adopt", adoptCopy[locale].meta);
+  return pageMetadata(locale, "/programs/conservation/adopt", adoptCopy[locale].meta);
 }
 
-export default async function AdoptPage({ params }: PageProps<"/[locale]/adopt">) {
+export default async function AdoptPage({ params }: PageProps<"/[locale]/programs/conservation/adopt">) {
   const locale = await resolveLocale(params);
   const a = adoptCopy[locale];
 
@@ -38,6 +39,11 @@ export default async function AdoptPage({ params }: PageProps<"/[locale]/adopt">
         accent="conservation"
         size="long"
         image={photos.heroes.adopt}
+        crumbs={[
+          { text: common[locale].nav.programs, href: localePath(locale, "/programs") },
+          { text: common[locale].nav.conservation, href: localePath(locale, "/programs/conservation") },
+          { text: common[locale].nav.adopt },
+        ]}
         meta={[a.hero.source, a.hero.unit]}
         title={a.hero.title}
         lede={a.hero.lede}

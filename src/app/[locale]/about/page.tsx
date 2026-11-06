@@ -1,27 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Principles } from "@/components/Governance";
-import { Letter } from "@/components/Letter";
 import { NewsletterBand } from "@/components/NewsletterBand";
 import { PageHero } from "@/components/PageHero";
 import { PartnersRow } from "@/components/PartnersRow";
 import { Ph } from "@/components/Ph";
 import { Photo } from "@/components/Photo";
 import { Pillars } from "@/components/Pillars";
+import { Portrait } from "@/components/Portrait";
 import { SectionHead } from "@/components/SectionHead";
 import { Split } from "@/components/Split";
-import { StatRow } from "@/components/StatRow";
+import { TeamGroups } from "@/components/TeamGroups";
+import { VideoSlot } from "@/components/VideoSlot";
+import { VisionBand } from "@/components/VisionBand";
 import { about } from "@/content/about";
-import { common } from "@/content/common";
-import { home } from "@/content/home";
+import { apingVideo } from "@/data/media";
 import { photos } from "@/data/photos";
-import { governance } from "@/data/organisation";
-import { site } from "@/data/site";
-import { fill, fullDate } from "@/lib/format";
 import { localePath } from "@/lib/i18n";
 import { resolveLocale } from "@/lib/locale";
 import { pageMetadata } from "@/lib/seo";
-import { keyStats } from "@/lib/stats";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/about">): Promise<Metadata> {
   const locale = await resolveLocale(params);
@@ -31,67 +27,54 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/about">)
 export default async function AboutPage({ params }: PageProps<"/[locale]/about">) {
   const locale = await resolveLocale(params);
   const t = about[locale];
-  const c = common[locale];
-  const chair = governance.find((g) => g.id === "chair");
 
   return (
     <>
       <PageHero locale={locale} title={t.hero.title} lede={t.hero.lede} image={photos.heroes.about} />
 
-      {/* Apa yang kami kerjakan */}
-      <section className="section on-light" aria-labelledby="work-title">
+      {/* Our Founder */}
+      <section className="section on-light" aria-labelledby="founder-title">
         <div className="container">
-          <SectionHead id="work-title" title={t.work.title} />
-          <Pillars
-            locale={locale}
-            items={[
-              {
-                id: "land",
-                title: t.work.land.title,
-                body: t.work.land.body,
-                color: "var(--restoration)",
-                photo: photos.about.land,
-                cta: t.work.land.cta,
-                href: localePath(locale, "/programs/temboan"),
-              },
-              {
-                id: "wildlife",
-                title: t.work.wildlife.title,
-                body: t.work.wildlife.body,
-                color: "var(--conservation)",
-                photo: photos.about.wildlife,
-                cta: t.work.wildlife.cta,
-                href: localePath(locale, "/programs/tasikoki"),
-              },
-              {
-                id: "proof",
-                title: t.work.proof.title,
-                body: t.work.proof.body,
-                color: "var(--neutral-dark)",
-                photo: photos.about.proof,
-                cta: t.work.proof.cta,
-                href: localePath(locale, "/transparency"),
-              },
-            ]}
+          <Split
+            ratio="4-7"
+            align="center"
+            left={<Portrait name={t.founder.name} placeholder seed={7} />}
+            right={
+              <div className="prose">
+                <h2 id="founder-title" className="title-md" style={{ marginBottom: "0.75rem" }}>
+                  {t.founder.title}
+                </h2>
+                <p className="num" style={{ fontSize: "1.6rem", marginBottom: "0.25rem" }}>
+                  {t.founder.name} <Ph on>{t.founder.nameNote}</Ph>
+                </p>
+                <p style={{ color: "var(--muted)", marginBottom: "1.5rem", fontWeight: 600 }}>{t.founder.role}</p>
+                {t.founder.bio.map((p) => (
+                  <p key={p} style={{ fontSize: "1.15rem" }}>
+                    <Ph on>{p}</Ph>
+                  </p>
+                ))}
+                <p style={{ color: "var(--muted)", fontSize: "0.95rem" }}>
+                  <Ph on>{t.founder.photoLabel}</Ph>
+                </p>
+              </div>
+            }
           />
         </div>
       </section>
 
-      {/* Kisah pendirian (isi masih contoh) */}
-      <section className="section on-soft" aria-labelledby="story-title">
+      {/* Sejarah Masarang */}
+      <section className="section on-soft" aria-labelledby="history-title">
         <div className="container">
           <Split
             ratio="5-6"
             align="center"
-            left={
-              <Photo pic={photos.about.story} locale={locale} ratio="4 / 5" sizes="(max-width: 52rem) 100vw, 45vw" />
-            }
+            left={<Photo pic={photos.about.story} locale={locale} ratio="4 / 5" sizes="(max-width: 52rem) 100vw, 45vw" />}
             right={
               <div className="prose">
-                <h2 id="story-title" className="title-md" style={{ marginBottom: "1.5rem" }}>
-                  {t.story.title}
+                <h2 id="history-title" className="title-md" style={{ marginBottom: "1.5rem" }}>
+                  {t.founder.history.title}
                 </h2>
-                {t.story.paragraphs.map((p) => (
+                {t.founder.history.paragraphs.map((p) => (
                   <p key={p} style={{ fontSize: "1.15rem" }}>
                     <Ph on>{p}</Ph>
                   </p>
@@ -102,46 +85,95 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
         </div>
       </section>
 
-      {/* Surat dari ketua (isi masih contoh) */}
-      <Letter
-        title={t.letter.title}
-        body={t.letter.body}
-        ph
-        name={chair ? chair.name[locale] : ""}
-        namePh={chair?.ph}
-        role={t.letter.signature}
-      />
-
-      {/* Posisi saat ini */}
-      <section className="section on-dark" aria-labelledby="now-title">
+      {/* Video Aping */}
+      <section className="section on-dark" aria-labelledby="video-title">
         <div className="container">
-          <SectionHead
-            id="now-title"
-            meta={[fill(c.labels.asOf, { date: fullDate(site.lastUpdated, locale) })]}
-            title={t.now.title}
+          <h2 id="video-title" className="sr-only">
+            {t.founder.video}
+          </h2>
+          <div style={{ maxWidth: "60rem", marginInline: "auto" }}>
+            <VideoSlot url={apingVideo.url} title={apingVideo.title[locale]} locale={locale} />
+          </div>
+        </div>
+      </section>
+
+      {/* Our Vision */}
+      <VisionBand title={t.vision.title} ph>
+        {t.vision.body}
+      </VisionBand>
+
+      {/* What we do, why we do it */}
+      <section className="section on-light" aria-labelledby="what-title">
+        <div className="container">
+          <SectionHead id="what-title" title={t.what.title} lede={t.what.lede} />
+          <Pillars
+            locale={locale}
+            items={[
+              {
+                id: "restoration",
+                title: t.what.restoration.title,
+                body: t.what.restoration.body,
+                color: "var(--restoration)",
+                photo: photos.about.land,
+                cta: t.what.restoration.cta,
+                href: localePath(locale, "/programs/restoration"),
+              },
+              {
+                id: "conservation",
+                title: t.what.conservation.title,
+                body: t.what.conservation.body,
+                color: "var(--conservation)",
+                photo: photos.about.wildlife,
+                cta: t.what.conservation.cta,
+                href: localePath(locale, "/programs/conservation"),
+              },
+              {
+                id: "education",
+                title: t.what.education.title,
+                body: t.what.education.body,
+                color: "var(--education)",
+                photo: photos.programs.education,
+                cta: t.what.education.cta,
+                href: localePath(locale, "/programs/education"),
+              },
+            ]}
           />
-          <StatRow stats={keyStats(locale)} />
+          <div className="prose" style={{ marginTop: "3rem", maxWidth: "46rem" }}>
+            <h3 className="title-md" style={{ fontSize: "clamp(1.8rem, 1.3rem + 1.6vw, 2.6rem)", marginBottom: "1rem" }}>
+              {t.what.why.title}
+            </h3>
+            <p style={{ fontSize: "1.15rem" }}>
+              <Ph on>{t.what.why.body}</Ph>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Team */}
+      <section className="section on-soft" aria-labelledby="team-title">
+        <div className="container">
+          <SectionHead id="team-title" title={t.team.title} lede={t.team.lede} />
+          <TeamGroups locale={locale} />
+        </div>
+      </section>
+
+      {/* Our Partners */}
+      <section className="section on-light" aria-labelledby="partners-title">
+        <div className="container">
+          <SectionHead id="partners-title" title={t.partners.title} lede={t.partners.lede} />
+          <PartnersRow locale={locale} />
         </div>
       </section>
 
       {/* Pertanggungjawaban */}
-      <section className="section on-light" aria-labelledby="account-title">
+      <section className="section on-dark" aria-labelledby="account-title">
         <div className="container">
-          <SectionHead id="account-title" title={t.account.title} lede={t.account.lede} />
-          <Principles locale={locale} />
-          <p style={{ marginTop: "2.25rem" }}>
+          <SectionHead id="account-title" title={t.account.title} />
+          <p>
             <Link href={localePath(locale, "/transparency")} className="btn">
               {t.account.cta}
             </Link>
           </p>
-        </div>
-      </section>
-
-      {/* Mitra */}
-      <section className="section on-soft" aria-labelledby="partners-title">
-        <div className="container">
-          <SectionHead id="partners-title" title={home[locale].partners.title} />
-          <PartnersRow locale={locale} />
         </div>
       </section>
 

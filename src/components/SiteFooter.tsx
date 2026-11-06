@@ -8,7 +8,19 @@ import { Ph } from "./Ph";
 import { Ribbon } from "./Ribbon";
 import s from "./SiteFooter.module.css";
 
-const EXPLORE = ["about", "team", "adopt", "transparency", "updates"] as const;
+const EXPLORE = [
+  { key: "about", path: "/about" },
+  { key: "team", path: "/about/team" },
+  { key: "updates", path: "/updates" },
+  { key: "transparency", path: "/transparency" },
+] as const;
+
+const PROGRAMS = [
+  { key: "restoration", path: "/programs/restoration" },
+  { key: "conservation", path: "/programs/conservation" },
+  { key: "education", path: "/programs/education" },
+  { key: "adopt", path: "/programs/conservation/adopt" },
+] as const;
 
 export function SiteFooter({ locale }: { locale: Locale }) {
   const c = common[locale];
@@ -27,9 +39,9 @@ export function SiteFooter({ locale }: { locale: Locale }) {
         <nav aria-label={c.footer.explore}>
           <p className={s.colTitle}>{c.footer.explore}</p>
           <ul className={s.list}>
-            {EXPLORE.map((key) => (
+            {EXPLORE.map(({ key, path }) => (
               <li key={key}>
-                <Link href={localePath(locale, `/${key}`)}>{c.nav[key]}</Link>
+                <Link href={localePath(locale, path)}>{c.nav[key]}</Link>
               </li>
             ))}
           </ul>
@@ -38,12 +50,11 @@ export function SiteFooter({ locale }: { locale: Locale }) {
         <nav aria-label={c.footer.programs}>
           <p className={s.colTitle}>{c.footer.programs}</p>
           <ul className={s.list}>
-            <li>
-              <Link href={localePath(locale, "/programs/temboan")}>{c.sites.temboan}</Link>
-            </li>
-            <li>
-              <Link href={localePath(locale, "/programs/tasikoki")}>{c.sites.tasikoki}</Link>
-            </li>
+            {PROGRAMS.map(({ key, path }) => (
+              <li key={key}>
+                <Link href={localePath(locale, path)}>{c.nav[key]}</Link>
+              </li>
+            ))}
             <li>
               <Link href={localePath(locale, "/support")}>{c.footer.support}</Link>
             </li>

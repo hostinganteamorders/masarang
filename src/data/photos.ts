@@ -30,6 +30,13 @@ export const photos = {
     temboan: pic("forested-hills"),
     tasikoki: pic("lories-on-a-branch"),
     adopt: pic("macaque-behind-bars"),
+    education: pic("bamboo-talk-stage"),
+  },
+
+  /** Halaman Edukasi: foto di samping kegiatan yang fotonya jelas cocok. */
+  educationItems: {
+    tumbuh: pic("mural-wall-coloured"),
+    lokawaya: pic("market-hall"),
   },
 
   about: {
@@ -47,6 +54,17 @@ export const photos = {
     monitoring: pic("mapping-on-paper"),
   },
 
+
+  /** Halaman Restorasi: foto di samping teks proyek dan teks Farmers Empowered. */
+  restoration: {
+    project: pic("lookout-tower"),
+    farmers: pic("hoe-and-boots"),
+  },
+
+  /** Halaman Konservasi: foto di samping teks Tasikoki. */
+  conservation: {
+    tasikoki: pic("white-bellied-sea-eagle"),
+  },
 
   /** Galeri halaman Temboan (12 foto; susunan baris dihitung otomatis dari rasio foto). */
   temboan: set(

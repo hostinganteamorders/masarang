@@ -61,7 +61,7 @@ export default async function SupportPage({ params }: PageProps<"/[locale]/suppo
         body={fillNode(t.sponsor.body, {
           amount: <Ph on={sponsorFrom.ph}>{idrAuto(sponsorFrom.v, locale)}</Ph>,
         })}
-        href={localePath(locale, "/adopt")}
+        href={localePath(locale, "/programs/conservation/adopt")}
         cta={t.sponsor.cta}
       />
 

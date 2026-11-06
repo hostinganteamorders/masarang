@@ -32,8 +32,22 @@
 .content {
   position: relative;
   z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 2.5rem clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
   padding-top: clamp(2.25rem, 4.5vw, 4rem);
   padding-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.copy {
+  min-width: 0;
+}
+
+.video {
+  min-width: 0;
+  /* Pelat gelap tipis agar teks keterangan video terbaca di atas foto. */
+  --muted: var(--muted-on-dark);
 }
 
 .place {
@@ -54,7 +68,7 @@
 
 .title {
   max-width: 9.2em;
-  font-size: clamp(3.5rem, 1rem + 8.4vw, 8.6rem);
+  font-size: clamp(3.2rem, 1rem + 6.2vw, 7rem);
 }
 
 .lede {
@@ -124,6 +138,10 @@
 }
 
 @media (max-width: 62rem) {
+  .content {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.5rem 0;

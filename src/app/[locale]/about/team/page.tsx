@@ -5,22 +5,30 @@ import { SectionHead } from "@/components/SectionHead";
 import { TeamGrid } from "@/components/TeamGrid";
 import { teamCopy } from "@/content/team";
 import { photos } from "@/data/photos";
+import { common } from "@/content/common";
+import { localePath } from "@/lib/i18n";
 import { team } from "@/data/team";
 import { resolveLocale } from "@/lib/locale";
 import { pageMetadata } from "@/lib/seo";
 
-export async function generateMetadata({ params }: PageProps<"/[locale]/team">): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps<"/[locale]/about/team">): Promise<Metadata> {
   const locale = await resolveLocale(params);
-  return pageMetadata(locale, "/team", teamCopy[locale].meta);
+  return pageMetadata(locale, "/about/team", teamCopy[locale].meta);
 }
 
-export default async function TeamPage({ params }: PageProps<"/[locale]/team">) {
+export default async function TeamPage({ params }: PageProps<"/[locale]/about/team">) {
   const locale = await resolveLocale(params);
   const t = teamCopy[locale];
 
   return (
     <>
-      <PageHero locale={locale} title={t.hero.title} lede={t.hero.lede} image={photos.heroes.team} />
+      <PageHero
+        locale={locale}
+        title={t.hero.title}
+        lede={t.hero.lede}
+        image={photos.heroes.team}
+        crumbs={[{ text: common[locale].nav.about, href: localePath(locale, "/about") }, { text: t.meta.title }]}
+      />
 
       <section className="section on-light" aria-labelledby="governance-title">
         <div className="container">

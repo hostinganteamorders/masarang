@@ -11,12 +11,13 @@ const en = {
   },
   governance: {
     title: "Governance",
-    lede: "Indonesian foundation law requires three bodies: Supervisors, an Executive Board and an Oversight Board.",
+    lede: "Indonesian foundation law requires three bodies: Supervisors, an Executive Board and an Oversight Board. The Deputy is listed with them.",
   },
   programs: {
     title: "Program areas",
     lede: "The people who run the work day to day.",
   },
+  back: "About Us",
   card: { photoLabel: "Photo to be added", open: "Open {name}, {role}" },
   dialog: { close: "Close", duty: "What this role does", bio: "Background" },
 };
@@ -33,12 +34,13 @@ const id: typeof en = {
   },
   governance: {
     title: "Tata kelola",
-    lede: "Hukum yayasan di Indonesia mewajibkan tiga badan: Pembina, Pengurus, dan Pengawas.",
+    lede: "Hukum yayasan di Indonesia mewajibkan tiga badan: Pembina, Pengurus, dan Pengawas. Deputi dicantumkan bersama mereka.",
   },
   programs: {
     title: "Bidang program",
     lede: "Orang-orang yang menjalankan pekerjaan sehari-hari.",
   },
+  back: "Tentang Kami",
   card: { photoLabel: "Foto akan ditambahkan", open: "Buka {name}, {role}" },
   dialog: { close: "Tutup", duty: "Tugas jabatan ini", bio: "Latar belakang" },
 };

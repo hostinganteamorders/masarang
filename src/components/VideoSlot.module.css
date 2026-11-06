@@ -1,0 +1,41 @@
+.slot {
+  margin: 0;
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--raised);
+  color: var(--light);
+}
+
+.frame iframe,
+.frame video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #000;
+}
+
+.empty {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.75rem;
+  border: 2px dashed var(--line-strong);
+  border-radius: inherit;
+  font-weight: 700;
+  text-align: center;
+}
+
+.caption {
+  margin-top: 0.6rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}

@@ -26,7 +26,6 @@ export function UpdatesList({ locale }: { locale: Locale }) {
 
   return (
     <div>
-      <h2 className="sr-only">{t.list}</h2>
       <div className={s.bar}>
         <div className="chips" role="group" aria-label={t.filterLabel}>
           {options.map((o) => (

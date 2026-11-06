@@ -6,7 +6,7 @@ const en = {
     name: "Temboan",
     place: "Langowan Selatan, Minahasa",
     summary:
-      "A 600-hectare site bordering the villages of Palamba, Rumbia and Temboan. We restore degraded land with mixed agroforestry, and we manage the existing coconut and clove gardens as the site's income so restoration does not depend on grants alone. Arenga sugar palm comes next.",
+      "A 500-hectare conservation area bordering the villages of Palamba, Rumbia and Temboan. We restore degraded land with mixed agroforestry, and we manage the existing coconut and clove gardens as the site's income so restoration does not depend on grants alone. Arenga sugar palm comes next.",
     teaser:
       "Mixed agroforestry on degraded land, paid for in part by the site's own coconut and clove gardens.",
     stats: {
@@ -43,7 +43,7 @@ const id: typeof en = {
     name: "Temboan",
     place: "Langowan Selatan, Minahasa",
     summary:
-      "Lahan seluas 600 hektare yang berbatasan dengan Desa Palamba, Rumbia, dan Temboan. Kami memulihkan lahan kritis dengan agroforestri campuran, dan mengelola kebun kelapa dan cengkih yang ada sebagai sumber pendapatan lokasi, agar restorasi tidak hanya bergantung pada hibah. Aren menjadi tahap berikutnya.",
+      "Kawasan konservasi seluas 500 hektare yang berbatasan dengan Desa Palamba, Rumbia, dan Temboan. Kami memulihkan lahan kritis dengan agroforestri campuran, dan mengelola kebun kelapa dan cengkih yang ada sebagai sumber pendapatan lokasi, agar restorasi tidak hanya bergantung pada hibah. Aren menjadi tahap berikutnya.",
     teaser:
       "Agroforestri campuran di lahan kritis, sebagian dibiayai oleh kebun kelapa dan cengkih milik lokasi itu sendiri.",
     stats: {

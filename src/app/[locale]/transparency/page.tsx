@@ -95,7 +95,7 @@ export default async function TransparencyPage({ params }: PageProps<"/[locale]/
           <SectionHead id="governance-title" title={t.governance.title} lede={t.governance.lede} />
           <GovernanceList locale={locale} />
           <p style={{ marginTop: "2.25rem" }}>
-            <Link href={localePath(locale, "/team")} className="btn">
+            <Link href={localePath(locale, "/about/team")} className="btn">
               {t.governance.cta}
             </Link>
           </p>

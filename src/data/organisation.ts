@@ -69,8 +69,12 @@ export const documents: PublicDocument[] = [
 
 /* ---------------- Tata kelola ---------------- */
 
+/** Kelompok organ yayasan, dipakai di halaman Tentang: Pembina, Pengawas, Pengurus, Deputi. */
+export type GovernanceBody = "supervisors" | "oversight" | "board" | "deputy";
+
 export type GovernanceRole = {
   id: string;
+  body: GovernanceBody;
   role: L10n;
   name: L10n;
   /** true = nama masih contoh. */
@@ -80,14 +84,16 @@ export type GovernanceRole = {
 const NAME_PH: L10n = { en: "[Name]", id: "[Nama]" };
 
 export const governance: GovernanceRole[] = [
-  { id: "supervisors", role: { en: "Supervisors", id: "Pembina" }, name: NAME_PH, ph: true },
+  { id: "supervisors", body: "supervisors", role: { en: "Supervisors", id: "Pembina" }, name: NAME_PH, ph: true },
   {
     id: "chair",
+    body: "board",
     role: { en: "Chair, Executive Board", id: "Ketua Pengurus" },
     name: { en: "Aulia Reinozha Akbar", id: "Aulia Reinozha Akbar" },
   },
-  { id: "treasurer", role: { en: "Treasurer", id: "Bendahara" }, name: NAME_PH, ph: true },
-  { id: "oversight", role: { en: "Oversight Board", id: "Pengawas" }, name: NAME_PH, ph: true },
+  { id: "treasurer", body: "board", role: { en: "Treasurer", id: "Bendahara" }, name: NAME_PH, ph: true },
+  { id: "oversight", body: "oversight", role: { en: "Oversight Board", id: "Pengawas" }, name: NAME_PH, ph: true },
+  { id: "deputy", body: "deputy", role: { en: "Deputy", id: "Deputi" }, name: NAME_PH, ph: true },
 ];
 
 export const principles: { id: string; title: L10n; body: L10n }[] = [
@@ -119,12 +125,14 @@ export const principles: { id: string; title: L10n; body: L10n }[] = [
 
 /* ---------------- Mitra ---------------- */
 
+/** `url` kosong = alamat web mitra belum diisi (tautan baru muncul setelah diisi). */
 export type Partner = { id: string; name: string; role: L10n; url?: string };
 
 export const partners: Partner[] = [
   {
     id: "trees-for-all",
     name: "Trees for All",
+    url: "https://www.treesforall.nl",
     role: { en: "Restoration funding, Netherlands", id: "Pendanaan restorasi, Belanda" },
   },
   {
@@ -135,6 +143,7 @@ export const partners: Partner[] = [
   {
     id: "pge",
     name: "Pertamina Geothermal Energy",
+    url: "https://www.pge.pertamina.com",
     role: { en: "Geothermal palm sugar processing", id: "Pengolahan gula aren panas bumi" },
   },
   {

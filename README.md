@@ -27,16 +27,32 @@ Setiap halaman ada di `/en/...` dan `/id/...`. Alamat memakai kata Inggris yang 
 
 | Alamat | Isi |
 | --- | --- |
-| `/` | Beranda: hero penggeser lereng bukit, angka kunci, dua lokasi, register satwa, pita aliran uang, donasi, mitra, kabar terbaru |
-| `/about` | Tentang: surat Ketua, kisah pendirian dengan foto, prinsip, mitra |
-| `/team` | Tim: pengurus dan tim program dalam grid potret, dengan dialog tugas dan biodata |
-| `/programs` | Ringkasan program dan dua lokasi |
-| `/programs/temboan` | Temboan: restorasi, kebun kelapa dan cengkih, tiga desa, tonggak, galeri |
-| `/programs/tasikoki` | Tasikoki: perawatan satwa, grafik diselamatkan dan dilepasliarkan, tonggak, galeri |
-| `/adopt` | Register satwa: 109 titik yang dapat disaring, kartu detail, sponsor lewat email, tabel spesies |
-| `/transparency` | Keuangan (rupiah/dolar), biaya per satuan, dokumen, tata kelola |
-| `/updates` | Kabar lapangan dengan penyaring jenis |
-| `/support` | Cara mendukung: donasi, adopsi, rekening bank, kemitraan |
+| `/` | Beranda: tagline dan slot Video Aping, angka utama, ringkasan tiga program, update terbaru (Quarterly Report), tombol donasi |
+| `/about` | Tentang Kami: Pendiri (Willie), sejarah Masarang, Video Aping, Visi, apa dan mengapa, Tim (Pembina, Pengawas, Pengurus, Deputi), Mitra dengan tautan |
+| `/about/team` | Tim lengkap: tata kelola dan penanggung jawab bidang program, grid potret dengan dialog tugas dan biodata |
+| `/programs` | Ringkasan tiga program, pemantauan dan pelaporan |
+| `/programs/restoration` | Restorasi: Temboan Restoration Project (500 ha; 70 ha di Temboan dan 10+ ha di Kayuwatu dan Mahembang dalam 4 tahun), Farmers Empowered (53 petani, 35%, tautan TMS), lereng pulih, kelapa, tonggak, galeri |
+| `/programs/conservation` | Konservasi: Tasikoki (rehabilitasi, translokasi, pelepasliaran), satwa untuk diadopsi, Proyek Penyu, Perlindungan Hutan, data keanekaragaman hayati, galeri |
+| `/programs/conservation/adopt` | Register satwa: 109 titik yang dapat disaring, kartu detail, sponsor lewat email, tabel spesies |
+| `/programs/education` | Edukasi: .Tumbuh, Pasar Lokawaya, SAPA ALAM, Residensi (EduTour, StoryLab for Sampiri), Outreach dan ComDev, Relawan, galeri |
+| `/updates` | Quarterly Report (terbaru dan arsip) dan kabar lapangan dengan penyaring lokasi |
+| `/support` | Donasi: cara mendukung, adopsi, rekening bank, kemitraan |
+| `/transparency` | Keuangan (rupiah/dolar), biaya per satuan, dokumen, tata kelola (tidak di menu utama; ada di footer dan di halaman Tentang) |
+
+Struktur ini mengikuti daftar dari tim (Home, About Us, Programs). Alamat lama (`/team`, `/adopt`, `/programs/temboan`,
+`/programs/tasikoki`) dialihkan otomatis ke alamat baru (lihat `next.config.ts`).
+
+### Isi yang masih menunggu data
+
+Teks berkurung siku `[…]` dan angka bergaris titik-titik adalah penanda tempat (hilang bila `site.draft = false`
+atau setelah `ph` diubah menjadi `false`):
+
+- Video Aping: isi `apingVideo.url` di `src/data/media.ts` (YouTube, Vimeo, atau berkas .mp4).
+- Situs TMS dan katalog EduTour: isi `tms.url` dan `edutourCatalog.url` di `src/data/media.ts`. Tombolnya baru aktif bila alamat ada.
+- Alamat web mitra: isi `url` pada `partners` di `src/data/organisation.ts` (Trees for All dan PGE sudah terisi; Thryve.Earth dan RDI belum).
+- Quarterly Report: isi daftar di `src/data/reports.ts` dan taruh PDF di `public/reports/`, lalu isi `pdf`.
+- Angka Restorasi (500, 70, 10+, 53, 35%) ada di `src/data/programs.ts` (`restoration`); luas Perlindungan Hutan di `forestProtection`.
+- Profil Willie, sejarah, visi, "mengapa", dan semua deskripsi kegiatan Edukasi: `src/content/about.ts` dan `src/content/programs.ts`.
 
 Alamat yang tidak ada menampilkan halaman 404 lengkap dengan header dan footer, dalam bahasa yang sedang dipakai.
 

@@ -11,10 +11,7 @@ import s from "./SiteHeader.module.css";
 
 const ITEMS = [
   { key: "about", path: "/about" },
-  { key: "team", path: "/team" },
   { key: "programs", path: "/programs" },
-  { key: "adopt", path: "/adopt" },
-  { key: "transparency", path: "/transparency" },
   { key: "updates", path: "/updates" },
 ] as const;
 

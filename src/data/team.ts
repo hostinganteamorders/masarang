@@ -41,6 +41,10 @@ const duties: Record<string, L10n> = {
     en: "Keeps the accounts, prepares the quarterly figures published on this site and works with the auditor.",
     id: "Memegang pembukuan, menyiapkan angka triwulanan yang diterbitkan di situs ini, dan bekerja sama dengan auditor.",
   },
+  deputy: {
+    en: "[Describe the Deputy's role.]",
+    id: "[Jelaskan peran Deputi.]",
+  },
   oversight: {
     en: "Checks that the Executive Board follows the statutes and the approved plan.",
     id: "Memeriksa bahwa Pengurus menjalankan anggaran dasar dan rencana yang telah disetujui.",

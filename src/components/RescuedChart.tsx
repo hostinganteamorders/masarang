@@ -12,7 +12,7 @@ import s from "./RescuedChart.module.css";
  * sehingga batang itu sendiri disembunyikan dari teknologi bantu.
  */
 export function RescuedChart({ locale }: { locale: Locale }) {
-  const t = programsCopy[locale].tasikoki.chart;
+  const t = programsCopy[locale].conservation.chart;
   const c = common[locale];
   const data = tasikoki.perYear;
   const max = Math.max(...data.flatMap((d) => [d.rescued, d.released]));

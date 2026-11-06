@@ -1,0 +1,67 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem clamp(1.25rem, 3vw, 2.5rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.group {
+  display: grid;
+  align-content: start;
+  gap: 0.9rem;
+  padding-top: 1.1rem;
+  border-top: 8px solid var(--restoration);
+}
+
+.group:nth-child(2) {
+  border-top-color: var(--conservation);
+}
+
+.group:nth-child(3) {
+  border-top-color: var(--education);
+}
+
+.group:nth-child(4) {
+  border-top-color: var(--neutral-dark);
+}
+
+.title {
+  font-size: clamp(1.8rem, 1.3rem + 1.6vw, 2.6rem);
+}
+
+.members {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.name {
+  display: block;
+  font-size: 1.35rem;
+}
+
+.role {
+  display: block;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.more {
+  margin-top: 2.25rem;
+}
+
+@media (max-width: 62rem) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 36rem) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
