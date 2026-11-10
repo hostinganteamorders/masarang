@@ -27,11 +27,6 @@ export function ProgramCards({ locale, tone = "dark" }: { locale: Locale; tone?:
               <p className={s.place}>{item.place}</p>
               <h3 className={s.name}>{item.name}</h3>
               <p className={s.teaser}>{item.teaser}</p>
-              <ul className={s.points}>
-                {item.points.map((p) => (
-                  <li key={p}>{p}</li>
-                ))}
-              </ul>
               <Link href={localePath(locale, `/programs/${id}`)} className="btn">
                 {item.cta}
               </Link>

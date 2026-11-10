@@ -33,7 +33,7 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
       <PageHero locale={locale} title={t.hero.title} lede={t.hero.lede} image={photos.heroes.about} />
 
       {/* Our Founder */}
-      <section className="section on-light" aria-labelledby="founder-title">
+      <section id="founder" className="section on-light" aria-labelledby="founder-title">
         <div className="container">
           <Split
             ratio="4-7"
@@ -150,7 +150,7 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
       </section>
 
       {/* Our Team */}
-      <section className="section on-soft" aria-labelledby="team-title">
+      <section id="team" className="section on-soft" aria-labelledby="team-title">
         <div className="container">
           <SectionHead id="team-title" title={t.team.title} lede={t.team.lede} />
           <TeamGroups locale={locale} />
@@ -158,7 +158,7 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
       </section>
 
       {/* Our Partners */}
-      <section className="section on-light" aria-labelledby="partners-title">
+      <section id="partners" className="section on-light" aria-labelledby="partners-title">
         <div className="container">
           <SectionHead id="partners-title" title={t.partners.title} lede={t.partners.lede} />
           <PartnersRow locale={locale} />

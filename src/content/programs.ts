@@ -22,7 +22,6 @@ const en = {
         place: "Temboan, Kayuwatu and Mahembang",
         teaser:
           "Mixed agroforestry on degraded land, and the farmers who earn from the land they help restore.",
-        points: ["Temboan Restoration Project", "Farmers Empowered"],
         cta: "See Restoration",
       },
       conservation: {
@@ -30,20 +29,12 @@ const en = {
         place: "Tasikoki and Mount Masarang",
         teaser:
           "Seized animals are rehabilitated and returned to the wild where it is safe. Sea turtles, forest and biodiversity data are part of the same program.",
-        points: [
-          "Tasikoki: rehabilitation, translocation and release",
-          "Animals to adopt",
-          "Sea Turtle Project",
-          "Forest Protection",
-          "Biodiversity data",
-        ],
         cta: "See Conservation",
       },
       education: {
         name: "Education",
         place: "Tomohon, Tasikoki and the villages we work in",
         teaser: "Learning programs, a community market, residencies, outreach and volunteering.",
-        points: [".Tumbuh", "Pasar Lokawaya", "SAPA ALAM", "Residency", "Outreach and community development", "Volunteering"],
         cta: "See Education",
       },
     },
@@ -239,7 +230,6 @@ const id: typeof en = {
         place: "Temboan, Kayuwatu, dan Mahembang",
         teaser:
           "Agroforestri campuran di lahan kritis, dan para petani yang memperoleh penghasilan dari lahan yang ikut mereka pulihkan.",
-        points: ["Temboan Restoration Project", "Farmers Empowered"],
         cta: "Lihat Restorasi",
       },
       conservation: {
@@ -247,20 +237,12 @@ const id: typeof en = {
         place: "Tasikoki dan Gunung Masarang",
         teaser:
           "Satwa sitaan direhabilitasi dan dilepasliarkan bila aman. Penyu, hutan, dan data keanekaragaman hayati bagian dari program yang sama.",
-        points: [
-          "Tasikoki: rehabilitasi, translokasi, dan pelepasliaran",
-          "Satwa untuk diadopsi",
-          "Proyek Penyu",
-          "Perlindungan Hutan",
-          "Data keanekaragaman hayati",
-        ],
         cta: "Lihat Konservasi",
       },
       education: {
         name: "Edukasi",
         place: "Tomohon, Tasikoki, dan desa-desa tempat kami bekerja",
         teaser: "Program belajar, pasar masyarakat, residensi, penjangkauan, dan kerja relawan.",
-        points: [".Tumbuh", "Pasar Lokawaya", "SAPA ALAM", "Residensi", "Outreach dan pengembangan masyarakat", "Relawan"],
         cta: "Lihat Edukasi",
       },
     },

@@ -126,7 +126,7 @@ export const principles: { id: string; title: L10n; body: L10n }[] = [
 /* ---------------- Mitra ---------------- */
 
 /** `url` kosong = alamat web mitra belum diisi (tautan baru muncul setelah diisi). */
-export type Partner = { id: string; name: string; role: L10n; url?: string };
+export type Partner = { id: string; name: string; role: L10n; url?: string; /** Berkas logo, mis. /partners/trees-for-all.svg. Kosong = kotak kosong berlabel nama mitra. */ logo?: string };
 
 export const partners: Partner[] = [
   {

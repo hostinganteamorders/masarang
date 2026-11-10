@@ -5,6 +5,7 @@ import { common } from "@/content/common";
 import type { Pic } from "@/data/photos";
 import type { Locale } from "@/lib/i18n";
 import { Contours } from "./art/Contours";
+import { ZoomButton } from "./ZoomPhoto";
 import s from "./PageHero.module.css";
 
 export type Crumb = { text: string; href?: string };
@@ -34,7 +35,7 @@ export function PageHero({
   /** "long" untuk judul berupa kalimat panjang. */
   size?: "default" | "long";
   seed?: number;
-  /** Foto penuh di balik judul (dekoratif: maknanya sudah ada di judul). Tanpa ini, garis kontur dipakai. */
+  /** Foto penuh di balik judul (maknanya sudah ada di judul; tombol di pojok membukanya dalam pop-up). Tanpa ini, garis kontur dipakai. */
   image?: Pic;
   children?: ReactNode;
 }) {
@@ -59,6 +60,7 @@ export function PageHero({
       ) : (
         <Contours className={s.contours} seed={seed} />
       )}
+      {image && <ZoomButton pic={image} locale={locale} />}
       <div className={`container ${s.inner}`}>
         {crumbs && crumbs.length > 0 && (
           <nav aria-label={common[locale].labels.breadcrumb}>

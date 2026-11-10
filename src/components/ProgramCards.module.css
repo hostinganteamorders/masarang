@@ -64,28 +64,8 @@
 }
 
 .teaser {
+  margin-bottom: 1rem;
   color: var(--muted);
-}
-
-.points {
-  display: grid;
-  gap: 0.35rem;
-  align-self: stretch;
-  margin: 0.6rem 0 1rem;
-  padding: 0.9rem 0 0;
-  border-top: 1px solid var(--line);
-  list-style: none;
-  font-weight: 600;
-}
-
-.points li::before {
-  content: "";
-  display: inline-block;
-  width: 0.55rem;
-  height: 0.55rem;
-  margin-right: 0.6rem;
-  border-radius: 50%;
-  background: var(--site);
 }
 
 .card :global(.btn) {

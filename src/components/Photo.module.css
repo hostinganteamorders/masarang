@@ -10,3 +10,59 @@
 .image {
   object-fit: cover;
 }
+
+/* Tombol transparan di atas seluruh foto: klik membuka pop-up. Lencana "+" kecil menandai bahwa foto bisa dibesarkan. */
+.zoom {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.zoom::after {
+  content: "";
+  position: absolute;
+  right: 0.6rem;
+  bottom: 0.6rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background:
+    linear-gradient(var(--light), var(--light)) center / 0.9rem 2px no-repeat,
+    linear-gradient(var(--light), var(--light)) center / 2px 0.9rem no-repeat,
+    rgb(36 36 36 / 0.72);
+  opacity: 0.9;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.zoom:hover::after,
+.zoom:focus-visible::after {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+/* Versi pojok untuk foto latar yang tertimpa teks. */
+.corner {
+  position: absolute;
+  right: clamp(0.75rem, 2vw, 1.5rem);
+  bottom: clamp(0.75rem, 2vw, 1.5rem);
+  z-index: 2;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background:
+    linear-gradient(var(--light), var(--light)) center / 1rem 2px no-repeat,
+    linear-gradient(var(--light), var(--light)) center / 2px 1rem no-repeat,
+    rgb(36 36 36 / 0.72);
+  cursor: zoom-in;
+  transition: transform 0.15s ease;
+}
+
+.corner:hover,
+.corner:focus-visible {
+  transform: scale(1.1);
+}

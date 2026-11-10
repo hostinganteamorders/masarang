@@ -1,52 +1,31 @@
 .hero {
   position: relative;
-  display: grid;
-  grid-template-rows: 1fr auto;
-  min-height: min(calc(100svh - var(--header-h)), 60rem);
   overflow: hidden;
   background: var(--bg);
   color: var(--fg);
 }
 
-.photo {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: var(--c);
-}
-
-.image {
-  object-fit: cover;
-}
-
-/* Sisi kiri (tempat judul) dan dasar foto digelapkan dengan warna dasar gelap supaya teks terbaca di atas foto terang. */
-.photo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgb(36 36 36 / 0.9) 0%, rgb(36 36 36 / 0.72) 42%, rgb(36 36 36 / 0.3) 74%, rgb(36 36 36 / 0.12) 100%),
-    linear-gradient(0deg, rgb(36 36 36 / 0.7) 0%, rgb(36 36 36 / 0) 38%);
-}
-
 .content {
   position: relative;
   z-index: 1;
+  padding-top: clamp(2rem, 4vw, 3.5rem);
+  padding-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.head {
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: 2.5rem clamp(2rem, 5vw, 4.5rem);
-  align-items: center;
-  padding-top: clamp(2.25rem, 4.5vw, 4rem);
-  padding-bottom: clamp(2.5rem, 5vw, 4.5rem);
+  gap: 1.5rem clamp(2rem, 5vw, 4.5rem);
+  align-items: end;
+  margin-bottom: clamp(1.75rem, 3.5vw, 3rem);
 }
 
-.copy {
+.side {
   min-width: 0;
 }
 
+/* Video besar selebar kontainer; di layar lebar tidak lebih tinggi dari layar agar judul dan video terlihat bersama. */
 .video {
-  min-width: 0;
-  /* Pelat gelap tipis agar teks keterangan video terbaca di atas foto. */
   --muted: var(--muted-on-dark);
 }
 
@@ -73,16 +52,15 @@
 
 .lede {
   max-width: 38rem;
-  margin-top: 1.5rem;
   color: var(--fg);
-  font-size: clamp(1.1rem, 1rem + 0.45vw, 1.3rem);
+  font-size: clamp(1.05rem, 1rem + 0.35vw, 1.2rem);
 }
 
 .actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .figures {
@@ -138,8 +116,9 @@
 }
 
 @media (max-width: 62rem) {
-  .content {
+  .head {
     grid-template-columns: minmax(0, 1fr);
+    align-items: start;
   }
 
   .grid {
@@ -154,10 +133,6 @@
 }
 
 @media (max-width: 40rem) {
-  .hero {
-    min-height: 0;
-  }
-
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

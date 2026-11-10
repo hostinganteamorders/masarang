@@ -39,6 +39,9 @@ const en = {
     open: "Download the report",
     all: "All updates",
     period: "Quarter {q}, {year}",
+    expand: "See the breakdown",
+    breakdown: "Summary per program",
+    programs: { restoration: "Restoration", conservation: "Conservation", education: "Education" },
   },
   donate: {
     title: "Support the work",
@@ -86,6 +89,9 @@ const id: typeof en = {
     open: "Unduh laporan",
     all: "Semua kabar",
     period: "Triwulan {q}, {year}",
+    expand: "Lihat rinciannya",
+    breakdown: "Ringkasan per program",
+    programs: { restoration: "Restorasi", conservation: "Konservasi", education: "Edukasi" },
   },
   donate: {
     title: "Dukung pekerjaan kami",

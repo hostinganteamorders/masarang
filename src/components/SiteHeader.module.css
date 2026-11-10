@@ -70,6 +70,70 @@
   transform: scaleX(1);
 }
 
+/* Dropdown: tautan induk + tombol panah. Panel muncul saat panah diklik, atau saat kursor/fokus ada di grup. */
+.group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.chevron {
+  display: inline-grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-sm, 0.4rem);
+  background: transparent;
+  color: var(--light);
+  cursor: pointer;
+}
+
+.chevron svg {
+  transition: transform 0.18s ease;
+}
+
+.chevron[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+.nav .panel {
+  position: absolute;
+  top: 100%;
+  left: -0.75rem;
+  z-index: 60;
+  display: grid;
+  gap: 0.1rem;
+  min-width: 15rem;
+  margin: 0;
+  padding: 0.5rem;
+  border: 1px solid rgba(245, 245, 245, 0.18);
+  border-radius: var(--r-md);
+  background: var(--raised);
+  box-shadow: 0 18px 40px rgb(0 0 0 / 0.35);
+  list-style: none;
+}
+
+.nav .panel[hidden] {
+  display: none;
+}
+
+.panelLink {
+  display: block;
+  padding: 0.65rem 0.9rem;
+  border-radius: var(--r-sm, 0.4rem);
+  color: var(--light);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.panelLink:hover,
+.panelLink:focus-visible {
+  background: rgba(245, 245, 245, 0.12);
+}
+
 .actions {
   display: flex;
   align-items: center;
@@ -142,6 +206,26 @@
   font-size: clamp(2.6rem, 11vw, 4rem);
   line-height: 1;
   text-decoration: none;
+  color: var(--light);
+}
+
+.sheetSub {
+  display: grid;
+  gap: 0;
+  margin: 0.15rem 0 0.6rem 0.25rem !important;
+}
+
+.sheetSubLink {
+  display: block;
+  padding: 0.45rem 0 0.45rem 1rem;
+  border-left: 3px solid var(--conservation);
+  color: var(--muted-on-dark);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.sheetSubLink:hover {
   color: var(--light);
 }
 

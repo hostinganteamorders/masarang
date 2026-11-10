@@ -7,7 +7,12 @@ import type { Locale } from "@/lib/i18n";
 import { Ph } from "./Ph";
 import s from "./ReportCard.module.css";
 
-/** Satu Quarterly Report: periode, judul, ringkasan, dan tombol unduh (belum aktif bila berkas PDF belum ada). */
+const PROGRAMS = ["restoration", "conservation", "education"] as const;
+
+/**
+ * Satu Quarterly Report: periode, judul, dan ringkasan. Rincian per program (Restorasi, Konservasi, Edukasi)
+ * tertutup sampai pengunjung mengkliknya, dan tombol unduh ada di dalam rincian (belum aktif bila PDF belum ada).
+ */
 export function ReportCard({
   report,
   locale,
@@ -29,17 +34,37 @@ export function ReportCard({
       <p className={s.summary}>
         <Ph on={report.ph}>{report.summary[locale]}</Ph>
       </p>
-      {report.pdf ? (
-        <a href={report.pdf} className="btn" download>
-          {t.open} (PDF)
-        </a>
-      ) : (
-        site.draft && (
-          <span className="btn btn--ghost ph" data-pending="">
-            {t.open} ({c.soon.toLowerCase()})
-          </span>
-        )
-      )}
+
+      <details className={s.details}>
+        <summary className={s.toggle}>
+          <span>{t.expand}</span>
+          <span className={s.chevron} aria-hidden="true" />
+        </summary>
+        <div className={s.panel}>
+          <h4 className={s.breakdown}>{t.breakdown}</h4>
+          <ul className={s.programs}>
+            {PROGRAMS.map((id) => (
+              <li key={id} className={`${s.program} ${s[id]}`}>
+                <p className={s.programName}>{t.programs[id]}</p>
+                <p className={s.programText}>
+                  <Ph on={report.ph}>{report.breakdown[id][locale]}</Ph>
+                </p>
+              </li>
+            ))}
+          </ul>
+          {report.pdf ? (
+            <a href={report.pdf} className="btn" download>
+              {t.open} (PDF)
+            </a>
+          ) : (
+            site.draft && (
+              <span className="btn btn--ghost ph" data-pending="">
+                {t.open} ({c.soon.toLowerCase()})
+              </span>
+            )
+          )}
+        </div>
+      </details>
     </article>
   );
 }

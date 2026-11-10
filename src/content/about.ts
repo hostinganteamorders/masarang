@@ -71,7 +71,7 @@ const en = {
   },
   partners: {
     title: "Our Partners",
-    lede: "Select a name to visit the partner's website.",
+    lede: "Select a logo or name to visit the partner's website.",
   },
   account: {
     title: "How we hold ourselves to account",
@@ -149,7 +149,7 @@ const id: typeof en = {
   },
   partners: {
     title: "Mitra Kami",
-    lede: "Pilih nama untuk mengunjungi situs mitra.",
+    lede: "Pilih logo atau nama untuk mengunjungi situs mitra.",
   },
   account: {
     title: "Cara kami bertanggung jawab",

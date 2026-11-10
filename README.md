@@ -27,7 +27,7 @@ Setiap halaman ada di `/en/...` dan `/id/...`. Alamat memakai kata Inggris yang 
 
 | Alamat | Isi |
 | --- | --- |
-| `/` | Beranda: tagline dan slot Video Aping, angka utama, ringkasan tiga program, update terbaru (Quarterly Report), tombol donasi |
+| `/` | Beranda: salam pembuka, tagline lalu video besar (Aping), angka utama, ringkasan tiga program, update terbaru (Quarterly Report, rincian per program dibuka dengan klik), tombol donasi |
 | `/about` | Tentang Kami: Pendiri (Willie), sejarah Masarang, Video Aping, Visi, apa dan mengapa, Tim (Pembina, Pengawas, Pengurus, Deputi), Mitra dengan tautan |
 | `/about/team` | Tim lengkap: tata kelola dan penanggung jawab bidang program, grid potret dengan dialog tugas dan biodata |
 | `/programs` | Ringkasan tiga program, pemantauan dan pelaporan |
@@ -41,6 +41,26 @@ Setiap halaman ada di `/en/...` dan `/id/...`. Alamat memakai kata Inggris yang 
 
 Struktur ini mengikuti daftar dari tim (Home, About Us, Programs). Alamat lama (`/team`, `/adopt`, `/programs/temboan`,
 `/programs/tasikoki`) dialihkan otomatis ke alamat baru (lihat `next.config.ts`).
+
+### Navigasi, salam pembuka, dan pop-up foto
+
+- **Menu**: Home | About Us ▾ (Our Founder, Our Vision, Our Team, Our Partners) | Programs ▾ (All programs, Restoration,
+  Conservation, Education) | Adoption | Updates, ditambah tombol Donate. Susunannya ada di `ITEMS` pada
+  `src/components/SiteHeader.tsx`, teks menu di `nav` pada `src/content/common.ts`. Dropdown terbuka dengan hover,
+  fokus, atau klik panah; Esc menutup. Di ponsel, submenu ada di dalam lembar menu.
+- **Salam pembuka** (`src/components/Intro.tsx`, teks di `intro` pada `common.ts`): lambang, "Selamat datang" / "Welcome",
+  lalu tirai naik. Diputar sekali per sesi peramban, tidak diputar bila pengunjung memilih gerak dikurangi, bisa
+  dilewati dengan klik, tombol Lewati, atau tombol papan ketik. Keputusan diambil oleh skrip kecil di `layout.tsx`
+  sebelum cat pertama (kunci `masarang-intro` di `sessionStorage`). Untuk menonaktifkan sama sekali, hapus `<Intro />`
+  dan skripnya di `layout.tsx`. Pada pengujian otomatis, set `sessionStorage["masarang-intro"] = "1"` lebih dulu.
+- **Hero Beranda**: tagline, lalu video besar tepat di bawahnya, tanpa foto latar. Video diisi lewat `apingVideo.url`.
+- **Pop-up foto**: semua foto di situs bisa diklik. Komponen `Photo` otomatis membungkus foto dengan `ZoomPhoto`
+  (`zoom={false}` untuk mematikan). Foto latar kepala halaman memakai tombol di pojok (`ZoomButton`). Potret tim belum
+  punya pop-up karena fotonya masih kosong.
+- **Quarterly Report**: kartu tertutup; klik "Lihat rinciannya" untuk ringkasan per program (Restorasi, Konservasi,
+  Edukasi) dan tombol unduh. Isi rincian per laporan ada di `breakdown` pada `src/data/reports.ts`.
+- **Mitra**: kotak logo. Taruh logo di `public/partners/` lalu isi `logo` pada `partners` di `src/data/organisation.ts`;
+  selama kosong, kotak putus-putus berlabel nama mitra tampil. Kotak menjadi tautan (tab baru) bila `url` ada.
 
 ### Isi yang masih menunggu data
 
@@ -114,7 +134,7 @@ Cara kerjanya:
 2. `src/data/photos.ts` hanya memilih foto mana dipakai di mana, memakai kunci katalog (editor menyarankan kunci yang
    ada). Untuk menukar foto, ganti kuncinya. 42 foto di katalog belum dipakai dan siap dipasang.
 3. Galeri (Temboan, Tasikoki, pendidikan di Program) memakai baris sama tinggi tanpa memotong foto, susunannya dihitung
-   otomatis dari rasio tiap foto (`src/lib/rows.ts`). Klik foto untuk lightbox (panah kiri/kanan, Esc).
+   otomatis dari rasio tiap foto (`src/lib/rows.ts`). Klik foto untuk lightbox (panah kiri/kanan, Esc). Foto tunggal di halaman lain membuka pop-up satu foto.
 4. Foto baru: kecilkan (JPG, sisi terpanjang sekitar 2000 px), taruh di `public/photos/…`, lalu tambahkan satu entri di
    katalog dengan ukuran sebenarnya dan keterangan dua bahasa.
 
