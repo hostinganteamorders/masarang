@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import type { Common } from "@/content/common";
 import { localePath, type Locale } from "@/lib/i18n";
 import { LangSwitch } from "./LangSwitch";
+import { HomeLink } from "./HomeLink";
 import { Logo } from "./Logo";
 import s from "./SiteHeader.module.css";
 
@@ -87,9 +88,9 @@ export function SiteHeader({ locale, nav }: { locale: Locale; nav: Common["nav"]
   return (
     <header className={`${s.header} on-dark`}>
       <div className={`container ${s.bar}`}>
-        <Link href={localePath(locale)} className={s.brand} aria-label={nav.homeLabel}>
+        <HomeLink href={localePath(locale)} className={s.brand} aria-label={nav.homeLabel}>
           <Logo className={s.logo} />
-        </Link>
+        </HomeLink>
 
         <nav ref={navRef} className={s.nav} aria-label={nav.main}>
           <ul>
@@ -99,9 +100,15 @@ export function SiteHeader({ locale, nav }: { locale: Locale; nav: Common["nav"]
               if (!item.children) {
                 return (
                   <li key={item.key}>
-                    <Link href={href} className={s.link} aria-current={current ? "page" : undefined}>
-                      {nav[item.key]}
-                    </Link>
+                    {item.key === "home" ? (
+                      <HomeLink href={href} className={s.link} aria-current={current ? "page" : undefined}>
+                        {nav[item.key]}
+                      </HomeLink>
+                    ) : (
+                      <Link href={href} className={s.link} aria-current={current ? "page" : undefined}>
+                        {nav[item.key]}
+                      </Link>
+                    )}
                   </li>
                 );
               }
@@ -174,14 +181,14 @@ export function SiteHeader({ locale, nav }: { locale: Locale; nav: Common["nav"]
         }}
       >
         <div className={`container ${s.sheetBar}`}>
-          <Link
+          <HomeLink
             href={localePath(locale)}
             className={s.brand}
             aria-label={nav.homeLabel}
             onClick={closeSheet}
           >
             <Logo className={s.logo} />
-          </Link>
+          </HomeLink>
           <button type="button" className={s.menuButton} onClick={closeSheet}>
             {nav.closeMenu}
           </button>
@@ -190,14 +197,19 @@ export function SiteHeader({ locale, nav }: { locale: Locale; nav: Common["nav"]
           <ul>
             {ITEMS.map((item) => (
               <li key={item.key}>
-                <Link
-                  href={localePath(locale, item.path)}
-                  className={s.sheetLink}
-                  aria-current={isActiveItem(item) ? "page" : undefined}
-                  onClick={closeSheet}
-                >
-                  {nav[item.key]}
-                </Link>
+                {(() => {
+                  const LinkTag = item.key === "home" ? HomeLink : Link;
+                  return (
+                    <LinkTag
+                      href={localePath(locale, item.path)}
+                      className={s.sheetLink}
+                      aria-current={isActiveItem(item) ? "page" : undefined}
+                      onClick={closeSheet}
+                    >
+                      {nav[item.key]}
+                    </LinkTag>
+                  );
+                })()}
                 {item.children && (
                   <ul className={s.sheetSub}>
                     {item.children.map((child) => (

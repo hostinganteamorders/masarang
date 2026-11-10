@@ -49,7 +49,7 @@ Struktur ini mengikuti daftar dari tim (Home, About Us, Programs). Alamat lama (
   `src/components/SiteHeader.tsx`, teks menu di `nav` pada `src/content/common.ts`. Dropdown terbuka dengan hover,
   fokus, atau klik panah; Esc menutup. Di ponsel, submenu ada di dalam lembar menu.
 - **Salam pembuka** (`src/components/Intro.tsx`, teks di `intro` pada `common.ts`): lambang, "Selamat datang" / "Welcome",
-  lalu tirai naik. Diputar sekali per sesi peramban, tidak diputar bila pengunjung memilih gerak dikurangi, bisa
+  lalu seluruh lapisan memudar. Diputar sekali per sesi peramban dan diputar ulang setiap Home atau logo ditekan (`HomeLink`, `src/lib/intro.ts`; Ctrl/Cmd-klik tidak), tidak diputar bila pengunjung memilih gerak dikurangi, bisa
   dilewati dengan klik, tombol Lewati, atau tombol papan ketik. Keputusan diambil oleh skrip kecil di `layout.tsx`
   sebelum cat pertama (kunci `masarang-intro` di `sessionStorage`). Untuk menonaktifkan sama sekali, hapus `<Intro />`
   dan skripnya di `layout.tsx`. Pada pengujian otomatis, set `sessionStorage["masarang-intro"] = "1"` lebih dulu.

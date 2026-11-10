@@ -9,7 +9,7 @@ import s from "./Intro.module.css";
 const leave = () => document.documentElement.classList.remove("intro-on");
 
 /**
- * Salam pembukaan: lambang, sapaan, lalu tirai naik membuka situs. Diputar sekali per sesi (keputusan diambil
+ * Salam pembukaan: lambang, sapaan, lalu seluruh lapisan memudar membuka situs. Diputar ulang saat Home atau logo ditekan (`HomeLink`). Diputar sekali per sesi (keputusan diambil
  * oleh skrip kecil di `layout` sebelum cat pertama, lewat kelas `intro-on` pada <html>). Tanpa kelas itu
  * (dikunjungi lagi, gerak dikurangi, JavaScript mati) seluruh bagian ini tersembunyi.
  * Bisa dilewati dengan klik, tombol Lewati, atau tombol apa pun di papan ketik.

@@ -3,6 +3,7 @@ import { common } from "@/content/common";
 import { site } from "@/data/site";
 import { fill, fullDate } from "@/lib/format";
 import { localePath, type Locale } from "@/lib/i18n";
+import { HomeLink } from "./HomeLink";
 import { Logo } from "./Logo";
 import { Ph } from "./Ph";
 import { Ribbon } from "./Ribbon";
@@ -30,9 +31,9 @@ export function SiteFooter({ locale }: { locale: Locale }) {
     <footer className={`${s.footer} on-dark`}>
       <div className={`container ${s.top}`}>
         <div className={s.brandCol}>
-          <Link href={localePath(locale)} className={s.brand} aria-label={c.nav.homeLabel}>
+          <HomeLink href={localePath(locale)} className={s.brand} aria-label={c.nav.homeLabel}>
             <Logo className={s.logo} />
-          </Link>
+          </HomeLink>
           <p className={s.tagline}>{c.footer.tagline}</p>
         </div>
 
