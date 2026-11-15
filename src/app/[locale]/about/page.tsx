@@ -7,6 +7,7 @@ import { Ph } from "@/components/Ph";
 import { Photo } from "@/components/Photo";
 import { Pillars } from "@/components/Pillars";
 import { Portrait } from "@/components/Portrait";
+import { Rich } from "@/components/Rich";
 import { SectionHead } from "@/components/SectionHead";
 import { Split } from "@/components/Split";
 import { TeamGroups } from "@/components/TeamGroups";
@@ -14,10 +15,17 @@ import { VideoSlot } from "@/components/VideoSlot";
 import { VisionBand } from "@/components/VisionBand";
 import { about } from "@/content/about";
 import { apingVideo } from "@/data/media";
-import { photos } from "@/data/photos";
+import { photos, type Pic } from "@/data/photos";
 import { localePath } from "@/lib/i18n";
 import { resolveLocale } from "@/lib/locale";
 import { pageMetadata } from "@/lib/seo";
+
+/** Warna dan foto tiap pilar "What we do". Pilar bukan program, jadi warna hanya membedakan ketiganya. */
+const PILLAR_STYLE: Record<string, { color: string; photo: Pic }> = {
+  nature: { color: "var(--restoration)", photo: photos.about.land },
+  people: { color: "var(--education)", photo: photos.about.people },
+  agriculture: { color: "var(--conservation)", photo: photos.about.agriculture },
+};
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/about">): Promise<Metadata> {
   const locale = await resolveLocale(params);
@@ -37,7 +45,7 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
         <div className="container">
           <Split
             ratio="4-7"
-            align="center"
+            align="start"
             left={<Portrait name={t.founder.name} placeholder seed={7} />}
             right={
               <div className="prose">
@@ -45,12 +53,12 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
                   {t.founder.title}
                 </h2>
                 <p className="num" style={{ fontSize: "1.6rem", marginBottom: "0.25rem" }}>
-                  {t.founder.name} <Ph on>{t.founder.nameNote}</Ph>
+                  {t.founder.name}
                 </p>
                 <p style={{ color: "var(--muted)", marginBottom: "1.5rem", fontWeight: 600 }}>{t.founder.role}</p>
                 {t.founder.bio.map((p) => (
-                  <p key={p} style={{ fontSize: "1.15rem" }}>
-                    <Ph on>{p}</Ph>
+                  <p key={p} style={{ fontSize: "1.1rem" }}>
+                    {p}
                   </p>
                 ))}
                 <p style={{ color: "var(--muted)", fontSize: "0.95rem" }}>
@@ -98,52 +106,49 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
       </section>
 
       {/* Our Vision */}
-      <VisionBand title={t.vision.title} ph>
-        {t.vision.body}
+      <VisionBand title={t.vision.title} statement={t.vision.statement}>
+        {t.vision.more.map((p) => (
+          <p key={p}>
+            <Rich text={p} />
+          </p>
+        ))}
       </VisionBand>
 
       {/* What we do, why we do it */}
       <section className="section on-light" aria-labelledby="what-title">
         <div className="container">
           <SectionHead id="what-title" title={t.what.title} lede={t.what.lede} />
+          <div className="prose" style={{ maxWidth: "46rem", marginBottom: "3rem" }}>
+            {t.what.intro.map((p) => (
+              <p key={p} style={{ fontSize: "1.15rem" }}>
+                {p}
+              </p>
+            ))}
+          </div>
           <Pillars
             locale={locale}
-            items={[
-              {
-                id: "restoration",
-                title: t.what.restoration.title,
-                body: t.what.restoration.body,
-                color: "var(--restoration)",
-                photo: photos.about.land,
-                cta: t.what.restoration.cta,
-                href: localePath(locale, "/programs/restoration"),
-              },
-              {
-                id: "conservation",
-                title: t.what.conservation.title,
-                body: t.what.conservation.body,
-                color: "var(--conservation)",
-                photo: photos.about.wildlife,
-                cta: t.what.conservation.cta,
-                href: localePath(locale, "/programs/conservation"),
-              },
-              {
-                id: "education",
-                title: t.what.education.title,
-                body: t.what.education.body,
-                color: "var(--education)",
-                photo: photos.programs.education,
-                cta: t.what.education.cta,
-                href: localePath(locale, "/programs/education"),
-              },
-            ]}
+            compact
+            items={t.what.pillars.map((pillar, i) => ({
+              id: pillar.id,
+              marker: `0${i + 1}`,
+              title: pillar.title,
+              body: pillar.body,
+              color: PILLAR_STYLE[pillar.id].color,
+              photo: PILLAR_STYLE[pillar.id].photo,
+            }))}
           />
-          <div className="prose" style={{ marginTop: "3rem", maxWidth: "46rem" }}>
-            <h3 className="title-md" style={{ fontSize: "clamp(1.8rem, 1.3rem + 1.6vw, 2.6rem)", marginBottom: "1rem" }}>
-              {t.what.why.title}
-            </h3>
-            <p style={{ fontSize: "1.15rem" }}>
-              <Ph on>{t.what.why.body}</Ph>
+          <div className="prose" style={{ marginTop: "3rem" }}>
+            <p style={{ fontSize: "1.15rem", fontWeight: 600 }}>{t.what.programs.lead}</p>
+            <p style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
+              <Link href={localePath(locale, "/programs/restoration")} className="btn btn--ghost">
+                {t.what.programs.restoration}
+              </Link>
+              <Link href={localePath(locale, "/programs/conservation")} className="btn btn--ghost">
+                {t.what.programs.conservation}
+              </Link>
+              <Link href={localePath(locale, "/programs/education")} className="btn btn--ghost">
+                {t.what.programs.education}
+              </Link>
             </p>
           </div>
         </div>

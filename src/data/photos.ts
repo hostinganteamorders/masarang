@@ -45,6 +45,9 @@ export const photos = {
     /** Di atas ketiga pilar "Apa yang kami kerjakan". */
     land: pic("young-trees-in-grass"),
     wildlife: pic("cockatoo-on-its-perch"),
+    /** Pilar 2 dan 3 pada "What we do": orang dan pertanian. */
+    people: pic("temboan-team-at-the-sign"),
+    agriculture: pic("maize-and-greens"),
     proof: pic("researchers-in-the-forest"),
   },
 

@@ -27,6 +27,26 @@
   font-size: clamp(2rem, 1.4rem + 2vw, 3rem);
 }
 
+.marker {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.compact .title {
+  font-size: clamp(1.6rem, 1.2rem + 1.3vw, 2.25rem);
+}
+
+.bodies {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.bodies .body {
+  margin: 0;
+}
+
 .body {
   max-width: 26rem;
   color: var(--muted);

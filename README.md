@@ -28,7 +28,7 @@ Setiap halaman ada di `/en/...` dan `/id/...`. Alamat memakai kata Inggris yang 
 | Alamat | Isi |
 | --- | --- |
 | `/` | Beranda: salam pembuka, tagline lalu video besar (Aping), angka utama, ringkasan tiga program, update terbaru (Quarterly Report, rincian per program dibuka dengan klik), tombol donasi |
-| `/about` | Tentang Kami: Pendiri (Willie), sejarah Masarang, Video Aping, Visi, apa dan mengapa, Tim (Pembina, Pengawas, Pengurus, Deputi), Mitra dengan tautan |
+| `/about` | Tentang Kami: Pendiri (Dr. Willie Smits), sejarah Masarang, Video Aping, Visi, apa dan mengapa, Tim (Pembina, Pengawas, Pengurus, Deputi), Mitra dengan tautan |
 | `/about/team` | Tim lengkap: tata kelola dan penanggung jawab bidang program, grid potret dengan dialog tugas dan biodata |
 | `/programs` | Ringkasan tiga program, pemantauan dan pelaporan |
 | `/programs/restoration` | Restorasi: Temboan Restoration Project (500 ha; 70 ha di Temboan dan 10+ ha di Kayuwatu dan Mahembang dalam 4 tahun), Farmers Empowered (53 petani, 35%, tautan TMS), lereng pulih, kelapa, tonggak, galeri |
@@ -72,7 +72,7 @@ atau setelah `ph` diubah menjadi `false`):
 - Alamat web mitra: isi `url` pada `partners` di `src/data/organisation.ts` (Trees for All dan PGE sudah terisi; Thryve.Earth dan RDI belum).
 - Quarterly Report: isi daftar di `src/data/reports.ts` dan taruh PDF di `public/reports/`, lalu isi `pdf`.
 - Angka Restorasi (500, 70, 10+, 53, 35%) ada di `src/data/programs.ts` (`restoration`); luas Perlindungan Hutan di `forestProtection`.
-- Profil Willie, sejarah, visi, "mengapa", dan semua deskripsi kegiatan Edukasi: `src/content/about.ts` dan `src/content/programs.ts`.
+- Profil Dr. Willie Smits, Visi, dan "What We Do & Why We Do It" sudah memakai naskah resmi (`Narasi_Website`); terjemahan Indonesianya buatan sendiri dan perlu ditinjau. Yang masih penanda tempat: sejarah Masarang, foto Dr. Smits, dan deskripsi kegiatan Edukasi (`src/content/about.ts`, `src/content/programs.ts`).
 
 Alamat yang tidak ada menampilkan halaman 404 lengkap dengan header dan footer, dalam bahasa yang sedang dipakai.
 

@@ -8,7 +8,10 @@ import s from "./Pillars.module.css";
 export type Pillar = {
   id: string;
   title: string;
-  body: ReactNode;
+  /** Satu paragraf (ReactNode) atau beberapa paragraf (string[]). */
+  body: ReactNode | string[];
+  /** Penanda urutan kecil sebelum judul, mis. "01". */
+  marker?: string;
   /** Warna garis atas, mis. "var(--restoration)". */
   color: string;
   /** Foto di atas judul (dekoratif; maknanya sudah ada di teks). */
@@ -22,13 +25,16 @@ export function Pillars({
   items,
   columns = 3,
   locale,
+  compact = false,
 }: {
   items: Pillar[];
   columns?: 2 | 3;
   locale?: Locale;
+  /** Judul lebih kecil, untuk judul panjang. */
+  compact?: boolean;
 }) {
   return (
-    <ul className={`${s.list} ${columns === 2 ? s.two : ""}`}>
+    <ul className={`${s.list} ${columns === 2 ? s.two : ""} ${compact ? s.compact : ""}`}>
       {items.map((p) => (
         <li key={p.id} className={s.item} style={{ ["--c" as string]: p.color }}>
           {p.photo && locale && (
@@ -41,8 +47,21 @@ export function Pillars({
               className={s.photo}
             />
           )}
-          <h3 className={s.title}>{p.title}</h3>
-          <p className={s.body}>{p.body}</p>
+          <h3 className={s.title}>
+            {p.marker && <span className={`num ${s.marker}`}>{p.marker}</span>}
+            {p.title}
+          </h3>
+          {Array.isArray(p.body) ? (
+            <div className={s.bodies}>
+              {p.body.map((para) => (
+                <p key={para} className={s.body}>
+                  {para}
+                </p>
+              ))}
+            </div>
+          ) : (
+            <p className={s.body}>{p.body}</p>
+          )}
           {p.cta && p.href && (
             <Link href={p.href} className={`link ${s.link}`}>
               {p.cta}
