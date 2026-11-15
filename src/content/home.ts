@@ -1,3 +1,4 @@
+import { cmsText } from "@/cms/apply";
 import type { Locale } from "@/lib/i18n";
 
 const en = {
@@ -100,4 +101,4 @@ const id: typeof en = {
   },
 };
 
-export const home: Record<Locale, typeof en> = { en, id };
+export const home: Record<Locale, typeof en> = cmsText("home", { en, id });

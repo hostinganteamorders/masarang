@@ -1,0 +1,57 @@
+import { listUsers, requireUser } from "@/cms/auth";
+import { removeUserAction } from "../actions";
+import { UserForms } from "./UserForms";
+
+export const metadata = { title: "Pengguna" };
+export const dynamic = "force-dynamic";
+
+export default async function UsersPage() {
+  const me = await requireUser();
+  const users = me.role === "owner" ? await listUsers() : [];
+  return (
+    <>
+      <h1>{me.role === "owner" ? "Pengguna" : "Akun saya"}</h1>
+      {me.role === "owner" && (
+        <>
+          <p className="muted">
+            Pemilik ({me.email}) diatur lewat ADMIN_EMAIL dan ADMIN_PASSWORD di Vercel. Editor bisa mengubah semua isi, tetapi
+            tidak bisa mengelola pengguna.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Peran</th>
+                <th />
+              </tr>
+            </thead>
+            <tbody>
+              {users.length === 0 && (
+                <tr>
+                  <td colSpan={3} className="muted">
+                    Belum ada editor.
+                  </td>
+                </tr>
+              )}
+              {users.map((u) => (
+                <tr key={u.email}>
+                  <td>{u.email}</td>
+                  <td>{u.role}</td>
+                  <td>
+                    <form action={removeUserAction}>
+                      <input type="hidden" name="email" value={u.email} />
+                      <button className="btn small danger" type="submit">
+                        Hapus
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
+      <UserForms owner={me.role === "owner"} />
+    </>
+  );
+}

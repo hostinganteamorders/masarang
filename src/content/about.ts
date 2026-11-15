@@ -1,3 +1,4 @@
+import { cmsText } from "@/cms/apply";
 import type { Locale } from "@/lib/i18n";
 
 /** Halaman Tentang Kami. Teks berkurung siku "[…]" adalah penanda tempat. */
@@ -217,5 +218,5 @@ const id: typeof en = {
   },
 };
 
-export const about: Record<Locale, typeof en> = { en, id };
+export const about: Record<Locale, typeof en> = cmsText("about", { en, id });
 export const aboutCopy = about;

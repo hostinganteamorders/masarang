@@ -1,3 +1,4 @@
+import { cmsText } from "@/cms/apply";
 import type { Locale } from "@/lib/i18n";
 
 const en = {
@@ -48,4 +49,4 @@ const id: typeof en = {
   note: "Angka per hektare adalah target dari rencana restorasi, bukan hasil pengukuran. Nilai terukur akan menggantikannya seiring masuknya data pemantauan.",
 };
 
-export const hillsideCopy: Record<Locale, typeof en> = { en, id };
+export const hillsideCopy: Record<Locale, typeof en> = cmsText("hillside", { en, id });

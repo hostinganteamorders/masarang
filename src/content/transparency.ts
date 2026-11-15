@@ -1,3 +1,4 @@
+import { cmsText } from "@/cms/apply";
 import type { Locale } from "@/lib/i18n";
 
 const en = {
@@ -106,4 +107,4 @@ const id: typeof en = {
   principles: { title: "Cara kami mengelola dana" },
 };
 
-export const transparencyCopy: Record<Locale, typeof en> = { en, id };
+export const transparencyCopy: Record<Locale, typeof en> = cmsText("transparency", { en, id });

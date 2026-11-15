@@ -1,5 +1,6 @@
+import { cmsList } from "@/cms/apply";
 import type { L10n } from "@/lib/i18n";
-import { governance } from "./organisation";
+import { governance, type GovernanceBody } from "./organisation";
 import { photos } from "./photos";
 
 export type TeamGroup = "governance" | "programs";
@@ -7,6 +8,8 @@ export type TeamGroup = "governance" | "programs";
 export type Member = {
   id: string;
   group: TeamGroup;
+  /** Hanya untuk kelompok tata kelola: organ yayasan tempat anggota ini duduk. */
+  body?: GovernanceBody;
   name: L10n;
   role: L10n;
   /** Tugas jabatan, satu atau dua kalimat. */
@@ -54,6 +57,7 @@ const duties: Record<string, L10n> = {
 const governanceMembers: Member[] = governance.map((g) => ({
   id: g.id,
   group: "governance",
+  body: g.body,
   name: g.name,
   role: g.role,
   duty: duties[g.id],
@@ -132,7 +136,10 @@ const programMembers: Member[] = [
 ];
 
 /** Foto diambil dari `src/data/photos.ts` menurut id anggota. */
-export const team: Member[] = [...governanceMembers, ...programMembers].map((member) => ({
-  ...member,
-  photo: photos.portraits[member.id] ?? member.photo,
-}));
+export const team: Member[] = cmsList<Member>(
+  "team",
+  [...governanceMembers, ...programMembers].map((member) => ({
+    ...member,
+    photo: photos.portraits[member.id] ?? member.photo,
+  })),
+);

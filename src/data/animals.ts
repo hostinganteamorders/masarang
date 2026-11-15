@@ -1,3 +1,4 @@
+import { cmsList } from "@/cms/apply";
 import type { L10n } from "@/lib/i18n";
 import { mulberry32, shuffle } from "@/lib/random";
 
@@ -35,7 +36,8 @@ export type Species = {
   sponsored: number;
 };
 
-export const species: Species[] = [
+/** Spesies dasar. Jumlah per tahap dipakai untuk membangkitkan data contoh; angka yang tampil dihitung dari daftar satwa. */
+const seedSpecies: Species[] = [
   {
     id: "macaque",
     code: "MN",
@@ -134,10 +136,7 @@ export const species: Species[] = [
   },
 ];
 
-export const speciesById = Object.fromEntries(species.map((s) => [s.id, s])) as Record<
-  string,
-  Species
->;
+const baseSpecies: Species[] = cmsList<Species>("species", seedSpecies);
 
 export const inCareOf = (s: Species) => s.stages.reduce((a, b) => a + b, 0);
 
@@ -198,7 +197,7 @@ function build(): Animal[] {
 
   const out: Animal[] = [];
 
-  for (const sp of species) {
+  for (const sp of seedSpecies) {
     const inCareStages: Stage[] = [];
     (["quarantine", "rehab", "prerelease", "lifetime"] as const).forEach((stage, i) => {
       for (let n = 0; n < sp.stages[i]; n++) inCareStages.push(stage);
@@ -270,14 +269,29 @@ function build(): Animal[] {
   return out;
 }
 
-export const animals: Animal[] = build();
+export const animals: Animal[] = cmsList<Animal>("animals", build());
+
+/** Spesies untuk tampilan: jumlah per tahap, dilepasliarkan, dan disponsori dihitung dari daftar satwa. */
+export const species: Species[] = baseSpecies.map((sp) => {
+  const mine = animals.filter((a) => a.speciesId === sp.id);
+  const count = (st: Stage) => mine.filter((a) => a.stage === st).length;
+  return {
+    ...sp,
+    stages: [count("quarantine"), count("rehab"), count("prerelease"), count("lifetime")],
+    released: count("released"),
+    sponsored: mine.filter((a) => a.sponsored && a.stage !== "released").length,
+  };
+});
+
+export const speciesById = Object.fromEntries(species.map((s) => [s.id, s])) as Record<string, Species>;
 
 export const animalsById = Object.fromEntries(animals.map((a) => [a.id, a])) as Record<
   string,
   Animal
 >;
 
-export const featuredAnimalId = DEWI_ID;
+/** Satwa yang terbuka lebih dulu di halaman Adopsi: Dewi bila masih ada di register, jika tidak yang pertama. */
+export const featuredAnimalId = animalsById[DEWI_ID] ? DEWI_ID : (animals.find((a) => a.stage !== "released") ?? animals[0])?.id ?? DEWI_ID;
 
 export const register = {
   inCare: animals.filter((a) => a.stage !== "released").length,

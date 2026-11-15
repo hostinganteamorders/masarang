@@ -1,3 +1,4 @@
+import { cmsValues } from "@/cms/apply";
 import type { L10n } from "@/lib/i18n";
 
 /**
@@ -7,19 +8,19 @@ import type { L10n } from "@/lib/i18n";
 export type ExternalLink = { url?: string; label: L10n };
 
 /** Video Aping. Tempel alamat YouTube/Vimeo (embed atau biasa) atau berkas video di /public. */
-export const apingVideo: { url?: string; title: L10n } = {
+export const apingVideo: { url?: string; title: L10n } = cmsValues("media.apingVideo", {
   url: undefined,
   title: { en: "Video: Aping", id: "Video: Aping" },
-};
+});
 
 /** Situs TMS (usaha gula aren petani). */
-export const tms: ExternalLink = {
+export const tms: ExternalLink = cmsValues("media.tms", {
   url: undefined,
   label: { en: "Visit the TMS website", id: "Kunjungi situs TMS" },
-};
+});
 
 /** Katalog karya EduTour (Residensi). */
-export const edutourCatalog: ExternalLink = {
+export const edutourCatalog: ExternalLink = cmsValues("media.edutourCatalog", {
   url: undefined,
   label: { en: "Open the EduTour catalogue", id: "Buka katalog karya EduTour" },
-};
+});

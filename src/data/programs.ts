@@ -1,3 +1,4 @@
+import { cmsValues } from "@/cms/apply";
 import type { L10n } from "@/lib/i18n";
 import type { Fact } from "./site";
 
@@ -9,7 +10,7 @@ export type Milestone = { id: string; label: L10n; status: Status };
  * Program Restorasi: angka dari daftar tim (Christina Sinadia, 6 Nov 2026). Belum diperiksa terhadap dokumen sumber,
  * jadi semuanya `ph` sampai data akhirnya dikompilasi.
  */
-export const restoration = {
+export const restoration = cmsValues("programs.restoration", {
   /** Kawasan konservasi Temboan (ha). */
   conservationHa: { v: 500, ph: true } as Fact,
   /** Luas restorasi dalam 4 tahun terakhir (ha). */
@@ -20,22 +21,26 @@ export const restoration = {
   farmers: { v: 53, ph: true } as Fact,
   /** Kenaikan pendapatan petani (%). Definisi pembanding belum ditetapkan. */
   incomeIncreasePct: { v: 35, ph: true } as Fact,
-};
+});
 
 /** Perlindungan hutan Gunung Masarang (ha). Belum ada angkanya. */
-export const forestProtection = { ha: { v: "xx", ph: true } as Fact<string> };
+export const forestProtection = cmsValues("programs.forestProtection", { ha: { v: "xx", ph: true } as Fact<string> });
 
 /** Angka utama di beranda (per tanggal pembaruan). */
+const extraFigures = cmsValues("programs.keyFigures", {
+  treesPlanted: { v: 18500, ph: true } as Fact,
+  survival: { v: 78, ph: true } as Fact,
+  rescued: { v: 64, ph: true } as Fact,
+  overhead: { v: 18, ph: true } as Fact,
+});
+
 export const keyFigures = {
   conservationHa: restoration.conservationHa,
   restoredTemboanHa: restoration.restoredTemboanHa,
   restoredOtherHa: restoration.restoredKayuwatuMahembangHa,
   farmers: restoration.farmers,
   incomeIncreasePct: restoration.incomeIncreasePct,
-  treesPlanted: { v: 18500, ph: true } as Fact,
-  survival: { v: 78, ph: true } as Fact,
-  rescued: { v: 64, ph: true } as Fact,
-  overhead: { v: 18, ph: true } as Fact,
+  ...extraFigures,
 };
 
 export const temboan = {
@@ -50,9 +55,9 @@ export const temboan = {
       { id: "temboan", name: "Temboan", trees: 1841 },
     ],
   },
-  treesPlanted: { v: 18500, ph: true } as Fact,
-  survival: { v: 78, ph: true } as Fact,
-  activeHa: { v: 140, ph: true } as Fact,
+  treesPlanted: extraFigures.treesPlanted,
+  survival: extraFigures.survival,
+  activeHa: cmsValues("programs.temboanActive", { v: 140, ph: true } as Fact),
   milestones: [
     {
       id: "sop",
@@ -78,7 +83,7 @@ export const temboan = {
   ] satisfies Milestone[],
 };
 
-export const tasikoki = {
+export const tasikoki = cmsValues("programs.tasikoki", {
   inCare: { v: 109, ph: true } as Fact,
   released: { v: 36, ph: true } as Fact,
   /** Jumlah satwa yang ditranslokasi: belum ada angkanya. */
@@ -118,7 +123,7 @@ export const tasikoki = {
       status: "underway",
     },
   ] satisfies Milestone[],
-};
+});
 
 export type HillsideMetrics = {
   canopy: number;

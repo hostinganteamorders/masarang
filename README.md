@@ -103,6 +103,55 @@ Alamat yang tidak ada menampilkan halaman 404 lengkap dengan header dan footer, 
 Berkas di `src/data` berisi angka dan catatan; berkas di `src/content` berisi kalimat. Warna, jarak, dan huruf
 ada di bagian atas `src/app/globals.css`.
 
+## Admin: mengubah isi tanpa menyentuh kode
+
+Staf (1–3 orang, tanpa keahlian teknis) mengubah isi lewat **`/admin`**. Admin ini bagian dari situs yang sama; tidak ada
+layanan CMS berbayar.
+
+**Yang bisa diubah**
+
+| Menu | Isi |
+| --- | --- |
+| Teks | Semua kalimat halaman (Inggris dan Indonesia berdampingan). Tanda `{...}` di dalam kalimat harus tetap ada. |
+| Foto | Mengganti foto di 20 tempat, mengatur galeri (urutan, hapus, tambah dari pustaka 89 foto atau unggah), keterangan foto, titik fokus. |
+| Video & tautan | Video Aping (YouTube/Vimeo/.mp4), situs TMS, katalog EduTour. |
+| Angka | 16 angka program (hektare, petani, pohon, satwa, siswa, biaya operasional). Mengisi angka mematikan tanda "contoh". |
+| Data | Laporan triwulan (unggah PDF), mitra (unggah logo), tim dan tata kelola (foto), kabar lapangan, dokumen publik, pilihan dukungan, register satwa, spesies. |
+| Pengaturan | Email, rekening bank, mode draf situs. |
+| Pengguna | Pemilik menambah/menghapus editor. |
+
+**Cara kerjanya.** Setiap simpan masuk ke *draf*. Tombol **Terbitkan** di Beranda admin menyalin draf menjadi isi
+terbit, lalu meminta Vercel membangun ulang situs (sekitar 1–2 menit). Situs publik tetap statis dan cepat; admin
+hanya menyimpan perubahan di `src/cms/overrides.json` saat build. Setiap isian divalidasi di server: hanya jalur yang
+ada, alamat harus `https://`, PDF/foto diperiksa isinya, foto wajib punya keterangan dua bahasa.
+
+**Pemasangan di Vercel (sekali saja)**
+
+1. Di Vercel: *Storage* → buat **Upstash Redis** (Marketplace) dan **Blob**, hubungkan ke proyek. Variabel
+   `KV_REST_API_URL`, `KV_REST_API_TOKEN`, dan `BLOB_READ_WRITE_TOKEN` terisi otomatis.
+2. Isi variabel lingkungan (Production): `ADMIN_EMAIL`, `ADMIN_PASSWORD` (sandi pemilik, panjang), `ADMIN_SECRET`
+   (acak, minimal 16 karakter; kunci penanda masuk), `NEXT_PUBLIC_SITE_URL`.
+3. *Settings → Git → Deploy Hooks*: buat hook untuk cabang produksi, salin alamatnya ke `VERCEL_DEPLOY_HOOK_URL`.
+   Tanpa ini, perubahan tetap tersimpan, tetapi situs baru berubah setelah Anda menekan *Redeploy* di Vercel.
+4. Deploy. Masuk di `https://situs-anda/admin`. Pemilik menambahkan editor di menu Pengguna.
+
+Build selalu menjalankan `scripts/pull-cms.mjs` lebih dulu (skrip `prebuild`): ia mengambil isi terbit dari Redis ke
+`src/cms/overrides.json`. Bila Redis dipasang tetapi tidak terjangkau, build **gagal** (lebih baik daripada
+menayangkan situs tanpa perubahan staf).
+
+**Di komputer sendiri** (tanpa Redis): data admin disimpan di `.cms-data/`, foto/PDF di `public/uploads/`, dan
+`src/cms/overrides.json` ikut diperbarui. Berkas itu berisi perubahan percobaan Anda: kembalikan ke
+`{ "text": {}, "values": {}, "photos": {}, "lists": {} }` sebelum commit. Unggahan baru baru terlihat setelah server
+dimulai ulang. Jalankan dengan `ADMIN_EMAIL=... ADMIN_PASSWORD=... ADMIN_SECRET=... npm run dev`.
+
+**Menambah bagian yang bisa diubah (pengembang).** Teks: tambahkan berkas ke `TEXT_SCOPES` di `src/cms/scopes.ts`
+dan bungkus ekspornya dengan `cmsText("nama", { en, id })`. Angka/tautan: bungkus objek dengan `cmsValues` dan daftarkan
+isiannya di `src/cms/value-fields.ts`. Daftar: bungkus dengan `cmsList("nama", [...])` dan tambahkan skema di
+`src/cms/collections.ts`. Tidak perlu mengubah halaman yang memakai datanya.
+
+Belum bisa diubah lewat admin (masih di kode): angka keuangan di `src/data/finance.ts`, tonggak program, data
+tahunan grafik satwa dilepasliarkan, dan proyeksi lereng.
+
 ## Mode draf dan penanda contoh
 
 - `site.draft` di `src/data/site.ts` bernilai `true` selama situs belum tayang. Efeknya: banner "Draf situs" di atas
@@ -186,6 +235,11 @@ Salin `.env.example` menjadi `.env.local` (lokal) atau isi di pengaturan hosting
 | Nama | Fungsi |
 | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | Alamat publik tanpa garis miring di akhir, mis. `https://masarangfoundation.org`. Dipakai untuk `canonical`, `hreflang`, `sitemap.xml`, dan `robots.txt`. Bawaan `http://localhost:3000`. |
+| `ADMIN_EMAIL`, `ADMIN_PASSWORD` | Akun pemilik admin. Wajib agar `/admin` bisa dipakai. |
+| `ADMIN_SECRET` | Kunci penanda masuk admin, acak, minimal 16 karakter. Wajib di produksi. |
+| `KV_REST_API_URL`, `KV_REST_API_TOKEN` | Penyimpanan draf/terbit (Upstash Redis). Terisi otomatis dari Vercel Marketplace. |
+| `BLOB_READ_WRITE_TOKEN` | Penyimpanan foto dan PDF unggahan (Vercel Blob). Terisi otomatis. |
+| `VERCEL_DEPLOY_HOOK_URL` | Alamat hook yang dipicu tombol Terbitkan agar situs dibangun ulang. |
 
 ## Peluncuran
 

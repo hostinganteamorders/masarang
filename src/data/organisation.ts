@@ -1,3 +1,4 @@
+import { cmsList } from "@/cms/apply";
 import type { L10n } from "@/lib/i18n";
 
 /* ---------------- Dokumen ---------------- */
@@ -13,7 +14,7 @@ export type PublicDocument = {
   status: DocStatus;
 };
 
-export const documents: PublicDocument[] = [
+export const documents: PublicDocument[] = cmsList<PublicDocument>("documents", [
   {
     id: "deed",
     title: { en: "Deed of establishment", id: "Akta pendirian yayasan" },
@@ -65,7 +66,7 @@ export const documents: PublicDocument[] = [
     year: 2026,
     status: "preparing",
   },
-];
+]);
 
 /* ---------------- Tata kelola ---------------- */
 
@@ -83,7 +84,7 @@ export type GovernanceRole = {
 
 const NAME_PH: L10n = { en: "[Name]", id: "[Nama]" };
 
-export const governance: GovernanceRole[] = [
+export const governance: GovernanceRole[] = cmsList<GovernanceRole>("governance", [
   { id: "supervisors", body: "supervisors", role: { en: "Supervisors", id: "Pembina" }, name: NAME_PH, ph: true },
   {
     id: "chair",
@@ -94,7 +95,7 @@ export const governance: GovernanceRole[] = [
   { id: "treasurer", body: "board", role: { en: "Treasurer", id: "Bendahara" }, name: NAME_PH, ph: true },
   { id: "oversight", body: "oversight", role: { en: "Oversight Board", id: "Pengawas" }, name: NAME_PH, ph: true },
   { id: "deputy", body: "deputy", role: { en: "Deputy", id: "Deputi" }, name: NAME_PH, ph: true },
-];
+]);
 
 export const principles: { id: string; title: L10n; body: L10n }[] = [
   {
@@ -128,7 +129,7 @@ export const principles: { id: string; title: L10n; body: L10n }[] = [
 /** `url` kosong = alamat web mitra belum diisi (tautan baru muncul setelah diisi). */
 export type Partner = { id: string; name: string; role: L10n; url?: string; /** Berkas logo, mis. /partners/trees-for-all.svg. Kosong = kotak kosong berlabel nama mitra. */ logo?: string };
 
-export const partners: Partner[] = [
+export const partners: Partner[] = cmsList<Partner>("partners", [
   {
     id: "trees-for-all",
     name: "Trees for All",
@@ -151,7 +152,7 @@ export const partners: Partner[] = [
     name: "RDI",
     role: { en: "Research partner", id: "Mitra riset" },
   },
-];
+]);
 
 /* ---------------- Dukungan ---------------- */
 
@@ -164,7 +165,7 @@ export type GivingOption = {
   body: L10n;
 };
 
-export const giving: GivingOption[] = [
+export const giving: GivingOption[] = cmsList<GivingOption>("giving", [
   {
     id: "hectare",
     amount: 15_000_000,
@@ -185,7 +186,7 @@ export const giving: GivingOption[] = [
       id: "Pakan, perawatan dokter hewan, dan waktu perawat untuk satu satwa di Tasikoki selama sebulan.",
     },
   },
-];
+]);
 
 /** Sponsor minimum per bulan (Rp). */
 export const sponsorFrom = { v: 150_000, ph: true };

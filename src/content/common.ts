@@ -1,3 +1,4 @@
+import { cmsText } from "@/cms/apply";
 import type { Locale } from "@/lib/i18n";
 
 const en = {
@@ -176,5 +177,5 @@ const id: typeof en = {
   },
 };
 
-export const common: Record<Locale, typeof en> = { en, id };
+export const common: Record<Locale, typeof en> = cmsText("common", { en, id });
 export type Common = typeof en;

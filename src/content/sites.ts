@@ -1,3 +1,4 @@
+import { cmsText } from "@/cms/apply";
 import type { Locale } from "@/lib/i18n";
 
 /** Teks tentang dua lokasi kerja, dipakai di beranda, halaman Program, dan halaman lokasi. */
@@ -75,4 +76,4 @@ const id: typeof en = {
   milestonesTitle: "Posisi pekerjaan saat ini",
 };
 
-export const sites: Record<Locale, typeof en> = { en, id };
+export const sites: Record<Locale, typeof en> = cmsText("sites", { en, id });

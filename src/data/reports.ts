@@ -1,3 +1,4 @@
+import { cmsList } from "@/cms/apply";
 import type { L10n } from "@/lib/i18n";
 
 /**
@@ -38,10 +39,10 @@ const BREAKDOWN_PH: QuarterlyReport["breakdown"] = {
   },
 };
 
-export const reports: QuarterlyReport[] = [
+export const reports: QuarterlyReport[] = cmsList<QuarterlyReport>("reports", [
   { id: "2026-q3", year: 2026, quarter: 3, title: { en: "Quarterly Report Q3 2026", id: "Quarterly Report Triwulan III 2026" }, summary: SUMMARY_PH, breakdown: BREAKDOWN_PH, ph: true },
   { id: "2026-q2", year: 2026, quarter: 2, title: { en: "Quarterly Report Q2 2026", id: "Quarterly Report Triwulan II 2026" }, summary: SUMMARY_PH, breakdown: BREAKDOWN_PH, ph: true },
   { id: "2026-q1", year: 2026, quarter: 1, title: { en: "Quarterly Report Q1 2026", id: "Quarterly Report Triwulan I 2026" }, summary: SUMMARY_PH, breakdown: BREAKDOWN_PH, ph: true },
-];
+]);
 
 export const latestReport = reports[0];

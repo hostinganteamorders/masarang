@@ -1,3 +1,4 @@
+import { cmsText } from "@/cms/apply";
 import type { Locale } from "@/lib/i18n";
 
 const en = {
@@ -45,4 +46,4 @@ const id: typeof en = {
   dialog: { close: "Tutup", duty: "Tugas jabatan ini", bio: "Latar belakang" },
 };
 
-export const teamCopy: Record<Locale, typeof en> = { en, id };
+export const teamCopy: Record<Locale, typeof en> = cmsText("team", { en, id });

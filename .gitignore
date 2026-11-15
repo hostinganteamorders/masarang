@@ -41,5 +41,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# arsip foto asli (tidak ikut tayang)
-/photo-archive/
+# admin (data lokal dan unggahan saat pengembangan)
+/.cms-data/
+/public/uploads/
+.env*.local

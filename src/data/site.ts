@@ -1,9 +1,10 @@
+import { cmsValues } from "@/cms/apply";
 import type { L10n } from "@/lib/i18n";
 
 /** Satu nilai yang dapat berupa contoh (placeholder). `ph: true` diberi garis bawah titik-titik. */
 export type Fact<T = number> = { v: T; ph?: boolean };
 
-export const site = {
+export const site = cmsValues("site", {
   /** Set false sebelum dipublikasikan: menghilangkan banner draf dan garis bawah placeholder. */
   draft: true,
 
@@ -30,7 +31,7 @@ export const site = {
     number: { v: "[000-000-0000]", ph: true } as Fact<string>,
     holder: { v: "Yayasan Masarang", ph: true } as Fact<string>,
   },
-} as const;
+} as const);
 
 /** Warna program, dipakai bersama oleh pita rupiah, grafik, dan titik satwa. */
 export const programColor = {

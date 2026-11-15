@@ -1,3 +1,4 @@
+import { cmsText } from "@/cms/apply";
 import type { Locale } from "@/lib/i18n";
 
 const en = {
@@ -40,4 +41,4 @@ const id: typeof en = {
   empty: "Belum ada catatan untuk lokasi ini.",
 };
 
-export const updatesCopy: Record<Locale, typeof en> = { en, id };
+export const updatesCopy: Record<Locale, typeof en> = cmsText("updates", { en, id });

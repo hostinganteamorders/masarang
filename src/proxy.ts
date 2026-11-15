@@ -34,6 +34,6 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Lewati berkas statis (yang berekstensi), _next, dan api.
-  matcher: ["/((?!api|_next|.*\\..*).*)"],
+  // Lewati berkas statis (yang berekstensi), _next, api, dan admin (tidak berbahasa).
+  matcher: ["/((?!api|_next|admin|.*\\..*).*)"],
 };

@@ -1,3 +1,4 @@
+import { cmsList } from "@/cms/apply";
 import type { L10n } from "@/lib/i18n";
 
 export type UpdateSite = "temboan" | "tasikoki";
@@ -16,7 +17,7 @@ export type FieldUpdate = {
 };
 
 /** Terbaru lebih dulu. */
-export const updates: FieldUpdate[] = [
+export const updates: FieldUpdate[] = cmsList<FieldUpdate>("updates", [
   {
     id: "turtle-baseline",
     date: "2026-09",
@@ -74,4 +75,4 @@ export const updates: FieldUpdate[] = [
       id: "Berita acara BKSDA, foto",
     },
   },
-];
+]);

@@ -1,3 +1,4 @@
+import { cmsPhotos } from "@/cms/apply";
 import { catalog, type CatalogPhoto, type PhotoKey } from "./photo-catalog";
 
 /**
@@ -7,12 +8,12 @@ import { catalog, type CatalogPhoto, type PhotoKey } from "./photo-catalog";
  *
  * Foto galeri tidak dipotong, jadi tidak perlu rasio tertentu.
  */
-export type Pic = CatalogPhoto & { key: PhotoKey };
+export type Pic = CatalogPhoto & { key: string };
 
 const pic = (key: PhotoKey): Pic => ({ key, ...catalog[key] });
 const set = (...keys: PhotoKey[]): Pic[] => keys.map(pic);
 
-export const photos = {
+export const photos = cmsPhotos("photos", {
   /** Beranda: foto penuh di balik judul. */
   hero: pic("walking-through-regrowth"),
 
@@ -122,4 +123,4 @@ export const photos = {
    * Rasio tegak 4:5; wajah di tengah atas. Dibiarkan kosong sampai foto dan nama yang sebenarnya ada.
    */
   portraits: {} as Record<string, string>,
-};
+});
