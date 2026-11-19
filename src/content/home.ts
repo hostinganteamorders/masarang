@@ -95,7 +95,7 @@ const id: typeof en = {
     programs: { restoration: "Restorasi", conservation: "Konservasi", education: "Edukasi" },
   },
   donate: {
-    title: "Dukung pekerjaan kami",
+    title: "Dukung kerja kami",
     lede: "Sampaikan program pilihan Anda, dan kami akan melaporkan perkembangan program tersebut langsung kepada Anda. Rekening bank dan cara berdonasi lainnya ada di halaman donasi.",
     cta: "Cara berdonasi",
   },

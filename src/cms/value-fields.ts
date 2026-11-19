@@ -3,6 +3,7 @@ import { defaults } from "./apply";
 import "@/data/media";
 import "@/data/site";
 import "@/data/programs";
+import "@/data/siteviews";
 
 export type ValueField = {
   id: string;
@@ -36,6 +37,10 @@ const BASE_GROUPS: ValueGroup[] = [
     fields: [
       { id: "draft", scope: "site", path: "draft", kind: "bool", label: "Mode draf", help: "Dicentang: banner draf tampil, penanda contoh bergaris titik-titik, dan mesin pencari diminta tidak mengindeks. Hilangkan centang saat situs siap tayang." },
       { id: "email", scope: "site", path: "email.v", kind: "text", label: "Email yayasan", clearPh: "site.email.ph" },
+      { id: "whatsapp", scope: "site", path: "whatsapp.v", kind: "text", label: "Nomor WhatsApp (bukti transfer)", help: "Format internasional tanpa tanda +, mis. 6281234567890. Selama masih contoh, tombol WhatsApp tidak aktif.", clearPh: "site.whatsapp.ph" },
+      { id: "svLat", scope: "siteviews.lat", path: "v", kind: "number", label: "Lokasi satelit dan 360°: lintang (mis. 1.0434)", section: "Lokasi tampilan satelit", help: "Titik tengah peta satelit di halaman Restorasi. Lintang utara bernilai positif.", clearPh: "siteviews.lat.ph" },
+      { id: "svLon", scope: "siteviews.lon", path: "v", kind: "number", label: "Lokasi satelit dan 360°: bujur (mis. 124.9225)", section: "Lokasi tampilan satelit", clearPh: "siteviews.lon.ph" },
+      { id: "svZoom", scope: "siteviews.zoom", path: "v", kind: "number", label: "Zoom awal peta satelit (14–17)", section: "Lokasi tampilan satelit" },
       { id: "bank", scope: "site", path: "bank.bank.v", kind: "text", label: "Nama bank", clearPh: "site.bank.bank.ph" },
       { id: "banknum", scope: "site", path: "bank.number.v", kind: "text", label: "Nomor rekening", clearPh: "site.bank.number.ph" },
       { id: "bankholder", scope: "site", path: "bank.holder.v", kind: "text", label: "Atas nama rekening", clearPh: "site.bank.holder.ph" },

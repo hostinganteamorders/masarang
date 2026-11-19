@@ -4,6 +4,7 @@ import { ExtLink } from "@/components/ExtLink";
 import { Gallery } from "@/components/Gallery";
 import { GiveBand } from "@/components/GiveBand";
 import { HillsideSlider } from "@/components/HillsideSlider";
+import { SiteViews } from "@/components/SiteViews";
 import { Milestones } from "@/components/Milestones";
 import { NewsletterBand } from "@/components/NewsletterBand";
 import { PageHero } from "@/components/PageHero";
@@ -16,6 +17,8 @@ import { StatRow } from "@/components/StatRow";
 import { UpdateItem } from "@/components/UpdateItem";
 import { VillageBars } from "@/components/VillageBars";
 import { common } from "@/content/common";
+import { siteViewsCopy } from "@/content/siteviews";
+import { siteViews, siteViewSpot } from "@/data/siteviews";
 import { hillsideCopy } from "@/content/hillside";
 import { programsCopy } from "@/content/programs";
 import { sites } from "@/content/sites";
@@ -42,6 +45,7 @@ export default async function RestorationPage({ params }: PageProps<"/[locale]/p
   const t = programsCopy[locale].restoration;
   const c = common[locale];
   const h = hillsideCopy[locale];
+  const sv = siteViewsCopy[locale];
   const month = monthYear(temboan.coconut.mapped, locale);
   const hectare = giving.find((g) => g.id === "hectare");
   const items = updates.filter((u) => u.site === "temboan");
@@ -58,6 +62,22 @@ export default async function RestorationPage({ params }: PageProps<"/[locale]/p
       >
         <ProgramTabs locale={locale} current="restoration" />
       </PageHero>
+
+      {/* Pengantar program */}
+      <section className="section on-soft" aria-labelledby="intro-title">
+        <div className="container">
+          <div className="prose" style={{ maxWidth: "46rem" }}>
+            <h2 id="intro-title" className="title-md" style={{ marginBottom: "1.5rem" }}>
+              {t.intro.title}
+            </h2>
+            {t.intro.body.map((p) => (
+              <p key={p} style={{ fontSize: "1.15rem" }}>
+                {p}
+              </p>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Temboan Restoration Project */}
       <section className="section on-light" aria-labelledby="project-title">
@@ -151,6 +171,19 @@ export default async function RestorationPage({ params }: PageProps<"/[locale]/p
         <div className="container">
           <SectionHead id="hillside-title" meta={[h.meta, h.source]} title={h.title} lede={h.body} />
           <HillsideSlider locale={locale} />
+        </div>
+      </section>
+
+      {/* Satelit dan 360° */}
+      <section className="section on-light" aria-labelledby="views-title">
+        <div className="container">
+          <SectionHead id="views-title" meta={[sv.meta, sv.source]} title={sv.title} lede={sv.body} />
+          <SiteViews
+            locale={locale}
+            copy={sv}
+            views={siteViews}
+            spot={{ lat: Number(siteViewSpot.lat.v), lon: Number(siteViewSpot.lon.v), zoom: Number(siteViewSpot.zoom.v), ph: Boolean(siteViewSpot.lat.ph || siteViewSpot.lon.ph) }}
+          />
         </div>
       </section>
 

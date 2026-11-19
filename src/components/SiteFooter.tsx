@@ -11,7 +11,6 @@ import s from "./SiteFooter.module.css";
 
 const EXPLORE = [
   { key: "about", path: "/about" },
-  { key: "team", path: "/about/team" },
   { key: "updates", path: "/updates" },
   { key: "transparency", path: "/transparency" },
 ] as const;

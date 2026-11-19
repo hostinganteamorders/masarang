@@ -80,6 +80,14 @@ const en = {
       title: "Restoration",
       lede: "Replanting degraded land around Temboan, Kayuwatu and Mahembang, together with the farmers who live next to it.",
     },
+    intro: {
+      title: "About Restoration",
+      body: [
+        "Restoration is our work on degraded land in Minahasa. We plant mixed agroforestry: trees that rebuild the soil together with crops that farmers can sell.",
+        "The land is restored with the farmers, not for them. They look after the plots and earn from what grows, so the forest has people who depend on keeping it alive.",
+        "Every quarter we publish how much land is restored, how many trees survive and how farmer income changes.",
+      ],
+    },
     project: {
       title: "Temboan Restoration Project",
       body: [
@@ -130,8 +138,16 @@ const en = {
       title: "Conservation",
       lede: "Caring for rescued wildlife at Tasikoki, protecting sea turtles and the forest of Mount Masarang, and keeping the data.",
     },
+    intro: {
+      title: "About Conservation",
+      body: [
+        "Conservation brings three things together at Tasikoki and on Mount Masarang: caring for animals seized from the illegal wildlife trade, protecting sea turtles and forest, and keeping the data that shows what works.",
+        "Animals are rehabilitated and returned to the wild where it is safe. Those that cannot go back stay in lifetime care.",
+        "The register of animals in our care is published, so anyone can see how many arrive, stay and leave.",
+      ],
+    },
     tasikoki: {
-      title: "Tasikoki Wildlife Rescue and Education Centre",
+      title: "Tasikoki Wildlife Center",
       body: "Tasikoki takes in animals seized from the illegal wildlife trade, rehabilitates them, moves them to safer places and returns them to the wild where it is safe to do so.",
       inCare: "Animals in rehabilitation today",
       translocated: "Animals translocated",
@@ -143,13 +159,13 @@ const en = {
       rescued: "Rescued",
       released: "Released",
       label: "Animals rescued and released per year",
-      source: "Tasikoki animal register",
+      source: "Tasikoki animal recap",
       year: "Year",
     },
     adopt: {
-      title: "Animals to adopt",
-      lede: "Every dot is one animal. Hollow dots are still waiting for a sponsor. Open the register to meet them.",
-      cta: "Meet the animals",
+      title: "Animals in our care",
+      lede: "How many animals Tasikoki cares for in each category, and the ambassador animal that speaks for each one.",
+      cta: "See every category",
     },
     turtle: {
       title: "Sea Turtle Project",
@@ -180,6 +196,13 @@ const en = {
     hero: {
       title: "Education",
       lede: "Learning programs, a community market, residencies, outreach and volunteering that bring people into the work.",
+    },
+    intro: {
+      title: "About Education",
+      body: [
+        "Education is how our work reaches beyond the sites. Learning programs for students, a community market, residencies, outreach in villages and volunteering give people a way to take part in caring for nature.",
+        "We believe lasting change comes when people understand what is at stake and have something to do about it.",
+      ],
     },
     listTitle: "What we run",
     pending: "Details to be added",
@@ -287,6 +310,14 @@ const id: typeof en = {
       title: "Restorasi",
       lede: "Menanami kembali lahan kritis di sekitar Temboan, Kayuwatu, dan Mahembang, bersama para petani yang tinggal di dekatnya.",
     },
+    intro: {
+      title: "Tentang Restorasi",
+      body: [
+        "Restorasi adalah pekerjaan kami di lahan kritis di Minahasa. Kami menanam agroforestri campuran: pohon yang memulihkan tanah bersama tanaman yang bisa dijual petani.",
+        "Lahan dipulihkan bersama petani, bukan hanya untuk mereka. Petani merawat petak-petaknya dan memperoleh penghasilan dari hasilnya, sehingga hutan punya orang yang berkepentingan menjaganya tetap hidup.",
+        "Setiap triwulan kami menerbitkan luas lahan yang dipulihkan, jumlah pohon yang bertahan hidup, dan perubahan pendapatan petani.",
+      ],
+    },
     project: {
       title: "Temboan Restoration Project",
       body: [
@@ -337,8 +368,16 @@ const id: typeof en = {
       title: "Konservasi",
       lede: "Merawat satwa sitaan di Tasikoki, melindungi penyu dan hutan Gunung Masarang, serta menyimpan datanya.",
     },
+    intro: {
+      title: "Tentang Konservasi",
+      body: [
+        "Konservasi menyatukan tiga hal di Tasikoki dan Gunung Masarang: merawat satwa sitaan dari perdagangan ilegal, melindungi penyu dan hutan, serta menyimpan data yang menunjukkan apa yang berhasil.",
+        "Satwa direhabilitasi dan dilepasliarkan bila aman. Satwa yang tidak bisa kembali ke alam tetap dirawat seumur hidup.",
+        "Register satwa dalam perawatan kami diterbitkan, sehingga siapa pun dapat melihat berapa yang masuk, tinggal, dan keluar.",
+      ],
+    },
     tasikoki: {
-      title: "Tasikoki Wildlife Rescue and Education Centre",
+      title: "Tasikoki Wildlife Center",
       body: "Tasikoki menerima satwa sitaan dari perdagangan ilegal, merehabilitasinya, memindahkannya ke tempat yang lebih aman, dan melepasliarkannya bila aman.",
       inCare: "Satwa dalam rehabilitasi saat ini",
       translocated: "Satwa yang ditranslokasi",
@@ -350,13 +389,13 @@ const id: typeof en = {
       rescued: "Diselamatkan",
       released: "Dilepasliarkan",
       label: "Satwa diselamatkan dan dilepasliarkan per tahun",
-      source: "Register satwa Tasikoki",
+      source: "Rekapitulasi satwa Tasikoki",
       year: "Tahun",
     },
     adopt: {
-      title: "Satwa untuk diadopsi",
-      lede: "Setiap titik adalah satu satwa. Titik kosong masih menunggu sponsor. Buka register untuk mengenal mereka.",
-      cta: "Kenali satwanya",
+      title: "Satwa dalam perawatan kami",
+      lede: "Jumlah satwa yang dirawat Tasikoki di setiap kategori, dan satwa duta yang mewakili masing-masing.",
+      cta: "Lihat semua kategori",
     },
     turtle: {
       title: "Proyek Penyu",
@@ -387,6 +426,13 @@ const id: typeof en = {
     hero: {
       title: "Edukasi",
       lede: "Program belajar, pasar masyarakat, residensi, penjangkauan, dan kerja relawan yang mengajak orang terlibat dalam pekerjaan ini.",
+    },
+    intro: {
+      title: "Tentang Edukasi",
+      body: [
+        "Edukasi adalah cara pekerjaan kami menjangkau lebih jauh dari lokasi program. Program belajar untuk pelajar, pasar masyarakat, residensi, penjangkauan ke desa, dan kerja relawan memberi orang jalan untuk ikut menjaga alam.",
+        "Kami percaya perubahan yang bertahan lama terjadi ketika orang memahami apa yang dipertaruhkan dan punya sesuatu yang bisa dilakukan.",
+      ],
     },
     listTitle: "Yang kami jalankan",
     pending: "Keterangan menyusul",

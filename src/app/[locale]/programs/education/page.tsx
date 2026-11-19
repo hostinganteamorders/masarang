@@ -92,6 +92,22 @@ export default async function EducationPage({ params }: PageProps<"/[locale]/pro
         <ProgramTabs locale={locale} current="education" />
       </PageHero>
 
+      {/* Pengantar program */}
+      <section className="section on-soft" aria-labelledby="intro-title">
+        <div className="container">
+          <div className="prose" style={{ maxWidth: "46rem" }}>
+            <h2 id="intro-title" className="title-md" style={{ marginBottom: "1.5rem" }}>
+              {t.intro.title}
+            </h2>
+            {t.intro.body.map((p) => (
+              <p key={p} style={{ fontSize: "1.15rem" }}>
+                {p}
+              </p>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section on-light" aria-labelledby="list-title">
         <div className="container">
           <SectionHead id="list-title" title={t.listTitle} />

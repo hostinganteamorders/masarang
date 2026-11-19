@@ -22,7 +22,7 @@ export function StatRow({ stats, size = "lg" }: { stats: StatItem[]; size?: "lg"
             {st.label}
             {st.note && <span className={s.note}>{st.note}</span>}
           </dt>
-          <dd className={`num ${s.value}`}>
+          <dd className={`num ${s.value}`} data-count>
             <Ph on={st.ph}>
               {st.value}
               {st.unit && <span className={s.unit}>{st.unit}</span>}

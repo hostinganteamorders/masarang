@@ -45,7 +45,6 @@
   overflow: hidden;
   padding-bottom: 0.12em;
   font-family: var(--font-display);
-  font-stretch: 80%;
   font-weight: 760;
   font-size: clamp(2.6rem, 1.4rem + 5.4vw, 5.5rem);
   line-height: 1;

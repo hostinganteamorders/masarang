@@ -8,13 +8,12 @@ import s from "./ProgramTabs.module.css";
 export type ProgramId = "overview" | "restoration" | "conservation" | "education";
 
 const TABS = [
-  { id: "overview", path: "/programs", color: undefined },
   { id: "restoration", path: "/programs/restoration", color: programColor.temboan },
   { id: "conservation", path: "/programs/conservation", color: programColor.tasikoki },
   { id: "education", path: "/programs/education", color: programColor.education },
 ] as const;
 
-/** Pindah antarprogram: Semua program, Restorasi, Konservasi, Edukasi. Dipasang di kepala halaman program. */
+/** Pindah antarprogram: Restorasi, Konservasi, Edukasi. Dipasang di kepala halaman program. */
 export function ProgramTabs({ locale, current }: { locale: Locale; current: ProgramId }) {
   const t = programsCopy[locale].tabs;
   return (

@@ -1,0 +1,573 @@
+/* Kategori satwa: kartu, grafik, daftar jenis. Warna kategori dipakai konsisten di ketiganya. */
+.cats {
+  --c-primates: var(--education-ink);
+  --c-mammals: var(--neutral-dark);
+  --c-reptiles: var(--restoration-ink);
+  --c-birds: var(--conservation-ink);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2.4vw, 1.75rem);
+}
+
+.card {
+  --c: var(--fg);
+  display: grid;
+  align-content: start;
+  gap: 1.25rem;
+  padding: clamp(1.25rem, 2.6vw, 2rem);
+  border: 1px solid var(--line);
+  border-top: 6px solid var(--c);
+  border-radius: var(--r-lg);
+  background: var(--white);
+  color: var(--dark);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card[data-cat="primates"] { --c: var(--c-primates); }
+.card[data-cat="mammals"] { --c: var(--c-mammals); }
+.card[data-cat="reptiles"] { --c: var(--c-reptiles); }
+.card[data-cat="birds"] { --c: var(--c-birds); }
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.45);
+  }
+}
+
+.head h3 {
+  margin: 0;
+  color: var(--c);
+}
+
+.head p {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+}
+
+.big {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.bigNum {
+  font-size: clamp(3.2rem, 2rem + 4vw, 5rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--c);
+}
+
+.bigLabel {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.share {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.stages {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.stagesBar {
+  display: flex;
+  height: 0.85rem;
+  overflow: hidden;
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--c) 22%, transparent);
+}
+
+.stagesBar span {
+  display: block;
+  height: 100%;
+  background: var(--c);
+  transition: width 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.95rem;
+}
+
+.legend li {
+  position: relative;
+  padding-left: 1.3rem;
+}
+
+.legend .sw {
+  position: absolute;
+  left: 0;
+  top: 0.4em;
+}
+
+.sw {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: var(--c);
+}
+
+.sw[data-rest] {
+  background: color-mix(in srgb, var(--c) 22%, transparent);
+  box-shadow: inset 0 0 0 1.5px var(--c);
+}
+
+.flows {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin: 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.flows div {
+  display: grid;
+  gap: 0.15rem;
+  align-content: start;
+}
+
+.flows dt {
+  order: 2;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.25;
+}
+
+.flows dd {
+  order: 1;
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.flowsTitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Satwa duta */
+.amb {
+  display: grid;
+  grid-template-columns: minmax(0, 9rem) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  padding: 1rem;
+  border-radius: var(--r-md);
+  background: color-mix(in srgb, var(--c) 9%, var(--white));
+}
+
+.ambPhoto {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  background: color-mix(in srgb, var(--c) 25%, var(--white));
+}
+
+.ambPhoto {
+  margin: 0;
+}
+
+.ambPhoto .ambZoom {
+  right: 0.4rem;
+  bottom: 0.4rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.ambPhoto img {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .amb:hover .ambPhoto img {
+    transform: scale(1.08);
+  }
+}
+
+.noPhoto {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 0.5rem;
+  color: var(--c);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.ambBody {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.ambTag {
+  margin: 0;
+  color: var(--c);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.ambName {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.ambLatin {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-style: italic;
+}
+
+.ambStory {
+  margin: 0.25rem 0 0;
+  font-size: 0.98rem;
+}
+
+.ambCta {
+  justify-self: start;
+  margin-top: 0.5rem;
+}
+
+.ambNote {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 62rem) {
+  .grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 34rem) {
+  .amb { grid-template-columns: minmax(0, 1fr); }
+  .ambPhoto { aspect-ratio: 16 / 10; }
+  .flows { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* ---------- Grafik ---------- */
+.chart {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.chartHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+}
+
+.chartTitle {
+  margin: 0;
+  font-weight: 700;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.5rem;
+  padding: 0.35rem 0.9rem;
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: var(--fg);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--fg);
+  border-color: var(--fg);
+  color: var(--bg);
+}
+
+.chip .sw {
+  background: var(--c);
+}
+
+.chip[aria-pressed="true"] .sw {
+  box-shadow: 0 0 0 2px var(--bg);
+}
+
+.plot {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: clamp(0.35rem, 1.4vw, 1rem);
+  height: clamp(15rem, 36vw, 24rem);
+  padding-top: 1.75rem;
+  border-bottom: 2px solid var(--fg);
+}
+
+.col {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  height: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.seg {
+  display: block;
+  width: 100%;
+  background: var(--c);
+  transition: height 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.2s ease;
+}
+
+.seg[data-cat="primates"] { --c: var(--c-primates); }
+.seg[data-cat="mammals"] { --c: var(--c-mammals); }
+.seg[data-cat="reptiles"] { --c: var(--c-reptiles); }
+.seg[data-cat="birds"] { --c: var(--c-birds); }
+
+.col[data-dim="true"] .seg { opacity: 0.72; }
+.col[data-on="true"] .seg { opacity: 1; }
+
+.colTotal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1.6rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.yearTick {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: clamp(0.35rem, 1.4vw, 1rem);
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.col:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  .col:hover .seg { filter: brightness(1.12); }
+}
+
+.readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.75rem 1.5rem;
+  margin: 0;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+}
+
+.readout div {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.readout dt {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.readout dd {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.readout .readYear {
+  grid-column: 1 / -1;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+/* ---------- Daftar jenis ---------- */
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 1rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.search {
+  display: grid;
+  gap: 0.35rem;
+  flex: 1 1 16rem;
+  max-width: 24rem;
+}
+
+.search label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.search input {
+  width: 100%;
+  min-height: 2.9rem;
+  padding: 0.5rem 1rem;
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--r-pill);
+  background: var(--white);
+  color: var(--dark);
+  font: inherit;
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.summary {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.spName {
+  display: block;
+  font-size: 1.08rem;
+  font-weight: 700;
+}
+
+.spLatin {
+  display: block;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-style: italic;
+}
+
+.cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.n {
+  font-size: 1.1rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.bar {
+  display: block;
+  height: 0.5rem;
+  min-width: 2px;
+  border-radius: var(--r-pill);
+  background: var(--c);
+}
+
+.tableWrap {
+  max-height: 34rem;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--white);
+}
+
+.tableWrap table {
+  margin: 0;
+}
+
+.empty {
+  padding: 1.5rem;
+  color: var(--muted);
+}
+
+/* Kotak ringkas di halaman Konservasi */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tile a {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1.25rem 1.4rem;
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--r-md);
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.tile a:hover {
+  background: color-mix(in srgb, var(--fg) 10%, transparent);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .tile a:hover { transform: translateY(-3px); }
+}
+
+.tileNum {
+  font-size: clamp(2.4rem, 1.6rem + 3vw, 4rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.tileName {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+@media (max-width: 48rem) {
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

@@ -5,7 +5,9 @@ import "@/content/adopt";
 import "@/content/common";
 import "@/content/hillside";
 import "@/content/home";
+import "@/content/involved";
 import "@/content/programs";
+import "@/content/siteviews";
 import "@/content/sites";
 import "@/content/support";
 import "@/content/team";
@@ -19,8 +21,10 @@ export const TEXT_SCOPES = [
   { id: "programs", label: "Program (ringkasan, Restorasi, Konservasi, Edukasi)", page: "/programs" },
   { id: "sites", label: "Lokasi: Temboan dan Tasikoki", page: "/programs/restoration" },
   { id: "hillside", label: "Slider lereng pulih", page: "/programs/restoration" },
+  { id: "siteviews", label: "Satelit dan 360° (halaman Restorasi)", page: "/programs/restoration" },
   { id: "adopt", label: "Adopsi satwa", page: "/programs/conservation/adopt" },
   { id: "updates", label: "Updates dan Quarterly Report", page: "/updates" },
+  { id: "involved", label: "Terlibat (Get involved, mitra, relawan)", page: "/get-involved" },
   { id: "support", label: "Dukung kami (donasi)", page: "/support" },
   { id: "transparency", label: "Transparansi", page: "/transparency" },
   { id: "team", label: "Halaman tim lengkap", page: "/about/team" },

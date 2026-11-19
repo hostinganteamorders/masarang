@@ -13,7 +13,7 @@ import s from "./SiteHeader.module.css";
 type Leaf = { key: keyof Common["nav"]; path: string };
 type Item = Leaf & { children?: Leaf[] };
 
-/** Menu utama: Home, Tentang (dropdown), Program (dropdown), Adopsi, Kabar. Donasi ada sebagai tombol terpisah. */
+/** Menu utama: Home, Tentang (dropdown), Program (dropdown), Terlibat (dropdown), Kabar. Donasi ada sebagai tombol terpisah. */
 const ITEMS: Item[] = [
   { key: "home", path: "" },
   {
@@ -22,7 +22,6 @@ const ITEMS: Item[] = [
     children: [
       { key: "aboutFounder", path: "/about#founder" },
       { key: "aboutVision", path: "/about#vision" },
-      { key: "aboutTeam", path: "/about#team" },
       { key: "aboutPartners", path: "/about#partners" },
     ],
   },
@@ -30,13 +29,21 @@ const ITEMS: Item[] = [
     key: "programs",
     path: "/programs",
     children: [
-      { key: "programsAll", path: "/programs" },
       { key: "restoration", path: "/programs/restoration" },
       { key: "conservation", path: "/programs/conservation" },
       { key: "education", path: "/programs/education" },
     ],
   },
-  { key: "adoption", path: "/programs/conservation/adopt" },
+  {
+    key: "involved",
+    path: "/get-involved",
+    children: [
+      { key: "involvedAdopt", path: "/programs/conservation/adopt" },
+      { key: "donate", path: "/support" },
+      { key: "involvedPartner", path: "/get-involved/partner" },
+      { key: "involvedVolunteer", path: "/get-involved/volunteer" },
+    ],
+  },
   { key: "updates", path: "/updates" },
 ];
 
@@ -56,7 +63,9 @@ export function SiteHeader({ locale, nav }: { locale: Locale; nav: Common["nav"]
   const isActiveItem = (item: Item) =>
     item.key === "programs"
       ? pathname.startsWith(`${localePath(locale, "/programs")}`) && !isActive("/programs/conservation/adopt")
-      : isActive(item.path);
+      : item.key === "involved"
+        ? isActive("/get-involved") || isActive("/programs/conservation/adopt") || isActive("/support")
+        : isActive(item.path);
 
   // Menutup dropdown: pindah halaman, Esc, klik di luar.
   const [seenPath, setSeenPath] = useState(pathname);

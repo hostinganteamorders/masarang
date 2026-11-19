@@ -26,7 +26,7 @@ export function MoneyRibbon({ locale }: { locale: Locale }) {
             data-dark={DARK_TEXT.has(item.id)}
             style={{ flex: `${item.share} 0 0`, background: item.color }}
           >
-            <span className={`num ${s.pct}`}>
+            <span className={`num ${s.pct}`} data-count>
               <Ph on={finance.ph}>{item.share}%</Ph>
             </span>
           </span>
@@ -37,7 +37,7 @@ export function MoneyRibbon({ locale }: { locale: Locale }) {
         {moneyOut.map((item) => (
           <li key={item.id} style={{ ["--c" as string]: item.color }}>
             <span className={s.name}>{item.label[locale]}</span>
-            <span className={`num ${s.amount}`}>
+            <span className={`num ${s.amount}`} data-count>
               <Ph on={finance.ph}>{idrMillions(item.millions, locale)}</Ph>
             </span>
             <span className={s.share}>

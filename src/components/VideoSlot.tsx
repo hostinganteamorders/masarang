@@ -1,5 +1,6 @@
 import { common } from "@/content/common";
 import type { Locale } from "@/lib/i18n";
+import { VideoPlayer } from "./VideoPlayer";
 import s from "./VideoSlot.module.css";
 
 /** Ambil alamat sematan dari tautan YouTube atau Vimeo. Mengembalikan null bila bukan keduanya. */
@@ -29,11 +30,14 @@ export function VideoSlot({
   title,
   locale,
   className,
+  autoplay,
 }: {
   url?: string;
   title: string;
   locale: Locale;
   className?: string;
+  /** Putar otomatis (tanpa suara) setelah salam pembuka selesai. */
+  autoplay?: boolean;
 }) {
   const c = common[locale].video;
   const embed = url ? embedUrl(url) : null;
@@ -41,18 +45,8 @@ export function VideoSlot({
   return (
     <figure className={`${s.slot} ${className ?? ""}`}>
       <div className={s.frame}>
-        {embed ? (
-          <iframe
-            src={embed}
-            title={title}
-            loading="lazy"
-            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-            allowFullScreen
-          />
-        ) : url ? (
-          <video controls preload="none" playsInline aria-label={title}>
-            <source src={url} />
-          </video>
+        {url ? (
+          <VideoPlayer embed={embed} url={url} title={title} autoplay={autoplay} />
         ) : (
           <div className={s.empty}>
             <svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true" focusable="false">

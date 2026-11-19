@@ -12,7 +12,7 @@ import { StatRow } from "@/components/StatRow";
 import { common } from "@/content/common";
 import { transparencyCopy } from "@/content/transparency";
 import { finance, overheadShare, unitCosts } from "@/data/finance";
-import { site } from "@/data/site";
+import { features, site } from "@/data/site";
 import { fill, idrAuto, pct, usd } from "@/lib/format";
 import { localePath } from "@/lib/i18n";
 import { resolveLocale } from "@/lib/locale";
@@ -94,11 +94,13 @@ export default async function TransparencyPage({ params }: PageProps<"/[locale]/
         <div className="container">
           <SectionHead id="governance-title" title={t.governance.title} lede={t.governance.lede} />
           <GovernanceList locale={locale} />
-          <p style={{ marginTop: "2.25rem" }}>
-            <Link href={localePath(locale, "/about/team")} className="btn">
-              {t.governance.cta}
-            </Link>
-          </p>
+          {features.team && (
+            <p style={{ marginTop: "2.25rem" }}>
+              <Link href={localePath(locale, "/about/team")} className="btn">
+                {t.governance.cta}
+              </Link>
+            </p>
+          )}
         </div>
       </section>
 

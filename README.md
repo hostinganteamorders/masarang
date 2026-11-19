@@ -28,15 +28,15 @@ Setiap halaman ada di `/en/...` dan `/id/...`. Alamat memakai kata Inggris yang 
 | Alamat | Isi |
 | --- | --- |
 | `/` | Beranda: salam pembuka, tagline lalu video besar (Aping), angka utama, ringkasan tiga program, update terbaru (Quarterly Report, rincian per program dibuka dengan klik), tombol donasi |
-| `/about` | Tentang Kami: Pendiri (Dr. Willie Smits), sejarah Masarang, Video Aping, Visi, apa dan mengapa, Tim (Pembina, Pengawas, Pengurus, Deputi), Mitra dengan tautan |
-| `/about/team` | Tim lengkap: tata kelola dan penanggung jawab bidang program, grid potret dengan dialog tugas dan biodata |
+| `/about` | Tentang Kami: Pendiri (Dr. Willie Smits), sejarah Masarang, Video Aping, Visi, apa dan mengapa, Mitra (dikelompokkan menurut jenis institusi). Bagian Tim disembunyikan dulu (`features.team` di `src/data/site.ts`; ubah ke `true` untuk menampilkannya lagi) |
+| `/get-involved` | Terlibat: empat cara (adopsi satwa, donasi, jadi mitra, jadi relawan), dengan halaman `/get-involved/partner` dan `/get-involved/volunteer` |
 | `/programs` | Ringkasan tiga program, pemantauan dan pelaporan |
-| `/programs/restoration` | Restorasi: Temboan Restoration Project (500 ha; 70 ha di Temboan dan 10+ ha di Kayuwatu dan Mahembang dalam 4 tahun), Farmers Empowered (53 petani, 35%, tautan TMS), lereng pulih, kelapa, tonggak, galeri |
-| `/programs/conservation` | Konservasi: Tasikoki (rehabilitasi, translokasi, pelepasliaran), satwa untuk diadopsi, Proyek Penyu, Perlindungan Hutan, data keanekaragaman hayati, galeri |
-| `/programs/conservation/adopt` | Register satwa: 109 titik yang dapat disaring, kartu detail, sponsor lewat email, tabel spesies |
+| `/programs/restoration` | Restorasi: pengantar program, Temboan Restoration Project (500 ha; 70 ha di Temboan dan 10+ ha di Kayuwatu dan Mahembang dalam 4 tahun), Farmers Empowered (53 petani, 35%, tautan TMS), lereng pulih (simulasi), **penampil Satelit + 360°** (bandingkan dua tanggal), kelapa, tonggak, galeri |
+| `/programs/conservation` | Konservasi: pengantar program, Tasikoki Wildlife Center (rehabilitasi, translokasi, pelepasliaran), jumlah satwa per kategori, Proyek Penyu, Perlindungan Hutan, data keanekaragaman hayati, galeri |
+| `/programs/conservation/adopt` | Satwa per kategori (data Excel Rekapitulasi Satwa PPST sampai Oktober 2026): total, empat kartu kategori (jumlah dirawat, karantina, masuk/lahir/mati/lepas/translokasi sejak 2018, satwa duta dengan tombol dukung), grafik per tahun yang bisa disaring, daftar 109 jenis yang bisa dicari |
 | `/programs/education` | Edukasi: .Tumbuh, Pasar Lokawaya, SAPA ALAM, Residensi (EduTour, StoryLab for Sampiri), Outreach dan ComDev, Relawan, galeri |
 | `/updates` | Quarterly Report (terbaru dan arsip) dan kabar lapangan dengan penyaring lokasi |
-| `/support` | Donasi: cara mendukung, adopsi, rekening bank, kemitraan |
+| `/support` | Donasi: cara mendukung, rekening bank, tombol kirim bukti transfer lewat WhatsApp, kemitraan |
 | `/transparency` | Keuangan (rupiah/dolar), biaya per satuan, dokumen, tata kelola (tidak di menu utama; ada di footer dan di halaman Tentang) |
 
 Struktur ini mengikuti daftar dari tim (Home, About Us, Programs). Alamat lama (`/team`, `/adopt`, `/programs/temboan`,
@@ -44,8 +44,8 @@ Struktur ini mengikuti daftar dari tim (Home, About Us, Programs). Alamat lama (
 
 ### Navigasi, salam pembuka, dan pop-up foto
 
-- **Menu**: Home | About Us ▾ (Our Founder, Our Vision, Our Team, Our Partners) | Programs ▾ (All programs, Restoration,
-  Conservation, Education) | Adoption | Updates, ditambah tombol Donate. Susunannya ada di `ITEMS` pada
+- **Menu**: Home | About Us ▾ (Our Founder, Our Vision, Our Partners) | Programs ▾ (Restoration,
+  Conservation, Education) | Get involved ▾ (Adopt an animal, Donate, Become a partner, Volunteer) | Updates, ditambah tombol Donate. Susunannya ada di `ITEMS` pada
   `src/components/SiteHeader.tsx`, teks menu di `nav` pada `src/content/common.ts`. Dropdown terbuka dengan hover,
   fokus, atau klik panah; Esc menutup. Di ponsel, submenu ada di dalam lembar menu.
 - **Salam pembuka** (`src/components/Intro.tsx`, teks di `intro` pada `common.ts`): lambang, "Selamat datang" / "Welcome",
@@ -96,7 +96,8 @@ Alamat yang tidak ada menampilkan halaman 404 lengkap dengan header dan footer, 
 | Pengurus, prinsip, mitra, dokumen | `src/data/organisation.ts` |
 | Anggota tim (nama, jabatan, tugas, biodata) | `src/data/team.ts` |
 | Kabar lapangan | `src/data/updates.ts` |
-| Daftar satwa dan jumlah per spesies | `src/data/animals.ts` |
+| Satwa per kategori, per tahun, dan daftar jenis (dari Excel PPST) | `src/data/wildlife.ts` |
+| Tanggal citra satelit, foto 360°, lokasi peta | `src/data/siteviews.ts` |
 | Foto | `src/data/photos.ts` (penempatan), `src/data/photo-catalog.ts` (daftar), `public/photos/` |
 | Teks halaman (judul, paragraf, label tombol) | `src/content/*.ts` |
 
@@ -116,8 +117,8 @@ layanan CMS berbayar.
 | Foto | Mengganti foto di 20 tempat, mengatur galeri (urutan, hapus, tambah dari pustaka 89 foto atau unggah), keterangan foto, titik fokus. |
 | Video & tautan | Video Aping (YouTube/Vimeo/.mp4), situs TMS, katalog EduTour. |
 | Angka | 16 angka program (hektare, petani, pohon, satwa, siswa, biaya operasional). Mengisi angka mematikan tanda "contoh". |
-| Data | Laporan triwulan (unggah PDF), mitra (unggah logo), tim dan tata kelola (foto), kabar lapangan, dokumen publik, pilihan dukungan, register satwa, spesies. |
-| Pengaturan | Email, rekening bank, mode draf situs. |
+| Data | Laporan triwulan (unggah PDF), mitra (unggah logo), tim dan tata kelola (foto), kabar lapangan, dokumen publik, pilihan dukungan, satwa per kategori (jumlah, karantina, satwa duta), satwa per tahun (grafik), daftar jenis satwa, dan tanggal satelit/360°. |
+| Pengaturan | Email, nomor WhatsApp (bukti transfer), rekening bank, lokasi peta satelit, mode draf situs. |
 | Pengguna | Pemilik menambah/menghapus editor. |
 
 **Cara kerjanya.** Setiap simpan masuk ke *draf*. Tombol **Terbitkan** di Beranda admin menyalin draf menjadi isi
@@ -211,12 +212,26 @@ Logo Masarang Foundation ada di `public/brand/` (`masarang-logo.png` hijau untuk
 `masarang-logo-light.png` putih untuk latar gelap, `masarang-emblem.png` lambang saja) dan dipakai lewat
 `src/components/Logo.tsx` di header, menu ponsel, dan footer. Ikon tab adalah `src/app/icon.png`.
 
-## Data satwa adalah contoh
+## Data satwa: dari Excel, dengan dua bagian contoh
 
-`src/data/animals.ts` membangkitkan 145 catatan satwa dari tabel jumlah per spesies dan tahap perawatan, supaya semua
-angka di halaman Adopsi cocok satu sama lain (109 dirawat, 28 disponsori, 81 menunggu sponsor, 36 dilepasliarkan).
-Nama individu dan tanggal masuk adalah contoh. Ganti dengan register asli Tasikoki sebelum tayang, atau tampilkan
-hanya angka agregat.
+`src/data/wildlife.ts` dibuat dari `Rekapitulasi_Satwa_PPST_2018-new.xlsx` (lembar OVERVIEW dan rekap bulanan, data sampai
+Oktober 2026: 248 satwa dirawat = 72 primata, 35 mamalia lain, 53 reptil, 88 burung). Dua hal **belum ada di Excel** dan
+masih bertanda contoh (garis titik-titik): **jumlah karantina** per kategori dan **pilihan satwa duta** (Yaki, Rusa Timor,
+Buaya Muara, Nuri Talaud, dipilih dari jenis terbanyak). Ganti lewat Admin > Data > "Satwa per kategori" lalu hilangkan
+centang "masih contoh".
+
+Catatan data: bulan terakhir yang terisi di Excel adalah Oktober 2026 (kolom November dan Desember hanya mengulang
+Oktober), jadi situs memakai angka Oktober. Arus masuk/lahir/mati/lepas/translokasi 2026 dihitung dari lembar rekap
+bulanan sampai Oktober; tahun 2018 sampai 2025 memakai lembar OVERVIEW. Semua angka bisa diubah admin kapan saja.
+
+## Satelit dan 360°
+
+Bagian di halaman Restorasi. **Satelit** memakai citra Esri World Imagery (rilis Esri Wayback). Tanggal yang ditawarkan
+adalah rilis yang citranya benar-benar berbeda di lokasi ini (2014, 2017, 2020 sampai 2026); tanggal itu adalah saat Esri
+menerbitkan citra, foto aslinya bisa lebih lama. Tambah tanggal lewat Admin > Data > "Satelit dan 360°" (nomor rilis ada di
+livingatlas.arcgis.com/wayback). **360°** memakai foto panorama equirectangular (rasio 2:1) dari drone; satu foto (2 Nov 2026,
+DJI) sudah terpasang. Titik tengah peta diambil dari koordinat GPS foto itu dan bisa diubah di Admin > Pengaturan. Penampil 360°
+memakai WebGL dan jatuh ke gambar datar bila peramban tidak mendukung.
 
 ## Formulir dan tombol
 
@@ -278,8 +293,8 @@ Hal-hal ini bukan galat kode; angkanya masih contoh. Cocokkan saat angka asli di
   luas restorasi aktif tercatat 140 ha.
 
 Yang sudah cocok dan dijaga konsisten: pemasukan sama dengan pengeluaran (Rp 3.200 juta) dengan persentase yang
-berjumlah 100; overhead 18%; register 109/28/81; jumlah titik per spesies sama dengan tabel; pohon kelapa tiga desa
-berjumlah 5.640; grafik 2025 (64 diselamatkan, 36 dilepasliarkan) sama dengan register.
+berjumlah 100; overhead 18%; jumlah per kategori (74/34/27/138) sama dengan total 273 dan dengan daftar jenis; pohon kelapa tiga desa
+berjumlah 5.640; grafik 2025 (64 diselamatkan, 36 dilepasliarkan).
 
 ## Aksesibilitas
 
@@ -287,7 +302,7 @@ berjumlah 5.640; grafik 2025 (64 diselamatkan, 36 dilepasliarkan) sama dengan re
   beralt.
 - Fokus papan ketik terlihat di semua kontrol; menu seluler, lightbox, dan dialog tim memakai `<dialog>` bawaan
   (Escape menutup, fokus kembali ke pemicu).
-- Titik register dapat dijelajahi dengan panah, Home, dan End; status dibaca lewat teks, tidak hanya warna.
+- Grafik per tahun dapat dijelajahi per batang (fokus papan ketik, hover, ketuk); penampil peta dapat digeser dengan panah.
 - Gerak dikurangi saat pengunjung memilih "kurangi gerakan" di sistem.
 - Tidak ada gulir horizontal pada lebar 320 sampai 1440 px (lebar yang diuji).
 

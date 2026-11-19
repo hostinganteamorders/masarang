@@ -21,7 +21,7 @@ const en = {
   },
   tasikoki: {
     name: "Tasikoki",
-    fullName: "Tasikoki Wildlife Rescue and Education Centre",
+    fullName: "Tasikoki Wildlife Center",
     place: "North Minahasa",
     summary:
       "Tasikoki takes in animals seized from the illegal wildlife trade, rehabilitates them, and returns them to the wild where it is safe to do so. It is also a classroom for local schools and the base for our coastal community programs.",
@@ -58,7 +58,7 @@ const id: typeof en = {
   },
   tasikoki: {
     name: "Tasikoki",
-    fullName: "Pusat Penyelamatan dan Edukasi Satwa Tasikoki",
+    fullName: "Tasikoki Wildlife Center",
     place: "Minahasa Utara",
     summary:
       "Tasikoki menerima satwa sitaan dari perdagangan ilegal, merehabilitasinya, dan melepasliarkannya bila aman. Tasikoki juga menjadi ruang belajar bagi sekolah-sekolah sekitar dan basis program masyarakat pesisir kami.",

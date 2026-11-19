@@ -127,28 +127,34 @@ export const principles: { id: string; title: L10n; body: L10n }[] = [
 /* ---------------- Mitra ---------------- */
 
 /** `url` kosong = alamat web mitra belum diisi (tautan baru muncul setelah diisi). */
-export type Partner = { id: string; name: string; role: L10n; url?: string; /** Berkas logo, mis. /partners/trees-for-all.svg. Kosong = kotak kosong berlabel nama mitra. */ logo?: string };
+export type PartnerKind = "government" | "research" | "funder" | "corporate" | "community";
+
+export type Partner = { id: string; name: string; /** Jenis institusi. */ kind: PartnerKind; role: L10n; url?: string; /** Berkas logo, mis. /partners/trees-for-all.svg. Kosong = kotak kosong berlabel nama mitra. */ logo?: string };
 
 export const partners: Partner[] = cmsList<Partner>("partners", [
   {
     id: "trees-for-all",
+    kind: "funder",
     name: "Trees for All",
     url: "https://www.treesforall.nl",
     role: { en: "Restoration funding, Netherlands", id: "Pendanaan restorasi, Belanda" },
   },
   {
     id: "thryve",
+    kind: "funder",
     name: "Thryve.Earth",
     role: { en: "Restoration partnership, Singapore", id: "Kemitraan restorasi, Singapura" },
   },
   {
     id: "pge",
+    kind: "corporate",
     name: "Pertamina Geothermal Energy",
     url: "https://www.pge.pertamina.com",
     role: { en: "Geothermal palm sugar processing", id: "Pengolahan gula aren panas bumi" },
   },
   {
     id: "rdi",
+    kind: "research",
     name: "RDI",
     role: { en: "Research partner", id: "Mitra riset" },
   },

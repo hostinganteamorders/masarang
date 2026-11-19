@@ -19,7 +19,7 @@
 
 .title {
   font-size: clamp(2.2rem, 1.5rem + 2.6vw, 3.8rem);
-  line-height: 0.95;
+  line-height: 1.1;
   text-wrap: balance;
 }
 

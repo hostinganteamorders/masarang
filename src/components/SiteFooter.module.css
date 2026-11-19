@@ -67,10 +67,9 @@
   padding-inline: var(--gutter);
   color: var(--raised);
   font-family: var(--font-display);
-  font-stretch: 75%;
   font-weight: 800;
-  font-size: clamp(5.5rem, 23.5vw, 22rem);
-  line-height: 0.8;
+  font-size: clamp(4rem, 17.5vw, 17rem);
+  line-height: 1;
   letter-spacing: -0.02em;
   white-space: nowrap;
   text-align: center;

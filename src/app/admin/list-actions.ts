@@ -1,7 +1,7 @@
 "use server";
 
 import { requireUser } from "@/cms/auth";
-import { collection, cleanList, defaultList, fieldsFor, governanceFromTeam } from "@/cms/collections";
+import { collection, cleanList, fieldsFor, governanceFromTeam } from "@/cms/collections";
 import { getDraft, updateDraft } from "@/cms/content";
 import { putFile } from "@/cms/store";
 import type { FormState } from "./actions";
@@ -21,23 +21,22 @@ export async function saveListAction(id: string, items: unknown): Promise<NonNul
   const before = await getDraft();
   const r = cleanList(c, items, fieldsFor(c, before.lists));
   if ("errors" in r) return { message: "Ada isian yang ditolak; tidak ada yang disimpan.", errors: r.errors.slice(0, 12) };
-  if (c.id === "species") {
+  if (c.id === "wildlifeCats") {
+    const seen = new Set<string>();
     const bad: string[] = [];
-    const codes = new Set<string>();
-    for (const sp of r.items) {
-      const code = String(sp.code ?? "").toUpperCase();
-      if (!/^[A-Z]{1,4}$/.test(code)) bad.push(`Kode register "${sp.code}" harus 1–4 huruf.`);
-      else if (codes.has(code)) bad.push(`Kode register ${code} dipakai dua spesies.`);
-      codes.add(code);
-      sp.code = code;
+    for (const it of r.items) {
+      const k = String(it.cat);
+      if (seen.has(k)) bad.push(`Kategori ${k} muncul dua kali.`);
+      seen.add(k);
     }
-    // Spesies yang masih dipakai satwa tidak boleh dihapus.
-    const reg = Array.isArray(before.lists.animals) ? before.lists.animals : defaultList(collection("animals")!);
-    const ids = new Set(r.items.map((x) => x.id));
-    const used = [...new Set((reg as { speciesId: string }[]).map((a) => a.speciesId))].filter((id) => !ids.has(id));
-    if (used.length) bad.push(`Spesies ini masih dipakai di Register satwa dan tidak boleh dihapus: ${used.join(", ")}. Pindahkan satwanya dulu.`);
+    if (r.items.length < 1) bad.push("Minimal harus ada satu kategori.");
     if (bad.length) return { message: "Ada isian yang ditolak; tidak ada yang disimpan.", errors: bad };
   }
+  if (c.id === "siteViews") {
+    const bad = r.items.flatMap((it, i) => (it.kind === "pano" && !it.image ? [`Butir ${i + 1}: foto 360° wajib diunggah.`] : []));
+    if (bad.length) return { message: "Ada isian yang ditolak; tidak ada yang disimpan.", errors: bad };
+  }
+  if (c.id === "wildlifeYears" && r.items.length < 1) return { message: "Ada isian yang ditolak; tidak ada yang disimpan.", errors: ["Minimal harus ada satu tahun."] };
   await updateDraft(user.email, `Mengubah daftar: ${c.title}`, (d) => {
     d.lists[c.listName] = r.items;
     if (c.id === "team") d.lists.governance = governanceFromTeam(r.items);

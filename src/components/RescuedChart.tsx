@@ -50,7 +50,7 @@ export function RescuedChart({ locale }: { locale: Locale }) {
               ).map(([series, value]) => (
                 <div key={series} className={s.col}>
                   <span className={s.bar} data-series={series} style={{ height: `${(value / max) * 100}%` }}>
-                    <span className={`num ${s.value}`}>{num(value, locale)}</span>
+                    <span className={`num ${s.value}`} data-count>{num(value, locale)}</span>
                   </span>
                 </div>
               ))}

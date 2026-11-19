@@ -44,7 +44,7 @@ export function GiveBand({
     <section className={`${s.band} ${TONE_CLASS[tone]}`} data-tone={tone}>
       <div className={`container ${s.inner}`}>
         <div className={s.figure}>
-          <p className={`num ${s.amount} ${long ? s.amountLong : ""}`}>
+          <p className={`num ${s.amount} ${long ? s.amountLong : ""}`} data-count>
             {value ?? <Ph on={ph}>{text}</Ph>}
           </p>
           {caption && <p className={s.caption}>{caption}</p>}

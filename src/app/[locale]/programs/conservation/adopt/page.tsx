@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AdoptExplorer } from "@/components/AdoptExplorer";
+import { CategoryCards } from "@/components/CategoryCards";
 import { NewsletterBand } from "@/components/NewsletterBand";
 import { PageHero } from "@/components/PageHero";
 import { Ph } from "@/components/Ph";
 import { SectionHead } from "@/components/SectionHead";
-import { SpeciesTable } from "@/components/SpeciesTable";
+import { PopulationChart } from "@/components/PopulationChart";
+import { SpeciesList } from "@/components/SpeciesList";
+import { StatRow } from "@/components/StatRow";
 import { Steps } from "@/components/Steps";
 import { adoptCopy } from "@/content/adopt";
 import { common } from "@/content/common";
 import { sponsorFrom } from "@/data/organisation";
 import { photos } from "@/data/photos";
-import { idrAuto } from "@/lib/format";
+import { catOrder, wildTotals, wildlifeAsOf } from "@/data/wildlife";
+import { fill, idrAuto, monthYear, num } from "@/lib/format";
 import { localePath } from "@/lib/i18n";
 import { resolveLocale } from "@/lib/locale";
 import { fillNode } from "@/lib/node";
@@ -26,6 +29,7 @@ export default async function AdoptPage({ params }: PageProps<"/[locale]/program
   const locale = await resolveLocale(params);
   const a = adoptCopy[locale];
 
+  const names = Object.fromEntries(catOrder.map((c) => [c, a.cats[c].name])) as Record<(typeof catOrder)[number], string>;
   const amount = <Ph on={sponsorFrom.ph}>{idrAuto(sponsorFrom.v, locale)}</Ph>;
   const steps = a.how.steps.map((step) => ({
     title: step.title,
@@ -44,23 +48,46 @@ export default async function AdoptPage({ params }: PageProps<"/[locale]/program
           { text: common[locale].nav.conservation, href: localePath(locale, "/programs/conservation") },
           { text: common[locale].nav.adopt },
         ]}
-        meta={[a.hero.source, a.hero.unit]}
+        meta={[a.hero.source, fill(a.hero.unit, { date: monthYear(wildlifeAsOf, locale) })]}
         title={a.hero.title}
         lede={a.hero.lede}
       />
 
-      {/* Register interaktif */}
-      <section className="section on-light" aria-label={a.explorer.registerLabel}>
+      {/* Jumlah keseluruhan */}
+      <section className="section on-light" aria-labelledby="totals-title">
         <div className="container">
-          <AdoptExplorer locale={locale} />
+          <SectionHead id="totals-title" title={a.totals.title} lede={a.totals.lede} />
+          <StatRow
+            stats={[
+              { label: a.totals.inCare, value: num(wildTotals.inCare, locale) },
+              { label: a.totals.quarantine, value: num(wildTotals.quarantine, locale), ph: wildTotals.quarantinePh, note: wildTotals.quarantinePh ? a.totals.quarantineNote : undefined },
+              { label: a.totals.released, value: num(wildTotals.released, locale) },
+              { label: a.totals.entered, value: num(wildTotals.entered, locale) },
+            ]}
+          />
         </div>
       </section>
 
-      {/* Menurut spesies */}
+      {/* Per kategori */}
+      <section className="section on-soft" aria-label={a.hero.title}>
+        <div className="container">
+          <CategoryCards locale={locale} copy={a} />
+        </div>
+      </section>
+
+      {/* Grafik per tahun */}
+      <section className="section on-light" aria-labelledby="chart-title">
+        <div className="container">
+          <SectionHead id="chart-title" meta={[a.chart.source]} title={a.chart.title} lede={a.chart.lede} />
+          <PopulationChart locale={locale} copy={a} names={names} asOfYear={Number(wildlifeAsOf.slice(0, 4))} />
+        </div>
+      </section>
+
+      {/* Menurut jenis */}
       <section className="section on-soft" aria-labelledby="species-title">
         <div className="container">
-          <SectionHead id="species-title" title={a.table.title} />
-          <SpeciesTable locale={locale} copy={a} />
+          <SectionHead id="species-title" title={a.species.title} lede={a.species.lede} />
+          <SpeciesList locale={locale} copy={a} names={names} />
         </div>
       </section>
 

@@ -10,7 +10,6 @@ import { Portrait } from "@/components/Portrait";
 import { Rich } from "@/components/Rich";
 import { SectionHead } from "@/components/SectionHead";
 import { Split } from "@/components/Split";
-import { TeamGroups } from "@/components/TeamGroups";
 import { VideoSlot } from "@/components/VideoSlot";
 import { VisionBand } from "@/components/VisionBand";
 import { about } from "@/content/about";
@@ -151,14 +150,6 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
               </Link>
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* Our Team */}
-      <section id="team" className="section on-soft" aria-labelledby="team-title">
-        <div className="container">
-          <SectionHead id="team-title" title={t.team.title} lede={t.team.lede} />
-          <TeamGroups locale={locale} />
         </div>
       </section>
 

@@ -47,7 +47,7 @@
 
 .title {
   max-width: 9.2em;
-  font-size: clamp(3.2rem, 1rem + 6.2vw, 7rem);
+  font-size: clamp(2.5rem, 1rem + 5vw, 5.6rem);
 }
 
 .lede {

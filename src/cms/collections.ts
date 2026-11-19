@@ -4,7 +4,8 @@ import "@/data/reports";
 import "@/data/organisation";
 import "@/data/team";
 import "@/data/updates";
-import "@/data/animals";
+import "@/data/wildlife";
+import "@/data/siteviews";
 
 /**
  * Daftar data yang boleh diubah admin (laporan, mitra, tim, ...). Setiap daftar punya skema isian;
@@ -30,6 +31,8 @@ export type FieldDef = {
   help?: string;
   /** Isian ini hanya tampil bila isian lain bernilai tertentu. */
   showIf?: { key: string; value: string };
+  /** Sisi terpanjang gambar yang diunggah (piksel) setelah dikecilkan di browser. */
+  maxSide?: number;
 };
 
 export type CollectionDef = {
@@ -105,10 +108,11 @@ export const COLLECTIONS: CollectionDef[] = [
     titleKey: "name",
     addLabel: "Tambah mitra",
     maxItems: 40,
-    blank: () => ({ name: "", role: l(), url: "", logo: "" }),
+    blank: () => ({ name: "", kind: "corporate", role: l(), url: "", logo: "" }),
     idFrom: (i) => slug(str(i.name)) || "mitra",
     fields: [
       { key: "name", label: "Nama mitra", type: "text", required: true, max: 120 },
+      { key: "kind", label: "Jenis institusi", type: "select", required: true, options: [{ value: "government", label: "Instansi pemerintah" }, { value: "research", label: "Perguruan tinggi / lembaga riset" }, { value: "funder", label: "Lembaga pendana / yayasan" }, { value: "corporate", label: "Perusahaan" }, { value: "community", label: "Organisasi masyarakat / sipil" }] },
       { key: "role", label: "Peran mitra", type: "text", l10n: true, required: true },
       { key: "url", label: "Alamat situs mitra", type: "url", help: "Kosong = kotak tidak jadi tautan." },
       { key: "logo", label: "Logo (PNG atau JPEG)", type: "image", help: "Latar transparan lebih baik (PNG). Kosong = kotak bertuliskan nama mitra." },
@@ -191,48 +195,92 @@ export const COLLECTIONS: CollectionDef[] = [
     ],
   },
   {
-    id: "animals",
-    listName: "animals",
-    title: "Register satwa (Adopsi)",
-    intro: "Satu baris per satwa di Tasikoki. Angka di halaman Adopsi (dirawat, disponsori, menunggu sponsor, dilepasliarkan) dihitung otomatis dari daftar ini.",
-    titleKey: "name",
-    subKey: "id",
-    addLabel: "Tambah satwa",
-    maxItems: 600,
-    idRegex: /^[A-Z]{1,4}-\d{1,5}$/,
-    blank: () => ({ id: "", name: "", speciesId: "", stage: "quarantine", sponsored: false, since: new Date().toISOString().slice(0, 7), arrival: "seized" }),
-    idFrom: () => "ID",
-    normalize: (it) => {
-      if (it.stage === "released") it.sponsored = false;
-    },
+    id: "wildlifeCats",
+    listName: "wildlifeCats",
+    title: "Satwa per kategori (Adopsi)",
+    intro: "Empat kartu kategori di halaman Adopsi: jumlah yang dirawat, karantina, arus satwa sejak 2018, dan satwa duta. Isian awal berasal dari Excel Rekapitulasi Satwa PPST (sampai Oktober 2026). Jumlah karantina dan pilihan satwa duta masih contoh sampai dikonfirmasi.",
+    titleKey: "ambassador.species",
+    subKey: "cat",
+    addLabel: "Tambah kategori",
+    maxItems: 4,
+    blank: () => ({ cat: "birds", inCare: 0, quarantine: 0, quarantinePh: true, entered: 0, born: 0, died: 0, released: 0, translocated: 0, ambassador: { species: "", latin: "", photo: "", story: l(), ph: true } }),
+    idFrom: (i) => str(i.cat) || "kategori",
     fields: [
-      { key: "id", label: "Nomor register (mis. MN-105)", type: "text", required: true, max: 10, help: "Huruf kode spesies, tanda hubung, angka. Nomor ini tampil di kartu satwa dan tidak boleh kembar." },
-      { key: "name", label: "Nama satwa", type: "text", required: true, max: 60 },
-      { key: "speciesId", label: "Spesies", type: "select", required: true, options: [] },
-      { key: "stage", label: "Tahap perawatan", type: "select", required: true, options: [{ value: "quarantine", label: "Karantina" }, { value: "rehab", label: "Rehabilitasi" }, { value: "prerelease", label: "Pra-lepas liar" }, { value: "lifetime", label: "Perawatan seumur hidup" }, { value: "released", label: "Sudah dilepasliarkan" }] },
-      { key: "arrival", label: "Cara tiba", type: "select", required: true, options: [{ value: "seized", label: "Sitaan" }, { value: "surrendered", label: "Diserahkan" }, { value: "rescued", label: "Diselamatkan" }] },
-      { key: "since", label: "Dirawat sejak (tttt-bb)", type: "month", required: true },
-      { key: "releasedOn", label: "Bulan dilepasliarkan (tttt-bb)", type: "month", required: true, showIf: { key: "stage", value: "released" } },
-      { key: "sponsored", label: "Sudah disponsori", type: "bool", help: "Satwa yang sudah dilepasliarkan tidak dihitung sebagai disponsori." },
+      { key: "cat", label: "Kategori", type: "select", required: true, options: [{ value: "primates", label: "Primata" }, { value: "mammals", label: "Mamalia lain" }, { value: "reptiles", label: "Reptil" }, { value: "birds", label: "Burung" }] },
+      { key: "inCare", label: "Sedang dirawat sekarang", type: "number", min: 0, max: 100000, required: true },
+      { key: "quarantine", label: "Di antaranya karantina", type: "number", min: 0, max: 100000, required: true, help: "Tidak boleh lebih banyak dari yang sedang dirawat." },
+      { key: "quarantinePh", label: "Angka karantina masih contoh", type: "bool" },
+      { key: "entered", label: "Masuk sejak 2018", type: "number", min: 0, max: 100000, required: true },
+      { key: "born", label: "Lahir di Tasikoki sejak 2018", type: "number", min: 0, max: 100000, required: true },
+      { key: "died", label: "Mati sejak 2018", type: "number", min: 0, max: 100000, required: true },
+      { key: "released", label: "Dilepasliarkan sejak 2018", type: "number", min: 0, max: 100000, required: true },
+      { key: "translocated", label: "Dipindahkan ke pusat lain sejak 2018", type: "number", min: 0, max: 100000, required: true },
+      { key: "ambassador.species", label: "Satwa duta: nama umum", type: "text", required: true, max: 60 },
+      { key: "ambassador.latin", label: "Satwa duta: nama ilmiah", type: "text", max: 80 },
+      { key: "ambassador.photo", label: "Satwa duta: foto (JPEG atau PNG)", type: "image", help: "Kosong = kotak bertuliskan \"Foto menyusul\"." },
+      { key: "ambassador.story", label: "Satwa duta: kisah singkat (1–2 kalimat)", type: "long", l10n: true, required: true },
+      { key: "ambassador.ph", label: "Pilihan satwa duta masih contoh", type: "bool" },
+    ],
+    normalize: (it) => {
+      const n = (k: string) => (typeof it[k] === "number" ? (it[k] as number) : 0);
+      if (n("quarantine") > n("inCare")) it.quarantine = n("inCare");
+    },
+  },
+  {
+    id: "wildlifeYears",
+    listName: "wildlifeYears",
+    title: "Satwa per tahun (grafik Adopsi)",
+    intro: "Grafik batang di halaman Adopsi: jumlah satwa yang dirawat pada akhir tiap tahun, per kategori. Isi tahun berjalan dengan jumlah terakhir.",
+    titleKey: "year",
+    addLabel: "Tambah tahun",
+    maxItems: 20,
+    blank: () => ({ year: thisYear, primates: 0, mammals: 0, reptiles: 0, birds: 0 }),
+    sortBy: (a, b) => Number(a.year) - Number(b.year),
+    idFrom: (i) => String(i.year),
+    fields: [
+      { key: "year", label: "Tahun", type: "number", min: 2000, max: 2100, required: true },
+      { key: "primates", label: "Primata", type: "number", min: 0, max: 100000, required: true },
+      { key: "mammals", label: "Mamalia lain", type: "number", min: 0, max: 100000, required: true },
+      { key: "reptiles", label: "Reptil", type: "number", min: 0, max: 100000, required: true },
+      { key: "birds", label: "Burung", type: "number", min: 0, max: 100000, required: true },
     ],
   },
   {
-    id: "species",
-    listName: "species",
-    title: "Spesies (Adopsi)",
-    intro: "Nama, status IUCN, dan biaya perawatan per bulan di tabel spesies. Jumlah satwa per spesies dihitung dari Register satwa.",
+    id: "wildlifeSpecies",
+    listName: "wildlifeSpecies",
+    title: "Jenis satwa (Adopsi)",
+    intro: "Daftar jenis satwa yang bisa dicari di halaman Adopsi. Jumlah = satwa jenis itu yang sedang dirawat. Jenis dengan jumlah 0 disembunyikan kecuali pengunjung memintanya.",
     titleKey: "name",
-    addLabel: "Tambah spesies",
-    maxItems: 40,
-    blank: () => ({ code: "", group: "birds", name: l(), latin: "", iucn: "LC", carePerMonth: 500000 }),
-    idFrom: (i) => slug(str(get(i, "name.en"))) || "spesies",
+    subKey: "latin",
+    addLabel: "Tambah jenis",
+    maxItems: 250,
+    blank: () => ({ category: "birds", name: "", latin: "", count: 0 }),
+    idFrom: (i) => `${str(i.category).slice(0, 3)}-${slug(str(i.name))}`,
     fields: [
-      { key: "code", label: "Kode register (huruf besar, 1–4 huruf)", type: "text", required: true, max: 4, help: "Awalan nomor register satwa, mis. MN untuk Macaca nigra." },
-      { key: "group", label: "Kelompok", type: "select", required: true, options: [{ value: "primates", label: "Primata" }, { value: "mammals", label: "Mamalia" }, { value: "birds", label: "Burung" }, { value: "reptiles", label: "Reptil" }] },
-      { key: "name", label: "Nama umum", type: "text", l10n: true, required: true },
+      { key: "name", label: "Nama umum", type: "text", required: true, max: 80 },
       { key: "latin", label: "Nama ilmiah", type: "text", required: true, max: 80 },
-      { key: "iucn", label: "Status IUCN", type: "select", required: true, options: [{ value: "CR", label: "CR, kritis" }, { value: "EN", label: "EN, terancam" }, { value: "VU", label: "VU, rentan" }, { value: "LC", label: "LC, risiko rendah" }] },
-      { key: "carePerMonth", label: "Biaya perawatan per satwa per bulan (Rp)", type: "number", min: 10000, max: 1_000_000_000, required: true },
+      { key: "category", label: "Kategori", type: "select", required: true, options: [{ value: "primates", label: "Primata" }, { value: "mammals", label: "Mamalia lain" }, { value: "reptiles", label: "Reptil" }, { value: "birds", label: "Burung" }] },
+      { key: "count", label: "Sedang dirawat", type: "number", min: 0, max: 100000, required: true },
+    ],
+  },
+  {
+    id: "siteViews",
+    listName: "siteViews",
+    title: "Satelit dan 360° (halaman Restorasi)",
+    intro: "Tanggal yang bisa dipilih di penampil perbandingan. Satelit: isi bulan dan nomor rilis Esri Wayback (kosong = citra terbaru). 360°: unggah foto panorama equirectangular (rasio 2:1) dan isi bulan pengambilan.",
+    titleKey: "date",
+    subKey: "kind",
+    addLabel: "Tambah tanggal",
+    maxItems: 80,
+    blank: () => ({ kind: "pano", date: new Date().toISOString().slice(0, 7), release: null, image: "", note: l() }),
+    sortBy: (a, b) => str(a.date).localeCompare(str(b.date)),
+    idFrom: (i) => `${str(i.kind) === "pano" ? "pano" : "sat"}-${str(i.date)}`,
+    fields: [
+      { key: "kind", label: "Jenis", type: "select", required: true, options: [{ value: "satellite", label: "Satelit (Esri)" }, { value: "pano", label: "Foto 360° dari drone" }] },
+      { key: "date", label: "Bulan (tttt-bb, mis. 2026-11)", type: "month", required: true },
+      { key: "release", label: "Nomor rilis Esri Wayback (boleh kosong)", type: "number", nullable: true, min: 1, max: 999999, showIf: { key: "kind", value: "satellite" }, help: "Lihat daftar rilis di livingatlas.arcgis.com/wayback. Kosong = citra terbaru." },
+      { key: "image", label: "Foto panorama 360° (JPEG)", type: "image", maxSide: 4096, showIf: { key: "kind", value: "pano" }, help: "Foto equirectangular berrasio 2:1 (mis. dari drone DJI). Dikecilkan otomatis menjadi lebar 4096 piksel." },
+      { key: "note", label: "Catatan singkat (boleh kosong)", type: "text", l10n: true, max: 120 },
     ],
   },
 ];
@@ -245,18 +293,10 @@ const IMG_OK = /^(\/(photos|uploads|partners|brand)\/[\w./-]+|https:\/\/[\w-]+\.
 const PDF_OK = /^(\/(reports|uploads)\/[\w./-]+|https:\/\/[\w-]+\.public\.blob\.vercel-storage\.com\/[\w./%-]+|https:\/\/[^\s"'<>]+)$/;
 const URL_OK = /^https?:\/\/[^\s"'<>]+$/;
 
-/** Daftar spesies yang berlaku (draf bila sudah diubah, jika tidak bawaan). */
-export function speciesInUse(lists: Record<string, unknown>): { id: string; name: { id: string } }[] {
-  const l = lists.species;
-  const arr = Array.isArray(l) ? l : (defaults.lists.get("species") as unknown[]) ?? [];
-  return (arr as { id: string; name: { id: string } }[]).map((x) => ({ id: x.id, name: x.name }));
-}
-
-/** Isian dengan pilihan yang bergantung pada isi draf (spesies untuk satwa). */
+/** Isian dengan pilihan yang bergantung pada isi draf (belum ada yang memakainya; disediakan agar editor tetap seragam). */
 export function fieldsFor(c: CollectionDef, lists: Record<string, unknown>): FieldDef[] {
-  if (c.id !== "animals") return c.fields;
-  const options = speciesInUse(lists).map((sp) => ({ value: sp.id, label: sp.name.id }));
-  return c.fields.map((f) => (f.key === "speciesId" ? { ...f, options } : f));
+  void lists;
+  return c.fields;
 }
 
 /** Isi bawaan sebelum diubah admin (kloning supaya aman diubah). */
@@ -367,7 +407,6 @@ export function cleanList(c: CollectionDef, raw: unknown, fields: FieldDef[] = c
     items.push(out);
   });
   if (errors.length) return { errors };
-  if (c.id === "animals" && items.length < 1) return { errors: ["Register tidak boleh kosong."] };
   const seen = new Set<string>();
   for (const it of items) {
     let id = str(it.id);

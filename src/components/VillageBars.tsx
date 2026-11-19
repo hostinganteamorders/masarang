@@ -31,13 +31,13 @@ export function VillageBars({
             <span className={s.track} aria-hidden="true">
               <span className={s.bar} style={{ width: `${(v.trees / max) * 100}%` }} />
             </span>
-            <span className={`num ${s.value}`}>{num(v.trees, locale)}</span>
+            <span className={`num ${s.value}`} data-count>{num(v.trees, locale)}</span>
           </li>
         ))}
       </ul>
       <p className={s.total}>
         <span>{totalLabel}</span>
-        <span className={`num ${s.totalValue}`}>{num(total, locale)}</span>
+        <span className={`num ${s.totalValue}`} data-count>{num(total, locale)}</span>
       </p>
       <p className={s.source}>{source}</p>
     </figure>

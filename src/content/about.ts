@@ -102,7 +102,7 @@ const en = {
   },
   partners: {
     title: "Our Partners",
-    lede: "Select a logo or name to visit the partner's website.",
+    lede: "The institutions we work with, from funders to research bodies. Select a logo or name to visit the partner's website.",
   },
   account: {
     title: "How we hold ourselves to account",
@@ -210,7 +210,7 @@ const id: typeof en = {
   },
   partners: {
     title: "Mitra Kami",
-    lede: "Pilih logo atau nama untuk mengunjungi situs mitra.",
+    lede: "Institusi yang bekerja bersama kami, dari lembaga pendana hingga lembaga riset. Pilih logo atau nama untuk mengunjungi situs mitra.",
   },
   account: {
     title: "Cara kami bertanggung jawab",

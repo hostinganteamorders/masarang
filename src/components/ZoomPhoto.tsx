@@ -108,8 +108,23 @@ export function ZoomPhoto({
   return (
     <>
       <figure
-        className={`${s.slot} ${className ?? ""}`}
+        className={`${s.slot} ${s.live} ${className ?? ""}`}
         style={{ aspectRatio: ratio, ["--c" as string]: pic.color } as CSSProperties}
+        onPointerMove={(event) => {
+          if (event.pointerType !== "mouse") return;
+          const el = event.currentTarget;
+          const r = el.getBoundingClientRect();
+          const x = (event.clientX - r.left) / r.width;
+          const y = (event.clientY - r.top) / r.height;
+          el.style.setProperty("--mx", `${(x * 100).toFixed(1)}%`);
+          el.style.setProperty("--my", `${(y * 100).toFixed(1)}%`);
+          el.style.setProperty("--rx", `${((x - 0.5) * 6).toFixed(2)}deg`);
+          el.style.setProperty("--ry", `${((0.5 - y) * 5).toFixed(2)}deg`);
+        }}
+        onPointerLeave={(event) => {
+          const el = event.currentTarget;
+          for (const k of ["--mx", "--my", "--rx", "--ry"]) el.style.removeProperty(k);
+        }}
       >
         <Image
           src={pic.src}
@@ -120,6 +135,9 @@ export function ZoomPhoto({
           className={s.image}
           style={{ objectPosition: pic.focus }}
         />
+        <figcaption className={s.cap} aria-hidden="true">
+          {pic.alt[locale]}
+        </figcaption>
         <button
           type="button"
           className={s.zoom}

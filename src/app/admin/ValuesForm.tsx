@@ -45,6 +45,7 @@ export function ValuesForm({ groupId, fields }: { groupId: string; fields: Value
                 id={`v-${f.id}`}
                 name={`v:${f.id}`}
                 type={f.kind === "number" ? "number" : "text"}
+                step={f.kind === "number" ? "any" : undefined}
                 inputMode={f.kind === "url" ? "url" : undefined}
                 value={String(vals[f.id])}
                 onChange={(e) => {

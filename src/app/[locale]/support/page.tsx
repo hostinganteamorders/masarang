@@ -31,6 +31,7 @@ const mail = (subject: string, body?: string) =>
 export default async function SupportPage({ params }: PageProps<"/[locale]/support">) {
   const locale = await resolveLocale(params);
   const t = supportCopy[locale];
+  const waDigits = site.whatsapp.v.replace(/\D/g, "");
   const colors = ["var(--restoration)", "var(--conservation)", "var(--education)"];
 
   return (
@@ -79,9 +80,25 @@ export default async function SupportPage({ params }: PageProps<"/[locale]/suppo
                 <div style={{ display: "grid", gap: "0.75rem", marginTop: "1rem", justifyItems: "start" }}>
                   <h3>{t.bank.tell.title}</h3>
                   <p style={{ maxWidth: "30rem", color: "var(--muted)" }}>{t.bank.tell.body}</p>
-                  <a href={mail(t.bank.tell.subject, t.bank.tell.message)} className="btn btn--ghost">
-                    {t.bank.tell.cta}
-                  </a>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", alignItems: "center" }}>
+                    {waDigits.length >= 8 ? (
+                      <a
+                        href={`https://wa.me/${waDigits}?text=${encodeURIComponent(t.bank.tell.wa.message)}`}
+                        className="btn"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {t.bank.tell.wa.cta}
+                      </a>
+                    ) : (
+                      <span className="btn btn--ghost" aria-disabled="true">
+                        <Ph on>{t.bank.tell.wa.soon}</Ph>
+                      </span>
+                    )}
+                    <a href={mail(t.bank.tell.subject, t.bank.tell.message)} className="btn btn--ghost">
+                      {t.bank.tell.cta}
+                    </a>
+                  </div>
                 </div>
               </div>
             }

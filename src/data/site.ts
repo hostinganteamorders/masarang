@@ -14,6 +14,8 @@ export const site = cmsValues("site", {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
 
   email: { v: "info@masarangfoundation.org", ph: true } as Fact<string>,
+  /** Nomor WhatsApp untuk bukti transfer, format internasional tanpa +, mis. 6281234567890. */
+  whatsapp: { v: "[628xxxxxxxxxx]", ph: true } as Fact<string>,
   address: {
     en: "Tomohon, North Sulawesi, Indonesia",
     id: "Tomohon, Sulawesi Utara, Indonesia",
@@ -32,6 +34,9 @@ export const site = cmsValues("site", {
     holder: { v: "Yayasan Masarang", ph: true } as Fact<string>,
   },
 } as const);
+
+/** Bagian yang sengaja disembunyikan dulu (hasil meeting). Ubah ke true untuk menayangkannya lagi. */
+export const features = { team: false } as const;
 
 /** Warna program, dipakai bersama oleh pita rupiah, grafik, dan titik satwa. */
 export const programColor = {

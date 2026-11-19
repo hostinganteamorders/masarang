@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { features } from "@/data/site";
 import { NewsletterBand } from "@/components/NewsletterBand";
 import { PageHero } from "@/components/PageHero";
 import { SectionHead } from "@/components/SectionHead";
@@ -17,6 +19,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/about/te
 }
 
 export default async function TeamPage({ params }: PageProps<"/[locale]/about/team">) {
+  if (!features.team) notFound();
   const locale = await resolveLocale(params);
   const t = teamCopy[locale];
 

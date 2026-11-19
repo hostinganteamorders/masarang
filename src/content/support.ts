@@ -14,12 +14,12 @@ const en = {
   ways: { title: "Choose what your gift pays for" },
   sponsor: {
     title: "Sponsor an animal",
-    body: "Pick one animal from the register and give from {amount} a month, or cover its full monthly cost.",
-    cta: "Meet the animals",
+    body: "Pick an animal category and give from {amount} a month. Its ambassador animal speaks for every animal in that group.",
+    cta: "See the animals",
   },
   bank: {
     title: "Give by bank transfer",
-    lede: "Transfer to the account below. In the transfer note, write where you want the gift to go: Temboan, Tasikoki, or an animal's register number.",
+    lede: "Transfer to the account below. In the transfer note, write where you want the gift to go: Temboan, Tasikoki, or an animal category.",
     fields: { bank: "Bank", number: "Account number", holder: "Account holder" },
     copy: "Copy account details",
     copied: "Copied",
@@ -27,11 +27,16 @@ const en = {
     copyText: "Bank: {bank}\nAccount number: {number}\nAccount holder: {holder}",
     tell: {
       title: "Then tell us about your gift",
-      body: "A short email lets us match your transfer to the program you chose and report back to you.",
+      body: "A short message lets us match your transfer to the program you chose and report back to you. Send the proof of transfer on WhatsApp, or write to us by email.",
       cta: "Email us about your gift",
+      wa: {
+        cta: "Send proof of transfer on WhatsApp",
+        soon: "WhatsApp number to be added",
+        message: "Hello, I have transferred a gift to Yayasan Masarang. Amount: Rp [amount]. For: [Temboan / Tasikoki / animal category]. Name: [your name]. Proof of transfer attached.",
+      },
       subject: "My gift to Yayasan Masarang",
       message:
-        "Hello, I have made a gift to Yayasan Masarang for: [Temboan / Tasikoki / animal register number]",
+        "Hello, I have made a gift to Yayasan Masarang for: [Temboan / Tasikoki / animal category]",
     },
   },
   partners: {
@@ -62,23 +67,23 @@ const en = {
 
 const id: typeof en = {
   meta: {
-    title: "Dukung pekerjaan kami",
+    title: "Dukung kerja kami",
     description:
-      "Beri untuk program tertentu, sponsori satwa, atau bermitra dengan kami. Kami melaporkan apa yang Anda danai.",
+      "Berdonasi untuk program tertentu, dukung satwa, atau bermitra dengan kami. Kami melaporkan apa yang Anda danai.",
   },
   hero: {
-    title: "Danai bagian kerja yang spesifik",
+    title: "Danai bagian kerja yang Anda pilih",
     lede: "Sampaikan program pilihan Anda, dan kami akan melaporkan perkembangan program tersebut langsung kepada Anda.",
   },
-  ways: { title: "Pilih apa yang dibayar oleh donasi Anda" },
+  ways: { title: "Tentukan ke mana donasi Anda disalurkan" },
   sponsor: {
-    title: "Sponsori satu satwa",
-    body: "Pilih satu satwa dari register dan beri mulai {amount} per bulan, atau tanggung biaya penuh bulanannya.",
-    cta: "Kenali satwanya",
+    title: "Dukung satwa kami",
+    body: "Pilih satu kategori satwa dan berikan donasi mulai {amount} per bulan. Satwa dutanya mewakili seluruh satwa dalam kelompok itu.",
+    cta: "Lihat satwanya",
   },
   bank: {
-    title: "Beri lewat transfer bank",
-    lede: "Transfer ke rekening di bawah. Pada catatan transfer, tulis ke mana donasi Anda diarahkan: Temboan, Tasikoki, atau nomor register satwa.",
+    title: "Donasi lewat transfer bank",
+    lede: "Transfer ke rekening di bawah. Pada catatan transfer, tulis ke mana donasi Anda diarahkan: Temboan, Tasikoki, atau kategori satwa.",
     fields: { bank: "Bank", number: "Nomor rekening", holder: "Atas nama" },
     copy: "Salin rincian rekening",
     copied: "Tersalin",
@@ -86,11 +91,16 @@ const id: typeof en = {
     copyText: "Bank: {bank}\nNomor rekening: {number}\nAtas nama: {holder}",
     tell: {
       title: "Lalu kabari kami tentang donasi Anda",
-      body: "Email singkat membantu kami mencocokkan transfer Anda dengan program pilihan Anda dan melaporkannya kepada Anda.",
+      body: "Pesan singkat membantu kami mencocokkan transfer Anda dengan program pilihan Anda, lalu melaporkannya kepada Anda. Kirim bukti transfer lewat WhatsApp, atau tulis kepada kami lewat email.",
       cta: "Kirim email tentang donasi Anda",
+      wa: {
+        cta: "Kirim bukti transfer lewat WhatsApp",
+        soon: "Nomor WhatsApp menyusul",
+        message: "Halo, saya telah mentransfer donasi untuk Yayasan Masarang. Jumlah: Rp [jumlah]. Untuk: [Temboan / Tasikoki / kategori satwa]. Nama: [nama Anda]. Bukti transfer terlampir.",
+      },
       subject: "Donasi saya untuk Yayasan Masarang",
       message:
-        "Halo, saya telah berdonasi untuk Yayasan Masarang dengan tujuan: [Temboan / Tasikoki / nomor register satwa]",
+        "Halo, saya telah berdonasi untuk Yayasan Masarang dengan tujuan: [Temboan / Tasikoki / kategori satwa]",
     },
   },
   partners: {
@@ -100,7 +110,7 @@ const id: typeof en = {
     subject: "Kemitraan dengan Yayasan Masarang",
   },
   back: {
-    title: "Yang Anda terima kembali",
+    title: "Yang Anda dapatkan",
     items: [
       {
         title: "Laporan langsung",
@@ -111,7 +121,7 @@ const id: typeof en = {
         body: "Angka setiap program diterbitkan di situs ini tiap triwulan.",
       },
       {
-        title: "Bukti yang disebutkan",
+        title: "Bukti yang bisa diperiksa",
         body: "Setiap kabar lapangan menyebutkan buktinya. Minta, dan kami akan menunjukkannya kepada Anda.",
       },
     ],

@@ -50,7 +50,7 @@ export function Hero({ locale }: { locale: Locale }) {
           </div>
         </div>
         {/* Video besar tepat di bawah slogan. */}
-        <VideoSlot url={apingVideo.url} title={apingVideo.title[locale]} locale={locale} className={s.video} />
+        <VideoSlot url={apingVideo.url} title={apingVideo.title[locale]} locale={locale} className={s.video} autoplay />
       </div>
 
       <div className={s.figures}>
@@ -63,7 +63,7 @@ export function Hero({ locale }: { locale: Locale }) {
             {figures.map((f) => (
               <div key={f.key} className={s.figure}>
                 <dt className={s.label}>{f.label}</dt>
-                <dd className={`num ${s.value}`}>
+                <dd className={`num ${s.value}`} data-count>
                   <Ph on={f.ph}>{f.node}</Ph>
                 </dd>
               </div>

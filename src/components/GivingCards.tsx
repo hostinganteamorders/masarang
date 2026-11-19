@@ -10,7 +10,7 @@ export function GivingCards({ locale }: { locale: Locale }) {
     <div className={s.cards}>
       {giving.map((g) => (
         <article key={g.id} className={s.card}>
-          <p className={`num ${s.amount}`}>
+          <p className={`num ${s.amount}`} data-count>
             <Ph on={g.ph}>{idrAuto(g.amount, locale)}</Ph>
           </p>
           <h3 className={s.title}>{g.title[locale]}</h3>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CategoryTiles } from "@/components/CategoryCards";
 import { Gallery } from "@/components/Gallery";
 import { GiveBand } from "@/components/GiveBand";
 import { Milestones } from "@/components/Milestones";
@@ -8,7 +9,6 @@ import { PageHero } from "@/components/PageHero";
 import { Ph } from "@/components/Ph";
 import { Photo } from "@/components/Photo";
 import { ProgramTabs } from "@/components/ProgramTabs";
-import { RegisterDots } from "@/components/RegisterDots";
 import { RescuedChart } from "@/components/RescuedChart";
 import { SectionHead } from "@/components/SectionHead";
 import { Split } from "@/components/Split";
@@ -18,13 +18,13 @@ import { adoptCopy } from "@/content/adopt";
 import { common } from "@/content/common";
 import { programsCopy } from "@/content/programs";
 import { supportCopy } from "@/content/support";
-import { register } from "@/data/animals";
+import { wildlifeAsOf } from "@/data/wildlife";
 import { sponsorFrom } from "@/data/organisation";
 import { photos } from "@/data/photos";
 import { forestProtection, tasikoki } from "@/data/programs";
 import { site } from "@/data/site";
 import { updates } from "@/data/updates";
-import { fill, fullDate, idrAuto, num } from "@/lib/format";
+import { fill, fullDate, idrAuto, monthYear, num } from "@/lib/format";
 import { fillNode } from "@/lib/node";
 import { localePath } from "@/lib/i18n";
 import { resolveLocale } from "@/lib/locale";
@@ -57,6 +57,22 @@ export default async function ConservationPage({ params }: PageProps<"/[locale]/
       >
         <ProgramTabs locale={locale} current="conservation" />
       </PageHero>
+
+      {/* Pengantar program */}
+      <section className="section on-soft" aria-labelledby="intro-title">
+        <div className="container">
+          <div className="prose" style={{ maxWidth: "46rem" }}>
+            <h2 id="intro-title" className="title-md" style={{ marginBottom: "1.5rem" }}>
+              {t.intro.title}
+            </h2>
+            {t.intro.body.map((p) => (
+              <p key={p} style={{ fontSize: "1.15rem" }}>
+                {p}
+              </p>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Tasikoki: rehabilitasi, translokasi, pelepasliaran */}
       <section className="section on-light" aria-labelledby="tasikoki-title">
@@ -105,16 +121,11 @@ export default async function ConservationPage({ params }: PageProps<"/[locale]/
         <div className="container">
           <SectionHead
             id="adopt-title"
-            meta={[a.hero.source, a.hero.unit]}
+            meta={[a.hero.source, fill(a.hero.unit, { date: monthYear(wildlifeAsOf, locale) })]}
             title={t.adopt.title}
             lede={t.adopt.lede}
           />
-          <RegisterDots locale={locale} copy={a} tone="dark" compact />
-          <p className="meta" style={{ marginTop: "1.75rem", fontWeight: 700, color: "var(--fg)" }}>
-            <span>{fill(a.explorer.counts.inCare, { n: num(register.inCare, locale) })}</span>
-            <span>{fill(a.explorer.counts.sponsored, { n: num(register.sponsored, locale) })}</span>
-            <span>{fill(a.explorer.counts.waiting, { n: num(register.waiting, locale) })}</span>
-          </p>
+          <CategoryTiles locale={locale} copy={a} href={localePath(locale, "/programs/conservation/adopt")} />
           <p style={{ marginTop: "1.5rem" }}>
             <Link href={localePath(locale, "/programs/conservation/adopt")} className="btn">
               {t.adopt.cta}

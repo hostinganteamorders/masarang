@@ -56,7 +56,7 @@ function FileField({ f, value, onChange, hint }: { f: FieldDef; value: string; o
       let upload = file;
       if (isImage) {
         if (!/^image\/(png|jpeg|webp|gif)$/.test(file.type)) throw new Error("Pilih berkas gambar JPEG atau PNG.");
-        upload = await shrink(file, f.key === "logo" ? 600 : 1000);
+        upload = await shrink(file, f.maxSide ?? (f.key === "logo" ? 600 : 1000));
       }
       const fd = new FormData();
       fd.set("file", upload);

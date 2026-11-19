@@ -201,7 +201,6 @@
   padding: 0.55rem 0;
   border-bottom: 1px solid var(--line);
   font-family: var(--font-display);
-  font-stretch: 75%;
   font-weight: 760;
   font-size: clamp(2.6rem, 11vw, 4rem);
   line-height: 1;
