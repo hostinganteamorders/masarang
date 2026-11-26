@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { NewsletterBand } from "@/components/NewsletterBand";
+import { MenuIntro } from "@/components/MenuIntro";
 import { PageHero } from "@/components/PageHero";
 import { Photo } from "@/components/Photo";
 import { ProgramCards } from "@/components/ProgramCards";
@@ -28,6 +29,8 @@ export default async function ProgramsPage({ params }: PageProps<"/[locale]/prog
       <PageHero locale={locale} title={t.hero.title} lede={t.hero.lede} image={photos.heroes.programs}>
         <ProgramTabs locale={locale} current="overview" />
       </PageHero>
+
+      <MenuIntro locale={locale} id="programs" />
 
       <section className="section on-light" aria-labelledby="items-title">
         <div className="container">

@@ -11,7 +11,7 @@ import { SectionHead } from "@/components/SectionHead";
 import { Split } from "@/components/Split";
 import { supportCopy } from "@/content/support";
 import { sponsorFrom } from "@/data/organisation";
-import { site } from "@/data/site";
+import { features, site } from "@/data/site";
 import { idrAuto } from "@/lib/format";
 import { localePath } from "@/lib/i18n";
 import { resolveLocale } from "@/lib/locale";
@@ -119,11 +119,13 @@ export default async function SupportPage({ params }: PageProps<"/[locale]/suppo
               color: colors[i % colors.length],
             }))}
           />
-          <p style={{ marginTop: "2.25rem" }}>
-            <Link href={localePath(locale, "/transparency")} className="btn btn--ghost">
-              {t.back.cta}
-            </Link>
-          </p>
+          {features.transparency && (
+            <p style={{ marginTop: "2.25rem" }}>
+              <Link href={localePath(locale, "/transparency")} className="btn btn--ghost">
+                {t.back.cta}
+              </Link>
+            </p>
+          )}
         </div>
       </section>
 

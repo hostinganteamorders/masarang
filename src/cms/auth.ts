@@ -8,7 +8,7 @@ import { bump, clearBump, misconfigured, readDoc, writeDoc } from "./store";
 const scrypt = promisify(scryptCb) as (pw: string, salt: Buffer, len: number) => Promise<Buffer>;
 
 export type Role = "owner" | "editor";
-export type User = { email: string; role: Role; hash?: string; name?: string };
+export type User = { username: string; role: Role; hash?: string; name?: string };
 
 const COOKIE = "masarang_admin";
 const MAX_AGE = 60 * 60 * 24 * 7;
@@ -23,14 +23,15 @@ function secret(): string {
 }
 
 /** Pemilik bawaan dari variabel lingkungan; saat pengembangan lokal ada akun contoh. */
-function envOwner(): { email: string; password: string } | null {
-  const email = process.env.ADMIN_EMAIL?.trim().toLowerCase();
+function envOwner(): { username: string; password: string } | null {
+  // ADMIN_EMAIL masih dibaca agar pasangan variabel lama tetap berfungsi.
+  const username = (process.env.ADMIN_USERNAME ?? process.env.ADMIN_EMAIL)?.trim().toLowerCase();
   const password = process.env.ADMIN_PASSWORD;
-  if (email && password) return { email, password };
-  if (dev) return { email: "admin@masarang.local", password: "masarang-dev" };
+  if (username && password) return { username, password };
+  if (dev) return { username: "admin", password: "masarang-dev" };
   return null;
 }
-export const devLogin = dev && !process.env.ADMIN_EMAIL ? { email: "admin@masarang.local", password: "masarang-dev" } : null;
+export const devLogin = dev && !process.env.ADMIN_USERNAME && !process.env.ADMIN_EMAIL ? { username: "admin", password: "masarang-dev" } : null;
 
 export async function hashPassword(pw: string): Promise<string> {
   const salt = randomBytes(16);
@@ -51,41 +52,43 @@ function same(a: string, b: string) {
 }
 
 export async function listUsers(): Promise<User[]> {
-  return readDoc<User[]>("users", []);
+  // Akun lama tersimpan dengan kolom "email"; dibaca sebagai nama pengguna.
+  const rows = await readDoc<(Partial<User> & { email?: string })[]>("users", []);
+  return rows.map((u) => ({ ...u, username: (u.username ?? u.email ?? "").toLowerCase() }) as User);
 }
 export async function saveUsers(users: User[]) {
   await writeDoc("users", users);
 }
 
-async function findUser(email: string): Promise<User | null> {
+async function findUser(username: string): Promise<User | null> {
   const owner = envOwner();
-  if (owner && owner.email === email) return { email, role: "owner" };
-  return (await listUsers()).find((u) => u.email === email) ?? null;
+  if (owner && owner.username === username) return { username, role: "owner" };
+  return (await listUsers()).find((u) => u.username === username) ?? null;
 }
 
 const sign = (payload: string) => createHmac("sha256", secret()).update(payload).digest("base64url");
 
-/** Periksa email dan sandi; pasang cookie sesi bila benar. Mengembalikan pesan galat atau null. */
-export async function login(emailRaw: string, password: string): Promise<string | null> {
+/** Periksa nama pengguna dan sandi; pasang cookie sesi bila benar. Mengembalikan pesan galat atau null. */
+export async function login(usernameRaw: string, password: string): Promise<string | null> {
   if (misconfigured) return "Penyimpanan belum dipasang di Vercel, lihat panduan admin.";
-  const email = emailRaw.trim().toLowerCase();
+  const username = usernameRaw.trim().toLowerCase();
   const ip = (await headers()).get("x-forwarded-for")?.split(",")[0].trim() ?? "lokal";
-  const key = `login:${email}:${ip}`;
+  const key = `login:${username}:${ip}`;
   if ((await bump(key, 15 * 60)) > 8) return "Terlalu banyak percobaan. Coba lagi dalam 15 menit.";
 
   let ok = false;
   const owner = envOwner();
-  if (owner && owner.email === email) ok = same(owner.password, password);
+  if (owner && owner.username === username) ok = same(owner.password, password);
   if (!ok) {
-    const user = (await listUsers()).find((u) => u.email === email);
+    const user = (await listUsers()).find((u) => u.username === username);
     if (user?.hash) ok = await checkHash(password, user.hash);
   }
   if (!ok) {
     await new Promise((r) => setTimeout(r, 500));
-    return "Email atau sandi salah.";
+    return "Nama pengguna atau sandi salah.";
   }
   await clearBump(key);
-  const payload = Buffer.from(JSON.stringify({ e: email, x: Math.floor(Date.now() / 1000) + MAX_AGE })).toString("base64url");
+  const payload = Buffer.from(JSON.stringify({ e: username, x: Math.floor(Date.now() / 1000) + MAX_AGE })).toString("base64url");
   (await cookies()).set(COOKIE, `${payload}.${sign(payload)}`, {
     httpOnly: true,
     secure: !dev,

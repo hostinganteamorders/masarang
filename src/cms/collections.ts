@@ -6,6 +6,7 @@ import "@/data/team";
 import "@/data/updates";
 import "@/data/wildlife";
 import "@/data/siteviews";
+import "@/data/drone";
 
 /**
  * Daftar data yang boleh diubah admin (laporan, mitra, tim, ...). Setiap daftar punya skema isian;
@@ -195,6 +196,24 @@ export const COLLECTIONS: CollectionDef[] = [
     ],
   },
   {
+    id: "merch",
+    listName: "merch",
+    title: "Merchandise",
+    intro: "Produk di halaman Merchandise (menu Terlibat > Support our work). Produk dan harga awal hanyalah contoh. Pemesanan lewat WhatsApp.",
+    titleKey: "title",
+    addLabel: "Tambah produk",
+    maxItems: 40,
+    blank: () => ({ title: l(), body: l(), price: 0, photo: "", ph: true }),
+    idFrom: (i) => slug(str(get(i, "title.en"))) || "produk",
+    fields: [
+      { key: "title", label: "Nama produk", type: "text", l10n: true, required: true },
+      { key: "body", label: "Penjelasan singkat", type: "long", l10n: true, required: true },
+      { key: "price", label: "Harga (Rp)", type: "number", min: 1000, max: 100_000_000, required: true },
+      { key: "photo", label: "Foto produk (JPEG atau PNG)", type: "image", help: "Kosong = kotak bertuliskan \"Foto menyusul\"." },
+      { key: "ph", label: "Produk dan harga masih contoh", type: "bool" },
+    ],
+  },
+  {
     id: "wildlifeCats",
     listName: "wildlifeCats",
     title: "Satwa per kategori (Adopsi)",
@@ -225,6 +244,28 @@ export const COLLECTIONS: CollectionDef[] = [
       const n = (k: string) => (typeof it[k] === "number" ? (it[k] as number) : 0);
       if (n("quarantine") > n("inCare")) it.quarantine = n("inCare");
     },
+  },
+  {
+    id: "wildlifeFlows",
+    listName: "wildlifeFlows",
+    title: "Satwa per tahun dan kategori (tabel Adopsi)",
+    intro: "Tabel tahunan per kategori di halaman Adopsi, dari 2021: masuk, dilepasliarkan, dipindahkan, jumlah akhir tahun, dan rata-rata yang direhabilitasi. Satu baris untuk tiap pasangan tahun dan kategori; untuk tahun berjalan isi hitungan terbaru.",
+    titleKey: "year",
+    subKey: "cat",
+    addLabel: "Tambah baris",
+    maxItems: 120,
+    blank: () => ({ year: thisYear, cat: "birds", entered: 0, released: 0, translocated: 0, yearEnd: 0, rehab: 0 }),
+    sortBy: (a, b) => Number(a.year) - Number(b.year),
+    idFrom: (i) => `${String(i.year)}-${str(i.cat)}`,
+    fields: [
+      { key: "year", label: "Tahun", type: "number", min: 2000, max: 2100, required: true },
+      { key: "cat", label: "Kategori", type: "select", required: true, options: [{ value: "primates", label: "Primata" }, { value: "mammals", label: "Mamalia lain" }, { value: "reptiles", label: "Reptil" }, { value: "birds", label: "Burung" }] },
+      { key: "entered", label: "Masuk", type: "number", min: 0, max: 100000, required: true },
+      { key: "released", label: "Dilepasliarkan", type: "number", min: 0, max: 100000, required: true },
+      { key: "translocated", label: "Dipindahkan ke pusat lain", type: "number", min: 0, max: 100000, required: true },
+      { key: "yearEnd", label: "Jumlah pada akhir tahun", type: "number", min: 0, max: 100000, required: true },
+      { key: "rehab", label: "Rata-rata yang direhabilitasi sepanjang tahun", type: "number", min: 0, max: 100000, required: true },
+    ],
   },
   {
     id: "wildlifeYears",
@@ -264,6 +305,24 @@ export const COLLECTIONS: CollectionDef[] = [
     ],
   },
   {
+    id: "droneVideos",
+    listName: "droneVideos",
+    title: "Video drone monitoring (halaman Restorasi)",
+    intro: "Video penerbangan drone yang bisa dibandingkan berdampingan. Isi bulan, alamat video, dan gambar sampul. Video harus berkas langsung (.mp4): alamat https://… atau berkas di folder public/videos (mis. /videos/drone-2026-01.mp4). Video 4K sebaiknya dikompres dulu ke 720p.",
+    titleKey: "date",
+    addLabel: "Tambah video",
+    maxItems: 60,
+    blank: () => ({ date: new Date().toISOString().slice(0, 7), video: "", poster: "", note: l() }),
+    sortBy: (a, b) => str(a.date).localeCompare(str(b.date)),
+    idFrom: (i) => `drone-${str(i.date)}`,
+    fields: [
+      { key: "date", label: "Bulan pengambilan (tttt-bb, mis. 2026-01)", type: "month", required: true },
+      { key: "video", label: "Alamat video (.mp4)", type: "url", required: true, help: "https://… atau /videos/nama-berkas.mp4" },
+      { key: "poster", label: "Gambar sampul (JPEG, boleh kosong)", type: "image", maxSide: 1600 },
+      { key: "note", label: "Catatan singkat (boleh kosong)", type: "text", l10n: true, max: 120 },
+    ],
+  },
+  {
     id: "siteViews",
     listName: "siteViews",
     title: "Satelit dan 360° (halaman Restorasi)",
@@ -291,7 +350,7 @@ const MAX_SHORT = 300;
 const MAX_LONG = 2000;
 const IMG_OK = /^(\/(photos|uploads|partners|brand)\/[\w./-]+|https:\/\/[\w-]+\.public\.blob\.vercel-storage\.com\/[\w./%-]+)$/;
 const PDF_OK = /^(\/(reports|uploads)\/[\w./-]+|https:\/\/[\w-]+\.public\.blob\.vercel-storage\.com\/[\w./%-]+|https:\/\/[^\s"'<>]+)$/;
-const URL_OK = /^https?:\/\/[^\s"'<>]+$/;
+const URL_OK = /^(https?:\/\/[^\s"'<>]+|\/videos\/[\w./-]+)$/;
 
 /** Isian dengan pilihan yang bergantung pada isi draf (belum ada yang memakainya; disediakan agar editor tetap seragam). */
 export function fieldsFor(c: CollectionDef, lists: Record<string, unknown>): FieldDef[] {
@@ -391,7 +450,7 @@ export function cleanList(c: CollectionDef, raw: unknown, fields: FieldDef[] = c
           const t = str(value).trim();
           if (!t) break;
           const ok = f.type === "url" ? URL_OK : f.type === "pdf" ? PDF_OK : IMG_OK;
-          if (!ok.test(t) || t.length > 600) errors.push(`${label}: alamat tidak valid${f.type === "url" ? " (harus diawali https://)" : ""}.`);
+          if (!ok.test(t) || t.length > 600) errors.push(`${label}: alamat tidak valid${f.type === "url" ? " (harus diawali https:// atau /videos/)" : ""}.`);
           else setPath(out, f.key, t);
           break;
         }

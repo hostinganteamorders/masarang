@@ -53,12 +53,12 @@ export async function saveSlotAction(path: string, pic: unknown): Promise<FormSt
   const user = await requireUser();
   if (!(path in SLOT_LABELS)) return { message: "Tempat foto tidak dikenal." };
   if (pic === null) {
-    await updateDraft(user.email, `Mengembalikan foto: ${SLOT_LABELS[path].label}`, (d) => void delete d.photos[path]);
+    await updateDraft(user.username, `Mengembalikan foto: ${SLOT_LABELS[path].label}`, (d) => void delete d.photos[path]);
     return { ok: true, message: "Dikembalikan ke foto awal (draf)." };
   }
   const clean = cleanPic(pic);
   if (typeof clean === "string") return { message: clean };
-  await updateDraft(user.email, `Mengganti foto: ${SLOT_LABELS[path].label}`, (d) => void (d.photos[path] = clean));
+  await updateDraft(user.username, `Mengganti foto: ${SLOT_LABELS[path].label}`, (d) => void (d.photos[path] = clean));
   return { ok: true, message: 'Foto tersimpan sebagai draf. Tekan "Terbitkan" di Beranda admin agar tayang.' };
 }
 
@@ -67,7 +67,7 @@ export async function saveGalleryAction(path: string, pics: unknown): Promise<Fo
   if (!(path in GALLERY_LABELS)) return { message: "Galeri tidak dikenal." };
   const key = `photos.${path}`;
   if (pics === null) {
-    await updateDraft(user.email, `Mengembalikan galeri: ${GALLERY_LABELS[path].label}`, (d) => void delete d.lists[key]);
+    await updateDraft(user.username, `Mengembalikan galeri: ${GALLERY_LABELS[path].label}`, (d) => void delete d.lists[key]);
     return { ok: true, message: "Dikembalikan ke galeri awal (draf)." };
   }
   if (!Array.isArray(pics) || pics.length < 1 || pics.length > 40) return { message: "Galeri harus berisi 1–40 foto." };
@@ -77,6 +77,6 @@ export async function saveGalleryAction(path: string, pics: unknown): Promise<Fo
     if (typeof c === "string") return { message: `Foto nomor ${i + 1}: ${c}` };
     clean.push(c);
   }
-  await updateDraft(user.email, `Mengubah galeri: ${GALLERY_LABELS[path].label}`, (d) => void (d.lists[key] = clean));
+  await updateDraft(user.username, `Mengubah galeri: ${GALLERY_LABELS[path].label}`, (d) => void (d.lists[key] = clean));
   return { ok: true, message: 'Galeri tersimpan sebagai draf. Tekan "Terbitkan" di Beranda admin agar tayang.' };
 }

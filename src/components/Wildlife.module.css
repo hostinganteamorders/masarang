@@ -571,3 +571,94 @@
 @media (max-width: 48rem) {
   .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* Tabel tahunan per kategori */
+.yearGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2.4vw, 1.75rem);
+}
+
+.yearCard {
+  --c: var(--fg);
+  min-width: 0;
+  padding: clamp(1rem, 2.2vw, 1.5rem);
+  border: 1px solid var(--line);
+  border-top: 6px solid var(--c);
+  border-radius: var(--r-lg);
+  background: var(--white);
+  color: var(--dark);
+}
+
+.yearCard[data-cat="primates"] { --c: var(--c-primates); }
+.yearCard[data-cat="mammals"] { --c: var(--c-mammals); }
+.yearCard[data-cat="reptiles"] { --c: var(--c-reptiles); }
+.yearCard[data-cat="birds"] { --c: var(--c-birds); }
+
+.yearCard h3 {
+  margin: 0 0 0.75rem;
+  color: var(--c);
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.tableWrap:focus-visible {
+  outline: 3px solid var(--c);
+  outline-offset: 2px;
+}
+
+.yearTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.yearTable caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.yearTable th,
+.yearTable td {
+  padding: 0.5rem 0.5rem;
+  border-bottom: 1px solid var(--line);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.yearTable thead th {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: normal;
+  vertical-align: bottom;
+}
+
+.yearTable th:first-child,
+.yearTable td:first-child {
+  text-align: left;
+  font-weight: 700;
+}
+
+.yearTable tbody tr:last-child th,
+.yearTable tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.yearNote {
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 64rem) {
+  .yearGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

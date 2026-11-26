@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import { DocumentsTable } from "@/components/DocumentsTable";
 import { FinanceExplorer } from "@/components/FinanceExplorer";
@@ -26,6 +27,7 @@ export async function generateMetadata({
 }
 
 export default async function TransparencyPage({ params }: PageProps<"/[locale]/transparency">) {
+  if (!features.transparency) notFound();
   const locale = await resolveLocale(params);
   const t = transparencyCopy[locale];
   const c = common[locale];

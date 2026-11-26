@@ -31,6 +31,7 @@ export function VideoSlot({
   locale,
   className,
   autoplay,
+  poster,
 }: {
   url?: string;
   title: string;
@@ -38,6 +39,8 @@ export function VideoSlot({
   className?: string;
   /** Putar otomatis (tanpa suara) setelah salam pembuka selesai. */
   autoplay?: boolean;
+  /** Gambar sampul untuk berkas video (bukan YouTube/Vimeo). */
+  poster?: string;
 }) {
   const c = common[locale].video;
   const embed = url ? embedUrl(url) : null;
@@ -46,7 +49,7 @@ export function VideoSlot({
     <figure className={`${s.slot} ${className ?? ""}`}>
       <div className={s.frame}>
         {url ? (
-          <VideoPlayer embed={embed} url={url} title={title} autoplay={autoplay} />
+          <VideoPlayer embed={embed} url={url} title={title} autoplay={autoplay} poster={poster} />
         ) : (
           <div className={s.empty}>
             <svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true" focusable="false">

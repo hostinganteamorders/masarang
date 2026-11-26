@@ -7,14 +7,14 @@ import { flatten, placeholders } from "@/cms/walk";
 import { defaultsFor, scopeById } from "@/cms/scopes";
 import { defaultAt, defaultValue, fieldKey, VALUE_GROUPS, type ValueField } from "@/cms/value-fields";
 
-export type FormState = { ok?: boolean; message?: string; errors?: string[]; email?: string } | undefined;
+export type FormState = { ok?: boolean; message?: string; errors?: string[]; username?: string } | undefined;
 
 const str = (v: FormDataEntryValue | null) => (typeof v === "string" ? v : "");
 
 export async function loginAction(_: FormState, form: FormData): Promise<FormState> {
-  const email = str(form.get("email"));
-  const error = await login(email, str(form.get("password")));
-  if (error) return { message: error, email };
+  const username = str(form.get("username"));
+  const error = await login(username, str(form.get("password")));
+  if (error) return { message: error, username };
   redirect("/admin");
 }
 
@@ -53,7 +53,7 @@ export async function saveTextAction(scope: string, _: FormState, form: FormData
   if (errors.length) return { message: "Ada isian yang ditolak; tidak ada yang disimpan.", errors: errors.slice(0, 8) };
 
   let changed = 0;
-  await updateDraft(user.email, `Mengedit teks: ${scopeById(scope)!.label}`, (d) => {
+  await updateDraft(user.username, `Mengedit teks: ${scopeById(scope)!.label}`, (d) => {
     for (const [key, value] of next) {
       const full = `${scope}.${key}`;
       if (value === null) {
@@ -72,7 +72,7 @@ export async function saveTextAction(scope: string, _: FormState, form: FormData
 
 export async function publishAction(): Promise<FormState> {
   const user = await requireUser();
-  const r = await publish(user.email);
+  const r = await publish(user.username);
   if (r.error) return { message: `Tersimpan, tetapi gagal memicu pembangunan ulang: ${r.error}` };
   return {
     ok: true,
@@ -84,21 +84,21 @@ export async function publishAction(): Promise<FormState> {
 
 export async function addUserAction(_: FormState, form: FormData): Promise<FormState> {
   await requireUser("owner");
-  const email = str(form.get("email")).trim().toLowerCase();
+  const username = str(form.get("username")).trim().toLowerCase();
   const password = str(form.get("password"));
-  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return { message: "Email tidak valid." };
+  if (!/^[a-z0-9._-]{3,32}$/.test(username)) return { message: "Nama pengguna 3–32 karakter: huruf kecil, angka, titik, garis bawah, atau strip." };
   if (password.length < 10) return { message: "Sandi minimal 10 karakter." };
   const users = await listUsers();
-  if (users.some((u) => u.email === email)) return { message: "Email itu sudah terdaftar." };
-  users.push({ email, role: "editor", hash: await hashPassword(password) });
+  if (users.some((u) => u.username === username)) return { message: "Nama pengguna itu sudah terdaftar." };
+  users.push({ username, role: "editor", hash: await hashPassword(password) });
   await saveUsers(users);
-  return { ok: true, message: `Editor ${email} ditambahkan.` };
+  return { ok: true, message: `Editor ${username} ditambahkan.` };
 }
 
 export async function removeUserAction(form: FormData) {
   await requireUser("owner");
-  const email = str(form.get("email"));
-  await saveUsers((await listUsers()).filter((u) => u.email !== email));
+  const username = str(form.get("username"));
+  await saveUsers((await listUsers()).filter((u) => u.username !== username));
   redirect("/admin/users");
 }
 
@@ -107,7 +107,7 @@ export async function changePasswordAction(_: FormState, form: FormData): Promis
   const password = str(form.get("password"));
   if (password.length < 10) return { message: "Sandi minimal 10 karakter." };
   const users = await listUsers();
-  const user = users.find((u) => u.email === me.email);
+  const user = users.find((u) => u.username === me.username);
   if (!user) return { message: "Akun pemilik diatur lewat variabel lingkungan ADMIN_PASSWORD di Vercel, bukan di sini." };
   user.hash = await hashPassword(password);
   await saveUsers(users);
@@ -143,7 +143,7 @@ export async function saveValuesAction(groupId: string, _: FormState, form: Form
   }
   if (errors.length) return { message: "Ada isian yang ditolak; tidak ada yang disimpan.", errors };
 
-  await updateDraft(user.email, `Mengubah ${group.title.toLowerCase()}`, (d) => {
+  await updateDraft(user.username, `Mengubah ${group.title.toLowerCase()}`, (d) => {
     for (const { f, value } of changes) {
       const key = fieldKey(f);
       if (value === null) delete d.values[key];

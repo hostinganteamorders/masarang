@@ -32,6 +32,8 @@ export function pageMetadata(
 export const publicPaths = [
   "",
   "/about",
+  "/about/vision",
+  "/about/partners",
   "/programs",
   "/programs/restoration",
   "/programs/conservation",
@@ -40,7 +42,7 @@ export const publicPaths = [
   "/get-involved",
   "/get-involved/partner",
   "/get-involved/volunteer",
-  "/transparency",
   "/updates",
   "/support",
+  "/support/merchandise",
 ];

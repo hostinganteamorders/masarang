@@ -13,8 +13,8 @@ export function UserForms({ owner }: { owner: boolean }) {
           <h2 style={{ marginTop: 0 }}>Tambah editor</h2>
           {add?.message && <p className={`note ${add.ok ? "" : "bad"}`}>{add.message}</p>}
           <p>
-            <label htmlFor="e-email">Email</label>
-            <input id="e-email" name="email" type="email" required />
+            <label htmlFor="e-user">Nama pengguna</label>
+            <input id="e-user" name="username" type="text" autoComplete="off" autoCapitalize="none" pattern="[a-z0-9._\-]{3,32}" required />
           </p>
           <p>
             <label htmlFor="e-pw">Sandi awal (minimal 10 karakter)</label>

@@ -5,7 +5,9 @@ import "@/content/adopt";
 import "@/content/common";
 import "@/content/hillside";
 import "@/content/home";
+import "@/content/drone";
 import "@/content/involved";
+import "@/content/merch";
 import "@/content/programs";
 import "@/content/siteviews";
 import "@/content/sites";
@@ -26,6 +28,8 @@ export const TEXT_SCOPES = [
   { id: "updates", label: "Updates dan Quarterly Report", page: "/updates" },
   { id: "involved", label: "Terlibat (Get involved, mitra, relawan)", page: "/get-involved" },
   { id: "support", label: "Dukung kami (donasi)", page: "/support" },
+  { id: "drone", label: "Video drone (halaman Restorasi)", page: "/programs/restoration" },
+  { id: "merch", label: "Merchandise (halaman Dukung kami)", page: "/support/merchandise" },
   { id: "transparency", label: "Transparansi", page: "/transparency" },
   { id: "team", label: "Halaman tim lengkap", page: "/about/team" },
   { id: "common", label: "Menu, footer, tombol, dan teks umum", page: "" },

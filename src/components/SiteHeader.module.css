@@ -134,6 +134,23 @@
   background: rgba(245, 245, 245, 0.12);
 }
 
+.panelHeading {
+  display: block;
+  padding: 0.65rem 0.9rem 0.2rem;
+  color: var(--muted-on-dark);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.panelNested {
+  display: grid;
+  gap: 0;
+  margin: 0 0 0.25rem 0.9rem;
+  padding: 0 0 0 0.35rem;
+  list-style: none;
+  border-left: 2px solid rgba(245, 245, 245, 0.25);
+}
+
 .actions {
   display: flex;
   align-items: center;
@@ -222,6 +239,21 @@
   font-size: 1.2rem;
   font-weight: 600;
   text-decoration: none;
+}
+
+.sheetSubHeading {
+  display: block;
+  padding: 0.45rem 0 0.2rem 1rem;
+  border-left: 3px solid var(--conservation);
+  color: var(--muted-on-dark);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.sheetNested {
+  margin: 0 0 0 1.25rem !important;
+  padding: 0;
+  list-style: none;
 }
 
 .sheetSubLink:hover {

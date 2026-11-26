@@ -8,8 +8,10 @@ import type { L10n } from "@/lib/i18n";
 export type ExternalLink = { url?: string; label: L10n };
 
 /** Video Aping. Tempel alamat YouTube/Vimeo (embed atau biasa) atau berkas video di /public. */
-export const apingVideo: { url?: string; title: L10n } = cmsValues("media.apingVideo", {
-  url: undefined,
+export const apingVideo: { url?: string; poster?: string; title: L10n } = cmsValues("media.apingVideo", {
+  // Versi web (1080p, sekitar 57 MB) dari Company Profile - Final. Ganti lewat Admin > Pengaturan bila ada versi baru.
+  url: "/videos/aping.mp4" as string | undefined,
+  poster: "/photos/drone/aping-poster.jpg" as string | undefined,
   title: { en: "Video: Aping", id: "Video: Aping" },
 });
 
@@ -24,3 +26,21 @@ export const edutourCatalog: ExternalLink = cmsValues("media.edutourCatalog", {
   url: undefined,
   label: { en: "Open the EduTour catalogue", id: "Buka katalog karya EduTour" },
 });
+
+/**
+ * Video pembuka tiap menu di navbar (seperti video di Beranda). Tempel alamat YouTube/Vimeo atau berkas .mp4
+ * lewat Admin > Pengaturan > Video; kosong = kotak penanda tempat.
+ */
+export type MenuVideoId = "about" | "programs" | "restoration" | "conservation" | "education" | "involved" | "updates";
+
+const menuTitle = (en: string, id: string) => ({ url: undefined as string | undefined, title: { en: `Video: ${en}`, id: `Video: ${id}` } });
+
+export const menuVideos: Record<MenuVideoId, { url?: string; title: L10n }> = {
+  about: cmsValues("media.menu.about", menuTitle("About us", "Tentang kami")),
+  programs: cmsValues("media.menu.programs", menuTitle("Our programs", "Program kami")),
+  restoration: cmsValues("media.menu.restoration", menuTitle("Restoration", "Restorasi")),
+  conservation: cmsValues("media.menu.conservation", menuTitle("Conservation", "Konservasi")),
+  education: cmsValues("media.menu.education", menuTitle("Education", "Edukasi")),
+  involved: cmsValues("media.menu.involved", menuTitle("Get involved", "Terlibat")),
+  updates: cmsValues("media.menu.updates", menuTitle("Updates", "Kabar")),
+};

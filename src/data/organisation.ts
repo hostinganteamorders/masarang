@@ -152,12 +152,6 @@ export const partners: Partner[] = cmsList<Partner>("partners", [
     url: "https://www.pge.pertamina.com",
     role: { en: "Geothermal palm sugar processing", id: "Pengolahan gula aren panas bumi" },
   },
-  {
-    id: "rdi",
-    kind: "research",
-    name: "RDI",
-    role: { en: "Research partner", id: "Mitra riset" },
-  },
 ]);
 
 /* ---------------- Dukungan ---------------- */

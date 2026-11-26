@@ -30,7 +30,7 @@ function useAfterIntro(enabled: boolean) {
 /**
  * Pemutar video. Dengan `autoplay`, video mulai diputar (tanpa suara, sesuai aturan browser) begitu salam pembuka selesai.
  */
-export function VideoPlayer({ embed, url, title, autoplay }: { embed: string | null; url?: string; title: string; autoplay?: boolean }) {
+export function VideoPlayer({ embed, url, title, autoplay, poster }: { embed: string | null; url?: string; title: string; autoplay?: boolean; poster?: string }) {
   const ready = useAfterIntro(Boolean(autoplay));
   const video = useRef<HTMLVideoElement>(null);
 
@@ -54,7 +54,7 @@ export function VideoPlayer({ embed, url, title, autoplay }: { embed: string | n
     );
   }
   return (
-    <video ref={video} controls muted={autoplay} loop={autoplay} preload={autoplay ? "auto" : "none"} playsInline aria-label={title}>
+    <video ref={video} controls muted={autoplay} loop={autoplay} preload="metadata" poster={poster} playsInline aria-label={title}>
       <source src={url} />
     </video>
   );

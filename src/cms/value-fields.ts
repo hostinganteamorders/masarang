@@ -27,6 +27,13 @@ const BASE_GROUPS: ValueGroup[] = [
     intro: "Tempel alamat lengkap (https://…). Kosong = kotak penanda tempat tampil di situs.",
     fields: [
       { id: "aping", scope: "media.apingVideo", path: "url", kind: "url", label: "Video Aping (Beranda dan Tentang Kami)", help: "Alamat YouTube atau Vimeo (biasa maupun embed), atau berkas video .mp4. Video besar sebaiknya diunggah dulu ke YouTube atau Vimeo, lalu alamatnya ditempel di sini." },
+      { id: "menu-about", scope: "media.menu.about", path: "url", kind: "url", label: "Video pembuka menu Tentang Kami" },
+      { id: "menu-programs", scope: "media.menu.programs", path: "url", kind: "url", label: "Video pembuka menu Program" },
+      { id: "menu-restoration", scope: "media.menu.restoration", path: "url", kind: "url", label: "Video pembuka Restorasi" },
+      { id: "menu-conservation", scope: "media.menu.conservation", path: "url", kind: "url", label: "Video pembuka Konservasi" },
+      { id: "menu-education", scope: "media.menu.education", path: "url", kind: "url", label: "Video pembuka Edukasi" },
+      { id: "menu-involved", scope: "media.menu.involved", path: "url", kind: "url", label: "Video pembuka menu Terlibat" },
+      { id: "menu-updates", scope: "media.menu.updates", path: "url", kind: "url", label: "Video pembuka menu Updates" },
       { id: "tms", scope: "media.tms", path: "url", kind: "url", label: "Situs TMS (usaha gula aren petani)" },
       { id: "edutour", scope: "media.edutourCatalog", path: "url", kind: "url", label: "Katalog karya EduTour" },
     ],

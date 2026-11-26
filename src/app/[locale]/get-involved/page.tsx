@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { NewsletterBand } from "@/components/NewsletterBand";
+import { MenuIntro } from "@/components/MenuIntro";
 import { PageHero } from "@/components/PageHero";
 import { SectionHead } from "@/components/SectionHead";
 import { involvedCopy } from "@/content/involved";
@@ -28,6 +29,8 @@ export default async function GetInvolvedPage({ params }: PageProps<"/[locale]/g
   return (
     <>
       <PageHero locale={locale} accent="conservation" seed={11} title={t.hero.title} lede={t.hero.lede} />
+
+      <MenuIntro locale={locale} id="involved" />
       <section className="section on-light" aria-labelledby="ways-title">
         <div className="container">
           <SectionHead id="ways-title" title={t.ways.title} />

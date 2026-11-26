@@ -1,6 +1,6 @@
 # Panduan admin untuk staf
 
-Alamat: **situs-kita.org/admin**. Masuk dengan email dan sandi yang diberikan pemilik.
+Alamat: **situs-kita.org/admin**. Masuk dengan **nama pengguna** (bukan email) dan sandi yang diberikan pemilik.
 
 ## Alur kerja (selalu sama)
 
@@ -25,15 +25,16 @@ Kalau salah, tekan **Kembalikan** (per teks, foto, atau daftar) sebelum menerbit
 
 ## Video dan tautan
 
-Menu **Video & tautan**. Untuk video besar: unggah dulu ke YouTube atau Vimeo, lalu tempel alamatnya. Kosongkan untuk kembali ke kotak penanda.
+Menu **Video & tautan**. Untuk video besar: unggah dulu ke YouTube atau Vimeo, lalu tempel alamatnya. Kosongkan untuk kembali ke kotak penanda. Video Aping (Beranda dan About) sudah terpasang sebagai berkas `/videos/aping.mp4` (versi web 1080p, sekitar 57 MB); ganti dengan alamat YouTube/Vimeo bila ada versi baru.
 
 ## Angka dan daftar
 
 - **Angka**: hektare, petani, pohon, satwa, dan lain-lain. Setelah angka asli diisi, garis titik-titik "contoh" hilang sendiri.
 - **Data**: laporan triwulan (unggah PDF, maks. 3,5 MB; lebih besar? unggah ke Google Drive lalu tempel alamatnya), mitra (logo PNG; pilih jenis institusinya), kabar lapangan, dokumen, pilihan dukungan, satwa per kategori, satwa per tahun, daftar jenis satwa, dan tanggal satelit/360°.
 - Tombol **+ Tambah**, **↑ Naik / ↓ Turun**, **Hapus** ada di tiap baris. Tidak ada yang hilang sebelum **Simpan draf** ditekan.
-- Halaman Adopsi: **Satwa per kategori** (jumlah dirawat, karantina, satwa duta dan fotonya), **Satwa per tahun** (batang grafik), **Jenis satwa** (daftar yang bisa dicari; pakai kotak **Cari**). Jumlah karantina dan satwa duta masih contoh sampai Anda mengisinya dan menghilangkan centang "masih contoh".
+- Halaman Adopsi: **Satwa per kategori** (jumlah dirawat, karantina, satwa duta dan fotonya), **Satwa per tahun** (batang grafik), **Satwa per tahun dan kategori** (tabel tahunan sejak 2021), **Merchandise** (produk di halaman Merchandise), **Jenis satwa** (daftar yang bisa dicari; pakai kotak **Cari**). Jumlah karantina dan satwa duta masih contoh sampai Anda mengisinya dan menghilangkan centang "masih contoh".
 - **Satelit dan 360°** (halaman Restorasi): tiap baris adalah satu tanggal yang bisa dipilih pengunjung. Satelit: isi bulan dan nomor rilis Esri Wayback. 360°: unggah foto panorama (rasio 2:1) dan isi bulan pengambilan. Lokasi tengah peta ada di menu **Pengaturan**.
+- **Video drone** (halaman Restorasi): tiap baris adalah satu penerbangan yang bisa dipilih di pembanding dua video. Isi bulan, alamat video langsung (`.mp4`, bukan YouTube; boleh `https://…` atau `/videos/nama.mp4` untuk berkas di folder `public/videos`), dan gambar sampul. Kompres video 4K ke 720p dulu (sekitar 6 sampai 20 MB per video).
 - Tanda **Masih contoh** membuat teks bergaris titik-titik selama situs mode draf. Hilangkan centang bila isinya sudah asli.
 
 ## Keamanan

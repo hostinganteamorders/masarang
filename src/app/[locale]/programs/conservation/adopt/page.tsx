@@ -8,6 +8,7 @@ import { SectionHead } from "@/components/SectionHead";
 import { PopulationChart } from "@/components/PopulationChart";
 import { SpeciesList } from "@/components/SpeciesList";
 import { StatRow } from "@/components/StatRow";
+import { YearTables } from "@/components/YearTables";
 import { Steps } from "@/components/Steps";
 import { adoptCopy } from "@/content/adopt";
 import { common } from "@/content/common";
@@ -75,8 +76,16 @@ export default async function AdoptPage({ params }: PageProps<"/[locale]/program
         </div>
       </section>
 
+      {/* Tabel tahunan per kategori, mulai 2021 */}
+      <section className="section on-light" aria-labelledby="years-title">
+        <div className="container">
+          <SectionHead id="years-title" meta={[a.years.source]} title={a.years.title} lede={a.years.lede} />
+          <YearTables locale={locale} copy={a} />
+        </div>
+      </section>
+
       {/* Grafik per tahun */}
-      <section className="section on-light" aria-labelledby="chart-title">
+      <section className="section on-soft" aria-labelledby="chart-title">
         <div className="container">
           <SectionHead id="chart-title" meta={[a.chart.source]} title={a.chart.title} lede={a.chart.lede} />
           <PopulationChart locale={locale} copy={a} names={names} asOfYear={Number(wildlifeAsOf.slice(0, 4))} />
@@ -84,7 +93,7 @@ export default async function AdoptPage({ params }: PageProps<"/[locale]/program
       </section>
 
       {/* Menurut jenis */}
-      <section className="section on-soft" aria-labelledby="species-title">
+      <section className="section on-light" aria-labelledby="species-title">
         <div className="container">
           <SectionHead id="species-title" title={a.species.title} lede={a.species.lede} />
           <SpeciesList locale={locale} copy={a} names={names} />

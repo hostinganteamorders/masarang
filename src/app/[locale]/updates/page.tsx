@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { NewsletterBand } from "@/components/NewsletterBand";
+import { MenuIntro } from "@/components/MenuIntro";
 import { PageHero } from "@/components/PageHero";
 import { ReportCard } from "@/components/ReportCard";
 import { SectionHead } from "@/components/SectionHead";
@@ -31,6 +32,8 @@ export default async function UpdatesPage({ params }: PageProps<"/[locale]/updat
         title={t.hero.title}
         lede={t.hero.lede}
       />
+
+      <MenuIntro locale={locale} id="updates" />
 
       <section className="section on-light" aria-labelledby="reports-title">
         <div className="container">

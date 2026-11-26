@@ -30,7 +30,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
                 {user.role === "owner" && <Link href="/admin/users">Pengguna</Link>}
               </nav>
               <span className="spacer" />
-              <span className="small">{user.email}</span>
+              <span className="small">{user.username}</span>
               <form action={logoutAction}>
                 <button className="btn small" type="submit">
                   Keluar

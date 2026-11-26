@@ -12,7 +12,6 @@ import s from "./SiteFooter.module.css";
 const EXPLORE = [
   { key: "about", path: "/about" },
   { key: "updates", path: "/updates" },
-  { key: "transparency", path: "/transparency" },
 ] as const;
 
 const PROGRAMS = [
@@ -25,6 +24,7 @@ const PROGRAMS = [
 export function SiteFooter({ locale }: { locale: Locale }) {
   const c = common[locale];
   const year = site.lastUpdated.slice(0, 4);
+  const waDigits = site.whatsapp.v.replace(/\D/g, "");
 
   return (
     <footer className={`${s.footer} on-dark`}>
@@ -64,17 +64,16 @@ export function SiteFooter({ locale }: { locale: Locale }) {
         <div>
           <p className={s.colTitle}>{c.footer.contact}</p>
           <address className={s.address}>
-            <span>{site.name}</span>
+            <Logo className={s.contactLogo} />
             <span>{site.address[locale]}</span>
             <a href={`mailto:${site.email.v}`}>
-              <Ph on={site.email.ph}>{site.email.v}</Ph>
+              <Ph on={site.email.ph}>{c.footer.emailUs}</Ph>
+            </a>
+            <a href={`https://wa.me/${waDigits}`} target="_blank" rel="noopener noreferrer">
+              <Ph on={site.whatsapp.ph}>{c.footer.whatsappUs}</Ph>
             </a>
           </address>
         </div>
-      </div>
-
-      <div className={s.wordmark} aria-hidden="true">
-        Masarang
       </div>
 
       <Ribbon height={10} />

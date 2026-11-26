@@ -5,6 +5,7 @@ import { Gallery } from "@/components/Gallery";
 import { GiveBand } from "@/components/GiveBand";
 import { Milestones } from "@/components/Milestones";
 import { NewsletterBand } from "@/components/NewsletterBand";
+import { MenuIntro } from "@/components/MenuIntro";
 import { PageHero } from "@/components/PageHero";
 import { Ph } from "@/components/Ph";
 import { Photo } from "@/components/Photo";
@@ -57,6 +58,8 @@ export default async function ConservationPage({ params }: PageProps<"/[locale]/
       >
         <ProgramTabs locale={locale} current="conservation" />
       </PageHero>
+
+      <MenuIntro locale={locale} id="conservation" />
 
       {/* Pengantar program */}
       <section className="section on-soft" aria-labelledby="intro-title">

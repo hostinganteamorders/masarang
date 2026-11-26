@@ -37,7 +37,7 @@ export async function saveListAction(id: string, items: unknown): Promise<NonNul
     if (bad.length) return { message: "Ada isian yang ditolak; tidak ada yang disimpan.", errors: bad };
   }
   if (c.id === "wildlifeYears" && r.items.length < 1) return { message: "Ada isian yang ditolak; tidak ada yang disimpan.", errors: ["Minimal harus ada satu tahun."] };
-  await updateDraft(user.email, `Mengubah daftar: ${c.title}`, (d) => {
+  await updateDraft(user.username, `Mengubah daftar: ${c.title}`, (d) => {
     d.lists[c.listName] = r.items;
     if (c.id === "team") d.lists.governance = governanceFromTeam(r.items);
   });
@@ -49,7 +49,7 @@ export async function restoreListAction(id: string): Promise<NonNullable<FormSta
   const user = await requireUser();
   const c = collection(id);
   if (!c) return { message: "Daftar tidak dikenal." };
-  await updateDraft(user.email, `Mengembalikan daftar: ${c.title}`, (d) => {
+  await updateDraft(user.username, `Mengembalikan daftar: ${c.title}`, (d) => {
     delete d.lists[c.listName];
     if (c.id === "team") delete d.lists.governance;
   });

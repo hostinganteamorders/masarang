@@ -13,8 +13,8 @@ export function LoginForm() {
         </p>
       )}
       <p>
-        <label htmlFor="email">Email</label>
-        <input id="email" name="email" type="email" autoComplete="username" defaultValue={state?.email} required />
+        <label htmlFor="username">Nama pengguna</label>
+        <input id="username" name="username" type="text" autoComplete="username" autoCapitalize="none" defaultValue={state?.username} required />
       </p>
       <p>
         <label htmlFor="password">Sandi</label>

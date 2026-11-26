@@ -10,7 +10,7 @@ const en = {
   },
   hero: {
     title: "We restore land, protect wildlife and teach. We publish the proof.",
-    lede: "Yayasan Masarang is a foundation based in Tomohon, North Sulawesi. This page introduces our founder, our vision, our team and the partners we work with.",
+    lede: "Yayasan Masarang is a foundation based in Tomohon, North Sulawesi. Meet our founder and read how Masarang began.",
   },
   founder: {
     title: "Our Founder",
@@ -102,7 +102,7 @@ const en = {
   },
   partners: {
     title: "Our Partners",
-    lede: "The institutions we work with, from funders to research bodies. Select a logo or name to visit the partner's website.",
+    lede: "The institutions we work with, from funders to government bodies. Select a logo or name to visit the partner's website.",
   },
   account: {
     title: "How we hold ourselves to account",
@@ -118,7 +118,7 @@ const id: typeof en = {
   },
   hero: {
     title: "Kami memulihkan lahan, melindungi satwa, dan mengajar. Kami menerbitkan buktinya.",
-    lede: "Yayasan Masarang adalah yayasan yang berpusat di Tomohon, Sulawesi Utara. Halaman ini memperkenalkan pendiri, visi, tim, dan mitra kami.",
+    lede: "Yayasan Masarang adalah yayasan yang berpusat di Tomohon, Sulawesi Utara. Kenali pendiri kami dan baca bagaimana Masarang bermula.",
   },
   founder: {
     title: "Pendiri Kami",
@@ -210,7 +210,7 @@ const id: typeof en = {
   },
   partners: {
     title: "Mitra Kami",
-    lede: "Institusi yang bekerja bersama kami, dari lembaga pendana hingga lembaga riset. Pilih logo atau nama untuk mengunjungi situs mitra.",
+    lede: "Institusi yang bekerja bersama kami, dari lembaga pendana hingga instansi pemerintah. Pilih logo atau nama untuk mengunjungi situs mitra.",
   },
   account: {
     title: "Cara kami bertanggung jawab",

@@ -12,8 +12,8 @@ export default async function LoginPage() {
       <p className="muted">Khusus staf Yayasan Masarang.</p>
       {devLogin && (
         <p className="note warn small">
-          Mode pengembangan: email <code>{devLogin.email}</code>, sandi <code>{devLogin.password}</code>. Di Vercel akun ini
-          tidak ada; isi ADMIN_EMAIL dan ADMIN_PASSWORD.
+          Mode pengembangan: nama pengguna <code>{devLogin.username}</code>, sandi <code>{devLogin.password}</code>. Di Vercel akun ini
+          tidak ada; isi ADMIN_USERNAME dan ADMIN_PASSWORD.
         </p>
       )}
       <LoginForm />

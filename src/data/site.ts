@@ -36,7 +36,7 @@ export const site = cmsValues("site", {
 } as const);
 
 /** Bagian yang sengaja disembunyikan dulu (hasil meeting). Ubah ke true untuk menayangkannya lagi. */
-export const features = { team: false } as const;
+export const features = { team: false, transparency: false } as const;
 
 /** Warna program, dipakai bersama oleh pita rupiah, grafik, dan titik satwa. */
 export const programColor = {

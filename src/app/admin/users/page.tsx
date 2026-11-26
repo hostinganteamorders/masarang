@@ -14,7 +14,7 @@ export default async function UsersPage() {
       {me.role === "owner" && (
         <>
           <p className="muted">
-            Pemilik ({me.email}) diatur lewat ADMIN_EMAIL dan ADMIN_PASSWORD di Vercel. Editor bisa mengubah semua isi, tetapi
+            Pemilik ({me.username}) diatur lewat ADMIN_USERNAME dan ADMIN_PASSWORD di Vercel. Editor bisa mengubah semua isi, tetapi
             tidak bisa mengelola pengguna.
           </p>
           <table>
@@ -34,12 +34,12 @@ export default async function UsersPage() {
                 </tr>
               )}
               {users.map((u) => (
-                <tr key={u.email}>
-                  <td>{u.email}</td>
+                <tr key={u.username}>
+                  <td>{u.username}</td>
                   <td>{u.role}</td>
                   <td>
                     <form action={removeUserAction}>
-                      <input type="hidden" name="email" value={u.email} />
+                      <input type="hidden" name="username" value={u.username} />
                       <button className="btn small danger" type="submit">
                         Hapus
                       </button>

@@ -60,6 +60,11 @@ export function usd(amountIdr: number, fx: number, locale: Locale): string {
   return `US$${num(v, locale, v < 100 ? 2 : 0)}`;
 }
 
+/** Nama bulan singkat dari angka 1 sampai 12. */
+export function monthName(month: number, locale: Locale): string {
+  return MONTHS[locale][month - 1];
+}
+
 /** "2026-09" -> "Sep 2026" */
 export function monthYear(iso: string, locale: Locale): string {
   const [y, m] = iso.split("-");

@@ -42,6 +42,20 @@ export type WildCat = {
 
 export type WildYear = { id: string; year: number } & Record<CatId, number>;
 
+/** Satu baris per tahun dan kategori (2021 sampai sekarang): arus satwa, jumlah akhir tahun, dan rata-rata yang direhabilitasi. */
+export type WildFlow = {
+  id: string;
+  year: number;
+  cat: CatId;
+  entered: number;
+  released: number;
+  translocated: number;
+  /** Satwa pada akhir tahun (2026: posisi data terakhir). */
+  yearEnd: number;
+  /** Rata-rata satwa yang sedang direhabilitasi sepanjang tahun (rata-rata bulanan). */
+  rehab: number;
+};
+
 export type WildSpecies = { id: string; category: CatId; name: string; latin: string; count: number };
 
 /** Posisi data sampai (bulan, tttt-bb). */
@@ -147,6 +161,31 @@ const seedYears: WildYear[] = [  {"id": "2018", "year": 2018, "primates": 161, "
   {"id": "2024", "year": 2024, "primates": 82, "mammals": 32, "reptiles": 34, "birds": 104},
   {"id": "2025", "year": 2025, "primates": 77, "mammals": 34, "reptiles": 28, "birds": 130},
   {"id": "2026", "year": 2026, "primates": 72, "mammals": 35, "reptiles": 53, "birds": 88}];
+
+const seedFlows: WildFlow[] = [  {"id": "2021-primates", "year": 2021, "cat": "primates", "entered": 25, "released": 0, "translocated": 0, "yearEnd": 138, "rehab": 127.1},
+  {"id": "2021-mammals", "year": 2021, "cat": "mammals", "entered": 4, "released": 1, "translocated": 2, "yearEnd": 41, "rehab": 40.8},
+  {"id": "2021-reptiles", "year": 2021, "cat": "reptiles", "entered": 6, "released": 2, "translocated": 0, "yearEnd": 22, "rehab": 21.8},
+  {"id": "2021-birds", "year": 2021, "cat": "birds", "entered": 159, "released": 12, "translocated": 104, "yearEnd": 234, "rehab": 213.8},
+  {"id": "2022-primates", "year": 2022, "cat": "primates", "entered": 18, "released": 0, "translocated": 0, "yearEnd": 114, "rehab": 124.2},
+  {"id": "2022-mammals", "year": 2022, "cat": "mammals", "entered": 3, "released": 0, "translocated": 0, "yearEnd": 41, "rehab": 41.0},
+  {"id": "2022-reptiles", "year": 2022, "cat": "reptiles", "entered": 47, "released": 2, "translocated": 0, "yearEnd": 48, "rehab": 39.6},
+  {"id": "2022-birds", "year": 2022, "cat": "birds", "entered": 28, "released": 19, "translocated": 0, "yearEnd": 200, "rehab": 213.5},
+  {"id": "2023-primates", "year": 2023, "cat": "primates", "entered": 18, "released": 8, "translocated": 11, "yearEnd": 100, "rehab": 106.8},
+  {"id": "2023-mammals", "year": 2023, "cat": "mammals", "entered": 4, "released": 10, "translocated": 0, "yearEnd": 22, "rehab": 33.4},
+  {"id": "2023-reptiles", "year": 2023, "cat": "reptiles", "entered": 26, "released": 1, "translocated": 0, "yearEnd": 56, "rehab": 47.7},
+  {"id": "2023-birds", "year": 2023, "cat": "birds", "entered": 261, "released": 10, "translocated": 5, "yearEnd": 391, "rehab": 260.8},
+  {"id": "2024-primates", "year": 2024, "cat": "primates", "entered": 4, "released": 1, "translocated": 7, "yearEnd": 82, "rehab": 88.7},
+  {"id": "2024-mammals", "year": 2024, "cat": "mammals", "entered": 2, "released": 0, "translocated": 2, "yearEnd": 32, "rehab": 31.2},
+  {"id": "2024-reptiles", "year": 2024, "cat": "reptiles", "entered": 25, "released": 20, "translocated": 4, "yearEnd": 34, "rehab": 49.3},
+  {"id": "2024-birds", "year": 2024, "cat": "birds", "entered": 42, "released": 11, "translocated": 212, "yearEnd": 104, "rehab": 301.2},
+  {"id": "2025-primates", "year": 2025, "cat": "primates", "entered": 3, "released": 1, "translocated": 0, "yearEnd": 77, "rehab": 79.0},
+  {"id": "2025-mammals", "year": 2025, "cat": "mammals", "entered": 5, "released": 0, "translocated": 0, "yearEnd": 34, "rehab": 33.2},
+  {"id": "2025-reptiles", "year": 2025, "cat": "reptiles", "entered": 10, "released": 5, "translocated": 0, "yearEnd": 28, "rehab": 32.8},
+  {"id": "2025-birds", "year": 2025, "cat": "birds", "entered": 90, "released": 13, "translocated": 4, "yearEnd": 130, "rehab": 130.8},
+  {"id": "2026-primates", "year": 2026, "cat": "primates", "entered": 3, "released": 0, "translocated": 2, "yearEnd": 72, "rehab": 74.4},
+  {"id": "2026-mammals", "year": 2026, "cat": "mammals", "entered": 1, "released": 0, "translocated": 0, "yearEnd": 35, "rehab": 33.9},
+  {"id": "2026-reptiles", "year": 2026, "cat": "reptiles", "entered": 36, "released": 0, "translocated": 2, "yearEnd": 53, "rehab": 32.9},
+  {"id": "2026-birds", "year": 2026, "cat": "birds", "entered": 57, "released": 2, "translocated": 56, "yearEnd": 88, "rehab": 130.0}];
 
 const seedSpecies: WildSpecies[] = [  {"id": "mam-5", "category": "mammals", "name": "Rusa Timor", "latin": "Rusa timorensis", "count": 28},
   {"id": "bir-78", "category": "birds", "name": "Nuri Talaud", "latin": "Eos histrio", "count": 22},
@@ -260,6 +299,7 @@ const seedSpecies: WildSpecies[] = [  {"id": "mam-5", "category": "mammals", "na
 
 export const wildCats: WildCat[] = cmsList<WildCat>("wildlifeCats", seedCats);
 export const wildYears: WildYear[] = cmsList<WildYear>("wildlifeYears", seedYears);
+export const wildFlows: WildFlow[] = cmsList<WildFlow>("wildlifeFlows", seedFlows);
 export const wildSpecies: WildSpecies[] = cmsList<WildSpecies>("wildlifeSpecies", seedSpecies);
 
 export const wildTotals = {

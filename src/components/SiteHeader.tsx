@@ -10,8 +10,9 @@ import { HomeLink } from "./HomeLink";
 import { Logo } from "./Logo";
 import s from "./SiteHeader.module.css";
 
-type Leaf = { key: keyof Common["nav"]; path: string };
-type Item = Leaf & { children?: Leaf[] };
+/** `path` kosong = judul kelompok (bukan tautan). `children` dua tingkat: dipakai "Support our work". */
+type Leaf = { key: keyof Common["nav"]; path?: string; children?: Leaf[] };
+type Item = Leaf & { path: string };
 
 /** Menu utama: Home, Tentang (dropdown), Program (dropdown), Terlibat (dropdown), Kabar. Donasi ada sebagai tombol terpisah. */
 const ITEMS: Item[] = [
@@ -20,9 +21,9 @@ const ITEMS: Item[] = [
     key: "about",
     path: "/about",
     children: [
-      { key: "aboutFounder", path: "/about#founder" },
-      { key: "aboutVision", path: "/about#vision" },
-      { key: "aboutPartners", path: "/about#partners" },
+      { key: "aboutFounder", path: "/about" },
+      { key: "aboutVision", path: "/about/vision" },
+      { key: "aboutPartners", path: "/about/partners" },
     ],
   },
   {
@@ -39,7 +40,13 @@ const ITEMS: Item[] = [
     path: "/get-involved",
     children: [
       { key: "involvedAdopt", path: "/programs/conservation/adopt" },
-      { key: "donate", path: "/support" },
+      {
+        key: "involvedSupport",
+        children: [
+          { key: "involvedDonation", path: "/support" },
+          { key: "involvedMerch", path: "/support/merchandise" },
+        ],
+      },
       { key: "involvedPartner", path: "/get-involved/partner" },
       { key: "involvedVolunteer", path: "/get-involved/volunteer" },
     ],
@@ -153,9 +160,24 @@ export function SiteHeader({ locale, nav }: { locale: Locale; nav: Common["nav"]
                   <ul id={`menu-${item.key}`} className={s.panel} hidden={!expanded}>
                     {item.children.map((child) => (
                       <li key={child.key}>
-                        <Link href={localePath(locale, child.path)} className={s.panelLink} onClick={() => setOpen(null)}>
-                          {nav[child.key]}
-                        </Link>
+                        {child.path ? (
+                          <Link href={localePath(locale, child.path)} className={s.panelLink} onClick={() => setOpen(null)}>
+                            {nav[child.key]}
+                          </Link>
+                        ) : (
+                          <>
+                            <span className={s.panelHeading}>{nav[child.key]}</span>
+                            <ul className={s.panelNested}>
+                              {child.children?.map((sub) => (
+                                <li key={sub.key}>
+                                  <Link href={localePath(locale, sub.path!)} className={s.panelLink} onClick={() => setOpen(null)}>
+                                    {nav[sub.key]}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </>
+                        )}
                       </li>
                     ))}
                   </ul>
@@ -223,9 +245,24 @@ export function SiteHeader({ locale, nav }: { locale: Locale; nav: Common["nav"]
                   <ul className={s.sheetSub}>
                     {item.children.map((child) => (
                       <li key={child.key}>
-                        <Link href={localePath(locale, child.path)} className={s.sheetSubLink} onClick={closeSheet}>
-                          {nav[child.key]}
-                        </Link>
+                        {child.path ? (
+                          <Link href={localePath(locale, child.path)} className={s.sheetSubLink} onClick={closeSheet}>
+                            {nav[child.key]}
+                          </Link>
+                        ) : (
+                          <>
+                            <span className={s.sheetSubHeading}>{nav[child.key]}</span>
+                            <ul className={s.sheetNested}>
+                              {child.children?.map((sub) => (
+                                <li key={sub.key}>
+                                  <Link href={localePath(locale, sub.path!)} className={s.sheetSubLink} onClick={closeSheet}>
+                                    {nav[sub.key]}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </>
+                        )}
                       </li>
                     ))}
                   </ul>

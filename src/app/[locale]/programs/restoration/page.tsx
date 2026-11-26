@@ -4,9 +4,11 @@ import { ExtLink } from "@/components/ExtLink";
 import { Gallery } from "@/components/Gallery";
 import { GiveBand } from "@/components/GiveBand";
 import { HillsideSlider } from "@/components/HillsideSlider";
+import { DroneCompare } from "@/components/DroneCompare";
 import { SiteViews } from "@/components/SiteViews";
 import { Milestones } from "@/components/Milestones";
 import { NewsletterBand } from "@/components/NewsletterBand";
+import { MenuIntro } from "@/components/MenuIntro";
 import { PageHero } from "@/components/PageHero";
 import { Ph } from "@/components/Ph";
 import { Photo } from "@/components/Photo";
@@ -17,6 +19,8 @@ import { StatRow } from "@/components/StatRow";
 import { UpdateItem } from "@/components/UpdateItem";
 import { VillageBars } from "@/components/VillageBars";
 import { common } from "@/content/common";
+import { droneCopy } from "@/content/drone";
+import { droneVideos } from "@/data/drone";
 import { siteViewsCopy } from "@/content/siteviews";
 import { siteViews, siteViewSpot } from "@/data/siteviews";
 import { hillsideCopy } from "@/content/hillside";
@@ -26,7 +30,7 @@ import { tms } from "@/data/media";
 import { giving } from "@/data/organisation";
 import { photos } from "@/data/photos";
 import { restoration, temboan } from "@/data/programs";
-import { site } from "@/data/site";
+import { features, site } from "@/data/site";
 import { updates } from "@/data/updates";
 import { fill, fullDate, monthYear, num, pct } from "@/lib/format";
 import { localePath } from "@/lib/i18n";
@@ -46,6 +50,7 @@ export default async function RestorationPage({ params }: PageProps<"/[locale]/p
   const c = common[locale];
   const h = hillsideCopy[locale];
   const sv = siteViewsCopy[locale];
+  const dr = droneCopy[locale];
   const month = monthYear(temboan.coconut.mapped, locale);
   const hectare = giving.find((g) => g.id === "hectare");
   const items = updates.filter((u) => u.site === "temboan");
@@ -62,6 +67,8 @@ export default async function RestorationPage({ params }: PageProps<"/[locale]/p
       >
         <ProgramTabs locale={locale} current="restoration" />
       </PageHero>
+
+      <MenuIntro locale={locale} id="restoration" />
 
       {/* Pengantar program */}
       <section className="section on-soft" aria-labelledby="intro-title">
@@ -187,6 +194,14 @@ export default async function RestorationPage({ params }: PageProps<"/[locale]/p
         </div>
       </section>
 
+      {/* Pemantauan drone: dua penerbangan berdampingan */}
+      <section className="section on-soft" aria-labelledby="drone-title">
+        <div className="container">
+          <SectionHead id="drone-title" meta={[dr.meta, dr.source]} title={dr.title} lede={dr.body} />
+          <DroneCompare locale={locale} copy={dr} videos={droneVideos} />
+        </div>
+      </section>
+
       {/* Kelapa dan pendapatan lokasi */}
       <section className="section on-light" aria-labelledby="coconut-title">
         <div className="container">
@@ -218,11 +233,13 @@ export default async function RestorationPage({ params }: PageProps<"/[locale]/p
                     <p key={p}>{p}</p>
                   ))}
                 </div>
-                <p>
-                  <Link href={localePath(locale, "/transparency")} className="btn btn--ghost">
-                    {t.income.cta}
-                  </Link>
-                </p>
+                {features.transparency && (
+                  <p>
+                    <Link href={localePath(locale, "/transparency")} className="btn btn--ghost">
+                      {t.income.cta}
+                    </Link>
+                  </p>
+                )}
               </div>
             }
           />
