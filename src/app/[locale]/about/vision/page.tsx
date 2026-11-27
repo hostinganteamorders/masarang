@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Pillars } from "@/components/Pillars";
-import { Rich } from "@/components/Rich";
 import { SectionHead } from "@/components/SectionHead";
 import { VisionBand } from "@/components/VisionBand";
 import { NewsletterBand } from "@/components/NewsletterBand";
@@ -35,60 +34,56 @@ export default async function VisionPage({ params }: PageProps<"/[locale]/about/
       <PageHero
         locale={locale}
         title={t.vision.title}
-        lede={t.vision.statement}
+        lede={t.vision.subheader}
         image={photos.heroes.about}
         crumbs={[{ text: common[locale].nav.about, href: localePath(locale, "/about") }, { text: t.vision.title }]}
       />
 
       {/* Our Vision */}
-      <VisionBand title={t.vision.title} statement={t.vision.statement}>
-        {t.vision.more.map((p) => (
-          <p key={p}>
-            <Rich text={p} />
-          </p>
-        ))}
-      </VisionBand>
+      <VisionBand title={t.vision.ourVision.title} statement={t.vision.ourVision.body} />
 
-      {/* What we do, why we do it */}
-      <section className="section on-light" aria-labelledby="what-title">
+      {/* Why we do it */}
+      <section className="section on-light" aria-labelledby="why-title">
         <div className="container">
-          <SectionHead id="what-title" title={t.what.title} lede={t.what.lede} />
-          <div className="prose" style={{ maxWidth: "46rem", marginBottom: "3rem" }}>
-            {t.what.intro.map((p) => (
-              <p key={p} style={{ fontSize: "1.15rem" }}>
-                {p}
-              </p>
-            ))}
-          </div>
-          <Pillars
-            locale={locale}
-            compact
-            items={t.what.pillars.map((pillar, i) => ({
-              id: pillar.id,
-              marker: `0${i + 1}`,
-              title: pillar.title,
-              body: pillar.body,
-              color: PILLAR_STYLE[pillar.id].color,
-              photo: PILLAR_STYLE[pillar.id].photo,
-            }))}
-          />
-          <div className="prose" style={{ marginTop: "3rem" }}>
-            <p style={{ fontSize: "1.15rem", fontWeight: 600 }}>{t.what.programs.lead}</p>
-            <p style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
-              <Link href={localePath(locale, "/programs/restoration")} className="btn btn--ghost">
-                {t.what.programs.restoration}
-              </Link>
-              <Link href={localePath(locale, "/programs/conservation")} className="btn btn--ghost">
-                {t.what.programs.conservation}
-              </Link>
-              <Link href={localePath(locale, "/programs/education")} className="btn btn--ghost">
-                {t.what.programs.education}
-              </Link>
-            </p>
+          <SectionHead id="why-title" title={t.vision.why.title} />
+          <div className="prose" style={{ maxWidth: "46rem" }}>
+            <p style={{ fontSize: "1.15rem" }}>{t.vision.why.body}</p>
           </div>
         </div>
       </section>
 
+      {/* How we work */}
+      <section className="section on-soft" aria-labelledby="how-title">
+        <div className="container">
+          <SectionHead id="how-title" title={t.vision.how.title} />
+          <Pillars
+            locale={locale}
+            compact
+            items={t.vision.how.pillars.map((pillar) => ({
+              id: pillar.id,
+              title: pillar.title,
+              body: [pillar.body],
+              color: PILLAR_STYLE[pillar.id].color,
+              photo: PILLAR_STYLE[pillar.id].photo,
+            }))}
+          />
+          <p className="prose" style={{ marginTop: "3rem", fontSize: "1.3rem", fontWeight: 600, maxWidth: "46rem" }}>
+            {t.vision.how.closing}
+          </p>
+          <p style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", alignItems: "center", marginTop: "1.5rem" }}>
+            <span style={{ fontWeight: 600 }}>{t.vision.programs.lead}</span>
+            <Link href={localePath(locale, "/programs/restoration")} className="btn btn--ghost">
+              {t.vision.programs.restoration}
+            </Link>
+            <Link href={localePath(locale, "/programs/conservation")} className="btn btn--ghost">
+              {t.vision.programs.conservation}
+            </Link>
+            <Link href={localePath(locale, "/programs/education")} className="btn btn--ghost">
+              {t.vision.programs.education}
+            </Link>
+          </p>
+        </div>
+      </section>
 
       <NewsletterBand locale={locale} />
     </>

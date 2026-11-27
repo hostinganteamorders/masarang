@@ -27,10 +27,13 @@ Setiap halaman ada di `/en/...` dan `/id/...`. Alamat memakai kata Inggris yang 
 
 | Alamat | Isi |
 | --- | --- |
-| `/` | Beranda: salam pembuka, tagline lalu video besar (Aping), angka utama, ringkasan tiga program, update terbaru (Quarterly Report, rincian per program dibuka dengan klik), tombol donasi |
-| `/about` | Pendiri (Dr. Willie Smits), sejarah Masarang, Video Aping |
-| `/about/vision` | Visi, apa dan mengapa (tiga pilar) |
-| `/about/partners` | Mitra, dikelompokkan menurut jenis institusi. Bagian Tim disembunyikan dulu (`features.team` di `src/data/site.ts`) |
+| `/` | Beranda (urutan mengikuti dokumen Home): tagline + video Aping, Perjalanan, tiga pilar dengan angka, Our impact (semua data + unduh Excel), Lokasi Kami, Kabar dari Lapangan (laporan + 3 kabar), Mitra, Ikuti Perjalanan Kami (Instagram), Dukung Pekerjaan Kami |
+| `/about` | Ringkasan: lima kartu ke halaman di bawah |
+| `/about/founder` | Pendiri (Dr. Willie Smits), penghargaan, Video Aping |
+| `/about/story` | Kisah Kami (2001 sampai Titik Tumbuh) |
+| `/about/vision` | Vision & Approach: visi, mengapa, cara kami bekerja (tiga pilar) |
+| `/about/sites` | Lokasi Kami: peta Sulawesi Utara dengan pin bernomor + profil 11 lokasi. Letak pin ada di `src/data/places.ts` (perkiraan wilayah, perbaiki bila ada koordinat resmi) |
+| `/about/partners` | Jaringan Masarang dan mitra (logo, tautan). Bagian Tim disembunyikan dulu (`features.team` di `src/data/site.ts`) | Bagian Tim disembunyikan dulu (`features.team` di `src/data/site.ts`) |
 | `/support` dan `/support/merchandise` | Donasi (rekening, pilihan dukungan) dan Merchandise (produk contoh, pesan lewat WhatsApp). Keduanya ada di menu Terlibat > Support our work |
 | `/en/impact.xlsx`, `/id/impact.xlsx` | Unduhan Excel semua angka "Our impact" di Home (enam lembar) |
 | `/get-involved` | Terlibat: empat cara (adopsi satwa, donasi, jadi mitra, jadi relawan), dengan halaman `/get-involved/partner` dan `/get-involved/volunteer` |
@@ -48,7 +51,7 @@ Struktur ini mengikuti daftar dari tim (Home, About Us, Programs). Alamat lama (
 
 ### Navigasi, salam pembuka, dan pop-up foto
 
-- **Menu**: Home | About Us ▾ (Our Founder, Our Vision, Our Partners) | Programs ▾ (Restoration,
+- **Menu**: Home | About Us ▾ (Our Founder, Our Story, Vision & Approach, Our Sites, Our Partners) | Programs ▾ (Restoration,
   Conservation, Education) | Get involved ▾ (Adopt an animal, Donate, Become a partner, Volunteer) | Updates, ditambah tombol Donate. Susunannya ada di `ITEMS` pada
   `src/components/SiteHeader.tsx`, teks menu di `nav` pada `src/content/common.ts`. Dropdown terbuka dengan hover,
   fokus, atau klik panah; Esc menutup. Di ponsel, submenu ada di dalam lembar menu.
@@ -370,3 +373,11 @@ Dua hal yang sengaja dibuat begitu:
   "hydration mismatch" di mode dev. Bila menambah gambar berumus, ikuti pola yang sama.
 - **`<html data-scroll-behavior="smooth">`** di `src/app/[locale]/layout.tsx` diwajibkan Next 16 karena CSS memakai
   `scroll-behavior: smooth`. Tanpa atribut itu mode dev memberi peringatan, dan pindah halaman ikut bergulir pelan.
+
+
+## Pesan email siap pakai
+
+Tombol Hubungi, Relawan, Mitra, Konfirmasi donasi, Adopsi satwa, Rencanakan kunjungan, dan Berlangganan membuka aplikasi email dengan penerima,
+subjek, dan isi sudah terisi (`mailto:`). Teks EN/ID ada di `src/content/mail.ts` (scope "mail", bisa diedit di Admin > Teks);
+tautannya dibuat oleh `src/lib/mailto.ts`, dan `src/components/MailButton.tsx` menampilkan alamat email sebagai teks biasa di samping
+tombol (tidak semua pengunjung punya aplikasi email). Pada kartu Adopsi, `[animal or category]` otomatis diisi nama satwa.

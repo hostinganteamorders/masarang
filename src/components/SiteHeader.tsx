@@ -21,8 +21,10 @@ const ITEMS: Item[] = [
     key: "about",
     path: "/about",
     children: [
-      { key: "aboutFounder", path: "/about" },
+      { key: "aboutFounder", path: "/about/founder" },
+      { key: "aboutStory", path: "/about/story" },
       { key: "aboutVision", path: "/about/vision" },
+      { key: "aboutSites", path: "/about/sites" },
       { key: "aboutPartners", path: "/about/partners" },
     ],
   },

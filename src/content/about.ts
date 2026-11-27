@@ -1,93 +1,132 @@
 import { cmsText } from "@/cms/apply";
 import type { Locale } from "@/lib/i18n";
 
-/** Halaman Tentang Kami. Teks berkurung siku "[…]" adalah penanda tempat. */
+/** Halaman Tentang Kami (ringkasan + Founder, Story, Vision & Approach, Sites, Partners). Teks berkurung siku "[…]" adalah penanda tempat. */
 const en = {
   meta: {
     title: "About Us",
     description:
-      "Yayasan Masarang restores degraded land, cares for rescued wildlife and runs education programs in North Sulawesi, and publishes the proof.",
+      "Masarang Foundation connects nature conservation with the empowerment of local communities in North Sulawesi. Meet our founder, our story, our approach, our sites and our partners.",
   },
   hero: {
-    title: "We restore land, protect wildlife and teach. We publish the proof.",
-    lede: "Yayasan Masarang is a foundation based in Tomohon, North Sulawesi. Meet our founder and read how Masarang began.",
+    title: "About Us",
+    lede: "Who we are, where we work, and who we work with.",
+  },
+  overview: {
+    title: "Five ways in",
+    lede: "Start anywhere. Each page tells one part of the Masarang story.",
+    open: "Read more",
+    cards: {
+      founder: { title: "Our Founder", body: "Three decades of restoring forests by empowering the people who live alongside them." },
+      story: { title: "Our Story", body: "From one mountain to a movement across North Sulawesi." },
+      vision: { title: "Vision & Approach", body: "Preserving Nature Through the Empowerment of Local People." },
+      sites: { title: "Our Sites", body: "Where our work takes root." },
+      partners: { title: "Our Partners", body: "Working together for people and nature." },
+    },
   },
   founder: {
     title: "Our Founder",
+    subheader: "Three decades of restoring forests by empowering the people who live alongside them.",
     name: "Dr. Willie Smits",
     role: "Founder & Conservation Pioneer",
     bio: [
-      "Dr. Willie Smits is an Indonesian-Dutch forestry engineer, microbiologist, conservationist and social entrepreneur who has dedicated more than three decades to protecting biodiversity and restoring tropical ecosystems.",
-      "His work began in East Kalimantan, where he witnessed firsthand the devastating impact of deforestation and habitat destruction. This inspired him to develop solutions that connect forest conservation with sustainable livelihoods and community empowerment.",
-      "In 1991, he founded the Borneo Orangutan Survival (BOS) Foundation, which grew into one of the world's largest organizations dedicated to orangutan conservation. He later established the Masarang Foundation, pioneering an approach that puts local communities at the heart of nature conservation.",
-      "One of his most remarkable achievements is Samboja Lestari in East Kalimantan, where degraded alang-alang grassland was transformed into a thriving tropical forest, demonstrating that even severely damaged landscapes can recover.",
-      "With a PhD in Tropical Forestry and Soil Science from Wageningen University, Dr. Smits has received international recognition for his contributions to conservation and social entrepreneurship, including an Ashoka Fellowship in 2010.",
-      "Today, his work continues to advance large-scale forest restoration, sustainable resource management and innovative solutions that demonstrate how people and nature can thrive together.",
+      "Dr. Willie Smits is an Indonesian-Dutch forester, microbiologist, conservationist, and social entrepreneur who has spent more than three decades protecting biodiversity and restoring tropical ecosystems.",
+      "His work began in East Kalimantan, where he witnessed firsthand the impact of deforestation. In 1991, he founded the Borneo Orangutan Survival (BOS) Foundation. Through Samboja Lestari, he demonstrated how degraded alang-alang grassland could recover and develop into tropical forest. In 2001, he established Masarang Foundation in North Sulawesi, placing local communities at the heart of conservation efforts.",
+    ],
+    recognitionTitle: "Recognition",
+    recognition: [
+      "PhD, Wageningen University [field of study to be confirmed]",
+      "Ashoka Fellow, 2009",
+      "Bambi Award, 2017/2018, and other awards [to be added once verified]",
     ],
     photoLabel: "Photo of Dr. Willie Smits to be added",
-    history: {
-      title: "The history of Masarang",
-      paragraphs: [
-        "[Founding story. Say when and why the foundation began and what problem it set out to solve.]",
-        "[How the work grew from there: the first site, the first rescued animal, the first partner.]",
-        "[Where the foundation is heading over the next five years.]",
-      ],
-    },
     video: "Video: Aping",
   },
-  vision: {
-    title: "Our Vision",
-    statement: "We preserve nature by empowering people.",
-    more: [
-      "We don't see people and nature as opposing forces. We see them as **part of the same future**.",
-      "Real conservation happens when local communities have the **knowledge, opportunities and ownership** to protect the natural world around them.",
-      "That's the change we want to create. Not just for today, but for **generations to come**.",
+  story: {
+    title: "Our Story",
+    subheader: "From one mountain to a movement across North Sulawesi.",
+    paragraphs: [
+      "Masarang began in 2001 with a simple idea: restore the forests of Mount Masarang, and the water will return. And it did. Reforestation on the slopes above Tomohon helped reduce flooding in the villages below and revive springs that had been dry for decades. Today, five protected springs provide free access to clean water for around 20,000 people.",
+      "As the forests recovered, our work expanded. Restoration efforts extended from Mount Masarang to Pulisan and later to Temboan in 2015. In 2004, we established Pusat Penyelamatan Satwa Tasikoki to rescue and rehabilitate wildlife affected by the illegal wildlife trade. In 2026, the centre was rebranded as Tasikoki Wildlife Centre, with a dedicated focus on the rehabilitation and care of Sulawesi's endemic wildlife. In 2006, we also established a geothermal-powered palm sugar factory in Lahendong, creating sustainable income opportunities for local palm sugar farmers while helping protect standing forests.",
+      "Education grew alongside these efforts, from the establishment of the Walanda Library and Woloan Amphitheater to our collaboration with Institut Teknologi Minaesa. In 2026, the amphitheater evolved into Titik Tumbuh, a space where people can connect, learn about nature, and take part in protecting it.",
+      "Twenty-five years on, our original idea remains unchanged: when local communities are empowered, nature has the opportunity to recover and thrive.",
     ],
+    recognitionTitle: "Recognition",
+    recognition: "BBC World Challenge Finalist (2007) · Sidhakarya Award · Paramakarya Award (2017, together with Pertamina)",
   },
-  what: {
-    title: "What We Do & Why We Do It",
-    lede: "A future where people and nature thrive together.",
-    intro: [
-      "We believe that protecting nature starts with empowering people.",
-      "Indonesia is one of the most biodiverse countries on Earth, home to extraordinary forests, wildlife and ecosystems found nowhere else. From orangutans and Sumatran tigers to thousands of unique plant species, this natural heritage is irreplaceable. Yet, deforestation, habitat destruction and unsustainable resource use continue to threaten it.",
-      "The consequences go far beyond the loss of wildlife. Forest destruction contributes to climate change, threatens freshwater supplies, increases the risk of floods and undermines the livelihoods of communities who depend on nature.",
-      "At Masarang, we don't believe conservation should come at the expense of human development. We believe the two must go hand in hand.",
-      "Our work focuses on three interconnected pillars:",
-    ],
-    pillars: [
-      {
-        id: "nature",
-        title: "Protecting Nature & Restoring Ecosystems",
-        body: [
-          "We protect existing forests, restore degraded landscapes and safeguard endangered wildlife. Through reforestation, habitat restoration and wildlife rehabilitation, we work to bring ecosystems back to life and protect the biodiversity that makes Indonesia so unique.",
-          "But restoration is about more than planting trees. It is about rebuilding healthy, functioning ecosystems that can sustain life for generations to come.",
-        ],
-      },
-      {
-        id: "people",
-        title: "Empowering People & Improving Well-being",
-        body: [
-          "Conservation cannot succeed if local communities are left behind.",
-          "We work alongside local communities to create meaningful livelihood opportunities, improve access to education and strengthen local capacity. By supporting indigenous knowledge, culture and community-led initiatives, we aim to build a future where people have greater opportunities without having to sacrifice the natural environment around them.",
-          "Because thriving communities are essential to thriving ecosystems.",
-        ],
-      },
-      {
-        id: "agriculture",
-        title: "Building Sustainable Agriculture & Livelihoods",
-        body: [
-          "People depend on nature, but the way we produce food and use natural resources matters.",
-          "We promote sustainable agriculture, agroforestry and innovative production methods that work with nature rather than against it. By creating economic value from responsibly managed natural resources, we help communities improve their livelihoods while reducing pressure on forests and ecosystems.",
-          "We also believe education is key to lasting change. Through awareness, knowledge-sharing and hands-on participation, we encourage people to become active stewards of their natural environment.",
-        ],
-      },
-    ],
+  vision: {
+    title: "Vision & Approach",
+    subheader: "Preserving Nature Through the Empowerment of Local People.",
+    ourVision: {
+      title: "Our Vision",
+      body: "People and nature are part of the same future. Conservation lasts when local communities have the knowledge, opportunities, and sense of ownership needed to protect the natural environment around them.",
+    },
+    why: {
+      title: "Why We Do It",
+      body: "North Sulawesi lies within Wallacea, one of the world's most distinctive natural regions. It is home to the black-crested macaque (yaki), tarsiers, and the elusive Sulawesi civet. Its beaches also serve as nesting grounds for five species of sea turtles. Deforestation, the illegal wildlife trade, and unsustainable land use threaten this natural heritage, as well as the communities that depend on healthy forests, water sources, and coastal ecosystems.",
+    },
+    how: {
+      title: "How We Work",
+      pillars: [
+        {
+          id: "nature",
+          title: "Protecting Nature & Restoring Ecosystems",
+          body: "We protect forests, restore degraded land, and rehabilitate rescued wildlife.",
+        },
+        {
+          id: "people",
+          title: "Empowering People & Improving Well-being",
+          body: "We work alongside communities, strengthen local capacity, and respect local knowledge and culture.",
+        },
+        {
+          id: "agriculture",
+          title: "Sustainable Agriculture & Livelihoods",
+          body: "Through agroforestry, palm sugar production, and environmentally responsible practices, we create livelihood opportunities while reducing pressure on forests.",
+        },
+      ],
+      closing: "Lasting change happens when people are empowered to become active stewards of nature.",
+    },
     programs: {
       lead: "These pillars are carried out through three programs:",
       restoration: "Restoration",
       conservation: "Conservation",
       education: "Education",
     },
+  },
+  sites: {
+    title: "Our Sites",
+    subheader: "Where our work takes root.",
+    lede: "From mountain forests to turtle-nesting beaches, each site plays a distinct role in our restoration, conservation, and education efforts.",
+    mapTitle: "North Sulawesi",
+    mapNote: "Pins mark the general area of each site, not exact positions.",
+    mapLabel: "Map of North Sulawesi with the Masarang sites",
+    profilesTitle: "Site profiles",
+    associated: "Associated site",
+    programTag: { restoration: "Restoration", conservation: "Conservation", education: "Education", livelihood: "Livelihood" },
+    seeProgram: "See the program",
+    sources: "Data come from the Masarang Pocket Book. Temboan data have been confirmed by the team.",
+    profiles: [
+      { id: "masarang", name: "Mount Masarang, Tomohon", program: "conservation", body: "325 ha reforested, with more than 100 tree species; also serves as a pre-release site for rescued yaki." },
+      { id: "springs", name: "Protected Springs, Tomohon", program: "conservation", body: "Five protected springs providing clean water to around 20,000 people." },
+      { id: "temboan", name: "Temboan, Minahasa", program: "restoration", body: "736 ha under conservation and more than 70 ha restored, with 4 km of coastline." },
+      { id: "pulisan", name: "Pulisan", program: "conservation", body: "65 ha of agroforestry featuring sugar palms and fruit trees; also home to around 100 crested macaques." },
+      { id: "kayuwatu", name: "Kayuwatu & Mahembang", program: "restoration", body: "More than 10 ha under restoration." },
+      { id: "boltim", name: "Bolaang Mongondow Timur (Boltim)", program: "conservation", body: "Protected forest [area to be provided by Billy & Brando].", ph: true },
+      { id: "tasikoki", name: "Tasikoki Wildlife Centre, North Minahasa", program: "conservation", body: "Established in 2004, the centre focuses on wildlife rescue and rehabilitation, with around 400 animals currently under its care." },
+      { id: "tulap", name: "Tulap, Minahasa", program: "conservation", body: "A 14 ha sea turtle nesting area where five species of sea turtles nest. Around 20,000 hatchlings are released each year." },
+      { id: "salimburung", name: "Salimburung Island", program: "conservation", associated: true, body: "A 6 ha island reserve managed under a 25-year agreement." },
+      { id: "lahendong", name: "Palm Sugar Factory, Lahendong", program: "livelihood", associated: true, body: "Geothermal-powered palm sugar production facility operating since 2006." },
+      { id: "titik", name: "Titik Tumbuh, Tomohon", program: "education", body: "Home to Masarang Foundation's headquarters, the Walanda Library, and the Woloan Amphitheater." },
+    ],
+  },
+  partners: {
+    title: "Our Partners",
+    subheader: "Working together for people and nature.",
+    lede: "Protecting nature and empowering communities require collaboration. We work with organizations, institutions, and companies that share our commitment to strengthening our programs, exchanging knowledge, and creating meaningful opportunities for collective action. Select a logo or name to visit the partner's website.",
+    networkTitle: "Our Network",
+    partnersTitle: "Partners",
+    closing: "Interested in working together? Discover how you can become part of our work.",
+    cta: "Become a Partner",
   },
   team: {
     title: "Our Team",
@@ -100,10 +139,6 @@ const en = {
     },
     cta: "See the full team",
   },
-  partners: {
-    title: "Our Partners",
-    lede: "The institutions we work with, from funders to government bodies. Select a logo or name to visit the partner's website.",
-  },
   account: {
     title: "How we hold ourselves to account",
     cta: "Open the transparency page",
@@ -114,88 +149,127 @@ const id: typeof en = {
   meta: {
     title: "Tentang Kami",
     description:
-      "Yayasan Masarang memulihkan lahan kritis, merawat satwa sitaan, dan menjalankan program edukasi di Sulawesi Utara, dan menerbitkan buktinya.",
+      "Yayasan Masarang menghubungkan pelestarian alam dengan pemberdayaan masyarakat lokal di Sulawesi Utara. Kenali pendiri, kisah, pendekatan, lokasi, dan mitra kami.",
   },
   hero: {
-    title: "Kami memulihkan lahan, melindungi satwa, dan mengajar. Kami menerbitkan buktinya.",
-    lede: "Yayasan Masarang adalah yayasan yang berpusat di Tomohon, Sulawesi Utara. Kenali pendiri kami dan baca bagaimana Masarang bermula.",
+    title: "Tentang Kami",
+    lede: "Siapa kami, di mana kami bekerja, dan dengan siapa kami berkolaborasi.",
+  },
+  overview: {
+    title: "Lima pintu masuk",
+    lede: "Mulai dari mana saja. Tiap halaman menceritakan satu bagian kisah Masarang.",
+    open: "Baca selengkapnya",
+    cards: {
+      founder: { title: "Pendiri Kami", body: "Tiga dekade memulihkan hutan melalui pemberdayaan masyarakat yang hidup berdampingan dengannya." },
+      story: { title: "Kisah Kami", body: "Dari satu gunung menjadi gerakan di Sulawesi Utara." },
+      vision: { title: "Visi & Pendekatan", body: "Melestarikan Alam melalui Pemberdayaan Masyarakat Lokal." },
+      sites: { title: "Lokasi Kami", body: "Tempat di mana upaya kami berakar dan bertumbuh." },
+      partners: { title: "Mitra Kami", body: "Bekerja bersama untuk manusia dan alam." },
+    },
   },
   founder: {
     title: "Pendiri Kami",
+    subheader: "Tiga dekade memulihkan hutan melalui pemberdayaan masyarakat yang hidup berdampingan dengannya.",
     name: "Dr. Willie Smits",
     role: "Pendiri & Perintis Konservasi",
     bio: [
-      "Dr. Willie Smits adalah insinyur kehutanan, ahli mikrobiologi, konservasionis, dan wirausahawan sosial berkebangsaan Indonesia-Belanda yang lebih dari tiga dekade mengabdikan diri untuk melindungi keanekaragaman hayati dan memulihkan ekosistem tropis.",
-      "Karyanya dimulai di Kalimantan Timur, tempat ia menyaksikan langsung dampak buruk deforestasi dan kerusakan habitat. Hal ini mendorongnya mengembangkan solusi yang menghubungkan pelestarian hutan dengan mata pencaharian yang berkelanjutan dan pemberdayaan masyarakat.",
-      "Pada 1991, ia mendirikan Yayasan Borneo Orangutan Survival (BOS) yang tumbuh menjadi salah satu organisasi terbesar di dunia yang berfokus pada pelestarian orangutan. Kemudian ia mendirikan Yayasan Masarang, yang memelopori pendekatan yang menempatkan masyarakat lokal di jantung pelestarian alam.",
-      "Salah satu pencapaiannya yang paling luar biasa adalah Samboja Lestari di Kalimantan Timur, tempat padang alang-alang yang rusak diubah menjadi hutan tropis yang subur, membuktikan bahwa lanskap yang rusak parah pun dapat pulih.",
-      "Bergelar PhD di bidang Kehutanan Tropis dan Ilmu Tanah dari Universitas Wageningen, Dr. Smits menerima pengakuan internasional atas kontribusinya bagi konservasi dan kewirausahaan sosial, termasuk Ashoka Fellowship pada 2010.",
-      "Kini, karyanya terus memajukan restorasi hutan berskala besar, pengelolaan sumber daya yang berkelanjutan, dan solusi inovatif yang menunjukkan bahwa manusia dan alam dapat tumbuh bersama.",
+      "Dr. Willie Smits adalah ahli kehutanan, mikrobiolog, konservasionis, dan wirausahawan sosial berkebangsaan Indonesia-Belanda yang telah mengabdikan lebih dari tiga dekade untuk melindungi keanekaragaman hayati dan memulihkan ekosistem tropis.",
+      "Perjalanannya dimulai di Kalimantan Timur, ketika ia menyaksikan secara langsung dampak deforestasi. Pada tahun 1991, ia mendirikan Borneo Orangutan Survival (BOS) Foundation. Melalui Samboja Lestari, ia menunjukkan bahwa padang alang-alang yang terdegradasi dapat pulih dan berkembang menjadi hutan tropis. Pada tahun 2001, ia mendirikan Yayasan Masarang di Sulawesi Utara dengan menempatkan masyarakat lokal sebagai bagian utama dalam upaya konservasi.",
+    ],
+    recognitionTitle: "Penghargaan",
+    recognition: [
+      "PhD, Wageningen University [bidang studi akan dikonfirmasi]",
+      "Ashoka Fellow, 2009",
+      "Bambi Award, 2017/2018, dan penghargaan lainnya [ditambahkan setelah diverifikasi]",
     ],
     photoLabel: "Foto Dr. Willie Smits akan ditambahkan",
-    history: {
-      title: "Sejarah Masarang",
-      paragraphs: [
-        "[Kisah pendirian. Sebutkan kapan dan mengapa yayasan ini dimulai, dan masalah apa yang ingin diselesaikan.]",
-        "[Bagaimana kerja ini tumbuh: lokasi pertama, satwa pertama yang diselamatkan, mitra pertama.]",
-        "[Arah yayasan dalam lima tahun ke depan.]",
-      ],
-    },
     video: "Video: Aping",
   },
-  vision: {
-    title: "Visi Kami",
-    statement: "Kami melestarikan alam dengan memberdayakan manusia.",
-    more: [
-      "Kami tidak memandang manusia dan alam sebagai dua kekuatan yang berlawanan. Kami melihat keduanya sebagai **bagian dari masa depan yang sama**.",
-      "Konservasi sejati terjadi ketika masyarakat lokal memiliki **pengetahuan, kesempatan, dan rasa memiliki** untuk melindungi alam di sekitar mereka.",
-      "Itulah perubahan yang ingin kami wujudkan. Bukan hanya untuk hari ini, tetapi untuk **generasi mendatang**.",
+  story: {
+    title: "Kisah Kami",
+    subheader: "Dari satu gunung menjadi gerakan di Sulawesi Utara.",
+    paragraphs: [
+      "Masarang berawal pada tahun 2001 dari sebuah gagasan sederhana: pulihkan hutan di Gunung Masarang, maka air akan kembali. Dan hal itu terbukti. Reboisasi di lereng Gunung Masarang yang berada di atas Kota Tomohon membantu mengurangi banjir di desa-desa di bawahnya serta memulihkan mata air yang telah mengering selama puluhan tahun. Kini, lima mata air yang dilindungi menyediakan akses air bersih secara gratis bagi sekitar 20.000 warga.",
+      "Seiring dengan pulihnya hutan, cakupan pekerjaan kami pun berkembang. Upaya restorasi meluas dari Gunung Masarang ke Pulisan, kemudian ke Temboan pada tahun 2015. Pada tahun 2004, kami mendirikan Pusat Penyelamatan Satwa Tasikoki untuk menyelamatkan dan merehabilitasi satwa yang terdampak perdagangan satwa liar ilegal. Pada tahun 2026, pusat ini melakukan rebranding menjadi Tasikoki Wildlife Centre, dengan fokus khusus pada rehabilitasi dan perawatan satwa endemik Sulawesi. Pada tahun 2006, kami juga mendirikan pabrik gula aren bertenaga panas bumi di Lahendong, yang membuka peluang penghasilan berkelanjutan bagi petani aren lokal sekaligus mendukung upaya menjaga kelestarian hutan.",
+      "Seiring dengan perkembangan tersebut, edukasi juga menjadi bagian penting dari perjalanan kami, mulai dari pendirian Perpustakaan Walanda dan Amfiteater Woloan hingga kerja sama dengan Institut Teknologi Minaesa. Pada tahun 2026, amfiteater tersebut berkembang menjadi Titik Tumbuh, sebuah ruang bagi masyarakat untuk saling terhubung, belajar tentang alam, dan terlibat dalam upaya melindunginya.",
+      "Dua puluh lima tahun berlalu, gagasan awal kami tetap sama: ketika masyarakat lokal berdaya, alam memiliki kesempatan untuk pulih dan berkembang.",
     ],
+    recognitionTitle: "Penghargaan",
+    recognition: "Finalis BBC World Challenge (2007) · Sidhakarya Award · Paramakarya Award (2017, bersama Pertamina)",
   },
-  what: {
-    title: "Apa yang Kami Kerjakan dan Mengapa",
-    lede: "Masa depan tempat manusia dan alam tumbuh bersama.",
-    intro: [
-      "Kami percaya bahwa melindungi alam dimulai dengan memberdayakan manusia.",
-      "Indonesia adalah salah satu negara dengan keanekaragaman hayati terkaya di Bumi, rumah bagi hutan, satwa, dan ekosistem luar biasa yang tidak ditemukan di tempat lain. Dari orangutan dan harimau Sumatra hingga ribuan spesies tumbuhan unik, warisan alam ini tidak tergantikan. Namun deforestasi, perusakan habitat, dan pemanfaatan sumber daya yang tidak berkelanjutan terus mengancamnya.",
-      "Dampaknya jauh melampaui hilangnya satwa. Kerusakan hutan memperburuk perubahan iklim, mengancam pasokan air tawar, meningkatkan risiko banjir, dan merusak mata pencaharian masyarakat yang bergantung pada alam.",
-      "Di Masarang, kami tidak percaya konservasi harus mengorbankan pembangunan manusia. Kami percaya keduanya harus berjalan beriringan.",
-      "Pekerjaan kami berfokus pada tiga pilar yang saling terhubung:",
-    ],
-    pillars: [
-      {
-        id: "nature",
-        title: "Melindungi Alam & Memulihkan Ekosistem",
-        body: [
-          "Kami melindungi hutan yang masih ada, memulihkan lanskap yang rusak, dan menjaga satwa terancam punah. Melalui penghijauan, pemulihan habitat, dan rehabilitasi satwa, kami berupaya menghidupkan kembali ekosistem dan melindungi keanekaragaman hayati yang membuat Indonesia begitu istimewa.",
-          "Namun restorasi lebih dari sekadar menanam pohon. Restorasi berarti membangun kembali ekosistem yang sehat dan berfungsi, yang dapat menopang kehidupan bagi generasi mendatang.",
-        ],
-      },
-      {
-        id: "people",
-        title: "Memberdayakan Masyarakat & Meningkatkan Kesejahteraan",
-        body: [
-          "Konservasi tidak akan berhasil jika masyarakat lokal tertinggal.",
-          "Kami bekerja berdampingan dengan masyarakat lokal untuk menciptakan peluang mata pencaharian yang bermakna, memperluas akses pendidikan, dan memperkuat kapasitas lokal. Dengan mendukung pengetahuan adat, budaya, dan inisiatif yang digerakkan masyarakat, kami ingin membangun masa depan yang memberi manusia lebih banyak peluang tanpa harus mengorbankan lingkungan alam di sekitarnya.",
-          "Karena masyarakat yang sejahtera adalah syarat bagi ekosistem yang sehat.",
-        ],
-      },
-      {
-        id: "agriculture",
-        title: "Membangun Pertanian & Mata Pencaharian yang Berkelanjutan",
-        body: [
-          "Manusia bergantung pada alam, tetapi cara kita memproduksi pangan dan memanfaatkan sumber daya alam sangat menentukan.",
-          "Kami mendorong pertanian berkelanjutan, agroforestri, dan metode produksi inovatif yang bekerja bersama alam, bukan melawannya. Dengan menciptakan nilai ekonomi dari sumber daya alam yang dikelola secara bertanggung jawab, kami membantu masyarakat meningkatkan mata pencaharian sekaligus mengurangi tekanan pada hutan dan ekosistem.",
-          "Kami juga percaya pendidikan adalah kunci perubahan yang bertahan lama. Melalui kesadaran, berbagi pengetahuan, dan partisipasi langsung, kami mendorong orang menjadi penjaga aktif lingkungan alam mereka.",
-        ],
-      },
-    ],
+  vision: {
+    title: "Visi & Pendekatan",
+    subheader: "Melestarikan Alam melalui Pemberdayaan Masyarakat Lokal.",
+    ourVision: {
+      title: "Visi Kami",
+      body: "Manusia dan alam merupakan bagian dari masa depan yang sama. Upaya pelestarian alam akan berkelanjutan ketika masyarakat lokal memiliki pengetahuan, kesempatan, dan rasa memiliki untuk menjaga lingkungan di sekitarnya.",
+    },
+    why: {
+      title: "Mengapa Kami Melakukannya",
+      body: "Sulawesi Utara berada di kawasan Wallacea, salah satu wilayah dengan keunikan alam yang luar biasa di dunia. Kawasan ini merupakan habitat bagi yaki (monyet hitam Sulawesi), tarsius, dan musang Sulawesi yang sulit dijumpai. Pantai-pantainya juga menjadi tempat bertelur bagi lima jenis penyu. Deforestasi, perdagangan satwa liar ilegal, dan pemanfaatan lahan yang tidak berkelanjutan mengancam kekayaan alam ini, sekaligus masyarakat yang bergantung pada kelestarian hutan, sumber air, dan ekosistem pesisir.",
+    },
+    how: {
+      title: "Cara Kami Bekerja",
+      pillars: [
+        {
+          id: "nature",
+          title: "Melindungi Alam & Memulihkan Ekosistem",
+          body: "Kami melindungi hutan, memulihkan lahan yang terdegradasi, dan merehabilitasi satwa yang diselamatkan.",
+        },
+        {
+          id: "people",
+          title: "Memberdayakan Masyarakat & Meningkatkan Kesejahteraan",
+          body: "Kami bekerja bersama masyarakat, memperkuat kapasitas lokal, serta menghargai pengetahuan dan budaya setempat.",
+        },
+        {
+          id: "agriculture",
+          title: "Pertanian & Penghidupan Berkelanjutan",
+          body: "Melalui agroforestri, produksi gula aren, dan praktik pengelolaan yang ramah lingkungan, kami menciptakan peluang mata pencaharian sekaligus mengurangi tekanan terhadap hutan.",
+        },
+      ],
+      closing: "Perubahan yang berkelanjutan terwujud ketika masyarakat berdaya dan mampu berperan aktif dalam menjaga alam.",
+    },
     programs: {
       lead: "Pilar-pilar ini dijalankan lewat tiga program:",
       restoration: "Restorasi",
       conservation: "Konservasi",
       education: "Edukasi",
     },
+  },
+  sites: {
+    title: "Lokasi Kami",
+    subheader: "Tempat di mana upaya kami berakar dan bertumbuh.",
+    lede: "Dari hutan pegunungan hingga pantai tempat penyu bertelur, setiap lokasi memiliki peran tersendiri dalam mendukung upaya restorasi, konservasi, dan edukasi kami.",
+    mapTitle: "Sulawesi Utara",
+    mapNote: "Pin menandai wilayah umum tiap lokasi, bukan posisi tepat.",
+    mapLabel: "Peta Sulawesi Utara dengan lokasi-lokasi Masarang",
+    profilesTitle: "Profil lokasi",
+    associated: "Lokasi terkait",
+    programTag: { restoration: "Restorasi", conservation: "Konservasi", education: "Edukasi", livelihood: "Mata pencaharian" },
+    seeProgram: "Lihat programnya",
+    sources: "Data bersumber dari Masarang Pocket Book. Data Temboan telah dikonfirmasi oleh tim.",
+    profiles: [
+      { id: "masarang", name: "Gunung Masarang, Tomohon", program: "conservation", body: "325 ha telah direforestasi dengan lebih dari 100 jenis pohon; juga menjadi lokasi pra-pelepasliaran yaki yang diselamatkan." },
+      { id: "springs", name: "Mata Air yang Dilindungi, Tomohon", program: "conservation", body: "Lima mata air yang dilindungi dan menyediakan air bersih bagi sekitar 20.000 warga." },
+      { id: "temboan", name: "Temboan, Minahasa", program: "restoration", body: "Sebanyak 736 ha berada dalam kawasan konservasi dan lebih dari 70 ha telah direstorasi, dengan panjang garis pantai mencapai 4 km." },
+      { id: "pulisan", name: "Pulisan", program: "conservation", body: "Kawasan agroforestri seluas 65 ha yang ditanami pohon aren dan berbagai jenis pohon buah; juga merupakan habitat bagi sekitar 100 ekor yaki." },
+      { id: "kayuwatu", name: "Kayuwatu & Mahembang", program: "restoration", body: "Lebih dari 10 ha lahan dalam proses restorasi." },
+      { id: "boltim", name: "Bolaang Mongondow Timur (Boltim)", program: "conservation", body: "Kawasan hutan lindung [luas area akan dilengkapi oleh Billy & Brando].", ph: true },
+      { id: "tasikoki", name: "Tasikoki Wildlife Centre, Minahasa Utara", program: "conservation", body: "Didirikan pada tahun 2004, pusat ini berfokus pada penyelamatan dan rehabilitasi satwa, dengan sekitar 400 satwa yang saat ini berada dalam perawatan." },
+      { id: "tulap", name: "Tulap, Minahasa", program: "conservation", body: "Kawasan pantai peneluran penyu seluas 14 ha, tempat lima jenis penyu bertelur. Sekitar 20.000 tukik dilepasliarkan setiap tahun." },
+      { id: "salimburung", name: "Pulau Salimburung", program: "conservation", associated: true, body: "Kawasan konservasi pulau seluas 6 ha yang dikelola berdasarkan perjanjian kerja sama selama 25 tahun." },
+      { id: "lahendong", name: "Pabrik Gula Aren, Lahendong", program: "livelihood", associated: true, body: "Fasilitas produksi gula aren yang menggunakan energi panas bumi dan telah beroperasi sejak tahun 2006." },
+      { id: "titik", name: "Titik Tumbuh, Tomohon", program: "education", body: "Lokasi kantor pusat Yayasan Masarang, Perpustakaan Walanda, dan Amfiteater Woloan." },
+    ],
+  },
+  partners: {
+    title: "Mitra Kami",
+    subheader: "Bekerja bersama untuk manusia dan alam.",
+    lede: "Melindungi alam dan memberdayakan masyarakat membutuhkan kolaborasi. Kami bekerja bersama berbagai organisasi, institusi, dan perusahaan yang memiliki komitmen serupa untuk memperkuat program, berbagi pengetahuan, dan menciptakan peluang kolaborasi yang bermakna. Pilih logo atau nama untuk mengunjungi situs mitra.",
+    networkTitle: "Jaringan Kami",
+    partnersTitle: "Mitra",
+    closing: "Tertarik untuk berkolaborasi? Temukan berbagai cara untuk menjadi bagian dari upaya kami.",
+    cta: "Jadi Mitra",
   },
   team: {
     title: "Tim Kami",
@@ -207,10 +281,6 @@ const id: typeof en = {
       deputy: "Deputi",
     },
     cta: "Lihat tim lengkap",
-  },
-  partners: {
-    title: "Mitra Kami",
-    lede: "Institusi yang bekerja bersama kami, dari lembaga pendana hingga instansi pemerintah. Pilih logo atau nama untuk mengunjungi situs mitra.",
   },
   account: {
     title: "Cara kami bertanggung jawab",

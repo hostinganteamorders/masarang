@@ -14,15 +14,16 @@ import { RescuedChart } from "@/components/RescuedChart";
 import { SectionHead } from "@/components/SectionHead";
 import { Split } from "@/components/Split";
 import { StatRow } from "@/components/StatRow";
+import { Steps } from "@/components/Steps";
 import { UpdateItem } from "@/components/UpdateItem";
 import { adoptCopy } from "@/content/adopt";
 import { common } from "@/content/common";
 import { programsCopy } from "@/content/programs";
 import { supportCopy } from "@/content/support";
-import { wildlifeAsOf } from "@/data/wildlife";
+import { wildFlows, wildTotals, wildlifeAsOf } from "@/data/wildlife";
 import { sponsorFrom } from "@/data/organisation";
 import { photos } from "@/data/photos";
-import { forestProtection, tasikoki } from "@/data/programs";
+import { forestProtection, homeImpact, tasikoki } from "@/data/programs";
 import { site } from "@/data/site";
 import { updates } from "@/data/updates";
 import { fill, fullDate, idrAuto, monthYear, num } from "@/lib/format";
@@ -45,6 +46,8 @@ export default async function ConservationPage({ params }: PageProps<"/[locale]/
   const a = adoptCopy[locale];
   const items = updates.filter((u) => u.site === "tasikoki");
   const turtle = tasikoki.milestones.filter((m) => m.id !== "waste");
+  const flowEntered = wildFlows.reduce((n, f) => n + f.entered, 0);
+  const flowReleased = wildFlows.reduce((n, f) => n + f.released + f.translocated, 0);
 
   return (
     <>
@@ -98,14 +101,44 @@ export default async function ConservationPage({ params }: PageProps<"/[locale]/
           <div style={{ marginTop: "3rem" }}>
             <StatRow
               stats={[
-                { label: t.tasikoki.inCare, value: num(tasikoki.inCare.v, locale), ph: tasikoki.inCare.ph },
-                { label: t.tasikoki.translocated, value: tasikoki.translocated.v, ph: tasikoki.translocated.ph },
-                { label: t.tasikoki.released, value: num(tasikoki.released.v, locale), ph: tasikoki.released.ph },
+                { label: t.tasikoki.inCare, value: num(wildTotals.inCare, locale) },
+                { label: t.tasikoki.entered, value: num(flowEntered, locale) },
+                { label: t.tasikoki.released, value: num(flowReleased, locale) },
               ]}
             />
             <p className="meta" style={{ marginTop: "1.25rem" }}>
-              <span>{fill(c.labels.asOf, { date: fullDate(site.lastUpdated, locale) })}</span>
+              <span>{fill(c.labels.asOf, { date: monthYear(wildlifeAsOf, locale) })}</span>
               <span>{fill(c.labels.source, { source: t.chart.source })}</span>
+            </p>
+          </div>
+
+          <div style={{ marginTop: "3.5rem" }}>
+            <h3 className="title-md" style={{ marginBottom: "1.5rem", fontSize: "clamp(1.8rem, 1.3rem + 1.6vw, 2.6rem)" }}>
+              {t.tasikoki.journeyTitle}
+            </h3>
+            <Steps steps={t.tasikoki.journey} />
+          </div>
+
+          <div className="prose" style={{ maxWidth: "46rem", marginTop: "3rem" }}>
+            {t.tasikoki.after.map((p) => (
+              <p key={p} style={{ fontSize: "1.1rem" }}>
+                {p}
+              </p>
+            ))}
+            <p style={{ fontSize: "1.1rem" }}>
+              {fill(t.tasikoki.numbers, {
+                entered: num(flowEntered, locale),
+                species: num(homeImpact.speciesRescued.v, locale),
+                released: num(flowReleased, locale),
+                inCare: num(wildTotals.inCare, locale),
+                date: monthYear(wildlifeAsOf, locale),
+              })}
+            </p>
+            <p style={{ fontSize: "1.1rem" }}>
+              {t.tasikoki.adoptLead}{" "}
+              <Link href={localePath(locale, "/programs/conservation/adopt")} className="btn btn--ghost">
+                {t.tasikoki.adoptCta}
+              </Link>
             </p>
           </div>
         </div>
@@ -147,7 +180,11 @@ export default async function ConservationPage({ params }: PageProps<"/[locale]/
                 <h2 id="turtle-title" className="title-md">
                   {t.turtle.title}
                 </h2>
-                <p className="lede">{t.turtle.body}</p>
+                {t.turtle.body.map((p) => (
+                  <p key={p} className="lede">
+                    {p}
+                  </p>
+                ))}
                 <p>
                   <Ph on>{t.turtle.adopt}</Ph>
                 </p>

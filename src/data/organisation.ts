@@ -127,30 +127,62 @@ export const principles: { id: string; title: L10n; body: L10n }[] = [
 /* ---------------- Mitra ---------------- */
 
 /** `url` kosong = alamat web mitra belum diisi (tautan baru muncul setelah diisi). */
-export type PartnerKind = "government" | "research" | "funder" | "corporate" | "community";
+export type PartnerKind = "network" | "partner" | "government" | "research" | "funder" | "corporate" | "community";
 
 export type Partner = { id: string; name: string; /** Jenis institusi. */ kind: PartnerKind; role: L10n; url?: string; /** Berkas logo, mis. /partners/trees-for-all.svg. Kosong = kotak kosong berlabel nama mitra. */ logo?: string };
 
 export const partners: Partner[] = cmsList<Partner>("partners", [
   {
+    id: "masarang-eu",
+    kind: "network",
+    name: "Masarang EU",
+    role: { en: "Masarang network, Europe", id: "Jaringan Masarang, Eropa" },
+  },
+  {
+    id: "the-most-sustainable",
+    kind: "network",
+    name: "The Most Sustainable (PT Gunung Hijau Masarang)",
+    url: "https://www.themostsustainable.com",
+    role: { en: "Sustainable palm sugar and farmer partnership", id: "Gula aren berkelanjutan dan kemitraan petani" },
+  },
+  {
     id: "trees-for-all",
-    kind: "funder",
-    name: "Trees for All",
+    kind: "partner",
+    name: "Trees For All",
     url: "https://www.treesforall.nl",
     role: { en: "Restoration funding, Netherlands", id: "Pendanaan restorasi, Belanda" },
   },
   {
-    id: "thryve",
-    kind: "funder",
-    name: "Thryve.Earth",
-    role: { en: "Restoration partnership, Singapore", id: "Kemitraan restorasi, Singapura" },
+    id: "aquazoo",
+    kind: "partner",
+    name: "Aquazoo Löbbecke Museum Düsseldorf",
+    role: { en: "Museum and zoo, Germany", id: "Museum dan kebun binatang, Jerman" },
+  },
+  {
+    id: "world-parrot-trust",
+    kind: "partner",
+    name: "World Parrot Trust",
+    url: "https://www.parrots.org",
+    role: { en: "Parrot conservation and release partner", id: "Mitra konservasi dan pelepasliaran burung paruh bengkok" },
   },
   {
     id: "pge",
-    kind: "corporate",
-    name: "Pertamina Geothermal Energy",
+    kind: "partner",
+    name: "PT Pertamina Geothermal Energy Tbk, Area Lahendong",
     url: "https://www.pge.pertamina.com",
     role: { en: "Geothermal palm sugar processing", id: "Pengolahan gula aren panas bumi" },
+  },
+  {
+    id: "pertamina-patra-niaga",
+    kind: "partner",
+    name: "PT Pertamina Patra Niaga Regional Sulawesi, Integrated Terminal Bitung",
+    role: { en: "Corporate partner", id: "Mitra perusahaan" },
+  },
+  {
+    id: "itm",
+    kind: "partner",
+    name: "Institut Teknologi Minaesa (ITM)",
+    role: { en: "Education partner", id: "Mitra pendidikan" },
   },
 ]);
 

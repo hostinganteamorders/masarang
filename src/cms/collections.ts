@@ -109,11 +109,11 @@ export const COLLECTIONS: CollectionDef[] = [
     titleKey: "name",
     addLabel: "Tambah mitra",
     maxItems: 40,
-    blank: () => ({ name: "", kind: "corporate", role: l(), url: "", logo: "" }),
+    blank: () => ({ name: "", kind: "partner", role: l(), url: "", logo: "" }),
     idFrom: (i) => slug(str(i.name)) || "mitra",
     fields: [
       { key: "name", label: "Nama mitra", type: "text", required: true, max: 120 },
-      { key: "kind", label: "Jenis institusi", type: "select", required: true, options: [{ value: "government", label: "Instansi pemerintah" }, { value: "research", label: "Perguruan tinggi / lembaga riset" }, { value: "funder", label: "Lembaga pendana / yayasan" }, { value: "corporate", label: "Perusahaan" }, { value: "community", label: "Organisasi masyarakat / sipil" }] },
+      { key: "kind", label: "Jenis institusi", type: "select", required: true, options: [{ value: "network", label: "Jaringan Masarang" }, { value: "partner", label: "Mitra" }, { value: "government", label: "Instansi pemerintah" }, { value: "research", label: "Perguruan tinggi / lembaga riset" }, { value: "funder", label: "Lembaga pendana / yayasan" }, { value: "corporate", label: "Perusahaan" }, { value: "community", label: "Organisasi masyarakat / sipil" }] },
       { key: "role", label: "Peran mitra", type: "text", l10n: true, required: true },
       { key: "url", label: "Alamat situs mitra", type: "url", help: "Kosong = kotak tidak jadi tautan." },
       { key: "logo", label: "Logo (PNG atau JPEG)", type: "image", help: "Latar transparan lebih baik (PNG). Kosong = kotak bertuliskan nama mitra." },

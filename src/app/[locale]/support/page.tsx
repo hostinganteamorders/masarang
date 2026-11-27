@@ -4,6 +4,7 @@ import { BankCard } from "@/components/BankCard";
 import { GiveBand } from "@/components/GiveBand";
 import { GivingCards } from "@/components/GivingCards";
 import { NewsletterBand } from "@/components/NewsletterBand";
+import { MailButton } from "@/components/MailButton";
 import { PageHero } from "@/components/PageHero";
 import { Ph } from "@/components/Ph";
 import { Pillars } from "@/components/Pillars";
@@ -22,11 +23,6 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/support"
   const locale = await resolveLocale(params);
   return pageMetadata(locale, "/support", supportCopy[locale].meta);
 }
-
-const mail = (subject: string, body?: string) =>
-  `mailto:${site.email.v}?subject=${encodeURIComponent(subject)}${
-    body ? `&body=${encodeURIComponent(body)}` : ""
-  }`;
 
 export default async function SupportPage({ params }: PageProps<"/[locale]/support">) {
   const locale = await resolveLocale(params);
@@ -95,9 +91,9 @@ export default async function SupportPage({ params }: PageProps<"/[locale]/suppo
                         <Ph on>{t.bank.tell.wa.soon}</Ph>
                       </span>
                     )}
-                    <a href={mail(t.bank.tell.subject, t.bank.tell.message)} className="btn btn--ghost">
+                    <MailButton locale={locale} mail="donation" ghost>
                       {t.bank.tell.cta}
-                    </a>
+                    </MailButton>
                   </div>
                 </div>
               </div>
@@ -143,9 +139,9 @@ export default async function SupportPage({ params }: PageProps<"/[locale]/suppo
             right={
               <div style={{ display: "grid", gap: "1.25rem", justifyItems: "start" }}>
                 <p className="lede">{t.partners.body}</p>
-                <a href={mail(t.partners.subject)} className="btn">
+                <MailButton locale={locale} mail="partner">
                   {t.partners.cta}
-                </a>
+                </MailButton>
               </div>
             }
           />

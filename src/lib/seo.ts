@@ -32,7 +32,10 @@ export function pageMetadata(
 export const publicPaths = [
   "",
   "/about",
+  "/about/founder",
+  "/about/story",
   "/about/vision",
+  "/about/sites",
   "/about/partners",
   "/programs",
   "/programs/restoration",

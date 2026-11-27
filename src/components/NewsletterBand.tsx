@@ -1,4 +1,5 @@
 import { common } from "@/content/common";
+import { mailCopy } from "@/content/mail";
 import { site } from "@/data/site";
 import type { Locale } from "@/lib/i18n";
 import { NewsletterForm } from "./NewsletterForm";
@@ -16,7 +17,10 @@ export function NewsletterBand({ locale }: { locale: Locale }) {
           </h2>
           <p className={s.body}>{copy.body}</p>
         </div>
-        <NewsletterForm copy={copy} to={site.email.v} />
+        <NewsletterForm
+          copy={{ ...copy, subject: mailCopy[locale].newsletter.subject, message: mailCopy[locale].newsletter.body }}
+          to={site.email.v}
+        />
       </div>
     </section>
   );

@@ -18,7 +18,7 @@ export const restoration = cmsValues("programs.restoration", {
   restoredTemboanHa: { v: 70, ph: true } as Fact,
   /** "Lebih dari 10 ha": tampilkan sebagai 10+. */
   restoredKayuwatuMahembangHa: { v: 10, ph: true, more: true } as Fact & { more: true },
-  farmers: { v: 53, ph: true } as Fact,
+  farmers: { v: 92, ph: true } as Fact,
   /** Kenaikan pendapatan petani (%). Definisi pembanding belum ditetapkan. */
   incomeIncreasePct: { v: 35, ph: true } as Fact,
 });
@@ -32,6 +32,20 @@ const extraFigures = cmsValues("programs.keyFigures", {
   survival: { v: 78, ph: true } as Fact,
   rescued: { v: 64, ph: true } as Fact,
   overhead: { v: 18, ph: true } as Fact,
+});
+
+/** Angka tambahan untuk kartu "Program & Dampak" di Beranda (dokumen Home, Nov 2026). `ph` = belum pasti. */
+export const homeImpact = cmsValues("programs.homeImpact", {
+  treeSpecies: { v: "XX", ph: true } as Fact<string>,
+  speciesRescued: { v: 86 } as Fact,
+  turtleNests: { v: "800+" } as Fact<string>,
+  hatchlings: { v: "70.000+" } as Fact<string>,
+  peopleReached: { v: 906 } as Fact,
+  studentsVisited: { v: 575 } as Fact,
+  volunteers: { v: "XX", ph: true } as Fact<string>,
+  artists: { v: 11 } as Fact,
+  communities: { v: 7 } as Fact,
+  msmes: { v: 13 } as Fact,
 });
 
 export const keyFigures = {

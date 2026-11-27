@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
+import { MailButton } from "@/components/MailButton";
 import { NewsletterBand } from "@/components/NewsletterBand";
 import { PageHero } from "@/components/PageHero";
 import { SectionHead } from "@/components/SectionHead";
 import { common } from "@/content/common";
 import { involvedCopy } from "@/content/involved";
-import { site } from "@/data/site";
 import { localePath } from "@/lib/i18n";
 import { resolveLocale } from "@/lib/locale";
 import { pageMetadata } from "@/lib/seo";
@@ -22,7 +22,6 @@ export default async function Page({ params }: PageProps<"/[locale]/get-involved
   const locale = await resolveLocale(params);
   const t = involvedCopy[locale].partner;
   const c = common[locale];
-  const mail = `mailto:${site.email.v}?subject=${encodeURIComponent(t.how.subject)}&body=${encodeURIComponent(t.how.message)}`;
 
   return (
     <>
@@ -53,9 +52,9 @@ export default async function Page({ params }: PageProps<"/[locale]/get-involved
             {t.how.title}
           </h2>
           <p className="lede">{t.how.body}</p>
-          <a href={mail} className="btn">
+          <MailButton locale={locale} mail="partner">
             {t.how.cta}
-          </a>
+          </MailButton>
         </div>
       </section>
       <NewsletterBand locale={locale} />

@@ -1,0 +1,69 @@
+.figure {
+  margin: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.map {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: #e6e8e6;
+  max-width: 34rem;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.tile {
+  position: absolute;
+  display: block;
+  max-width: none;
+  user-select: none;
+}
+
+.pins {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pins li {
+  position: absolute;
+  translate: -50% -50%;
+}
+
+.pin {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--restoration);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-decoration: none;
+  border: 2px solid var(--white);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.35);
+}
+
+.pin:hover,
+.pin:focus-visible {
+  background: var(--dark);
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
+}
+
+.caption {
+  font-size: 0.85rem;
+  color: var(--muted-on-light);
+  max-width: 34rem;
+  margin-inline: auto;
+}
+
+.caption span {
+  display: block;
+  opacity: 0.8;
+}

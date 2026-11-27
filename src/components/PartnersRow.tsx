@@ -9,28 +9,32 @@ import s from "./PartnersRow.module.css";
  * Mitra sebagai deretan kotak logo. Logo diisi lewat `partners[].logo`; selama belum ada, kotak kosong
  * bergaris putus diberi nama mitra. Kotak menjadi tautan ke situs mitra (tab baru) bila `url` sudah diisi.
  */
-export function PartnersRow({ locale }: { locale: Locale }) {
+export function PartnersRow({ locale, flat = false }: { locale: Locale; flat?: boolean }) {
   const c = common[locale];
   const order: PartnerKind[] = [
+    "network",
+    "partner",
     "government",
     "research",
     "funder",
     "corporate",
     "community",
   ];
-  const groups = order
+  const groups = (flat ? [{ kind: "partner" as PartnerKind, list: partners }] : order
     .map((kind) => ({
       kind,
-      list: partners.filter((p) => (p.kind ?? "corporate") === kind),
+      list: partners.filter((p) => (p.kind ?? "partner") === kind),
     }))
-    .filter((g) => g.list.length);
+    .filter((g) => g.list.length));
   return (
     <div className={s.groups}>
       {groups.map((g) => (
-        <section key={g.kind} aria-labelledby={`pk-${g.kind}`}>
-          <h3 id={`pk-${g.kind}`} className={s.kind}>
-            {c.partnerKinds[g.kind]}
-          </h3>
+        <section key={g.kind} aria-labelledby={flat ? undefined : `pk-${g.kind}`}>
+          {!flat && (
+            <h3 id={`pk-${g.kind}`} className={s.kind}>
+              {c.partnerKinds[g.kind]}
+            </h3>
+          )}
           <ul className={s.row}>
             {g.list.map((p) => {
               const tile = (

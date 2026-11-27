@@ -7,6 +7,7 @@ import "@/content/hillside";
 import "@/content/home";
 import "@/content/drone";
 import "@/content/involved";
+import "@/content/mail";
 import "@/content/merch";
 import "@/content/programs";
 import "@/content/siteviews";
@@ -19,7 +20,7 @@ import "@/content/updates";
 /** Berkas teks yang bisa diedit di admin, dengan nama yang dikenal staf dan halaman situs yang memakainya. */
 export const TEXT_SCOPES = [
   { id: "home", label: "Beranda", page: "" },
-  { id: "about", label: "Tentang Kami (pendiri, visi, apa dan mengapa, tim, mitra)", page: "/about" },
+  { id: "about", label: "Tentang Kami (pendiri, kisah, visi dan pendekatan, lokasi, mitra)", page: "/about" },
   { id: "programs", label: "Program (ringkasan, Restorasi, Konservasi, Edukasi)", page: "/programs" },
   { id: "sites", label: "Lokasi: Temboan dan Tasikoki", page: "/programs/restoration" },
   { id: "hillside", label: "Slider lereng pulih", page: "/programs/restoration" },
@@ -29,6 +30,7 @@ export const TEXT_SCOPES = [
   { id: "involved", label: "Terlibat (Get involved, mitra, relawan)", page: "/get-involved" },
   { id: "support", label: "Dukung kami (donasi)", page: "/support" },
   { id: "drone", label: "Video drone (halaman Restorasi)", page: "/programs/restoration" },
+  { id: "mail", label: "Pesan email siap pakai (tombol Hubungi, Relawan, Mitra, Donasi, Adopsi, Kunjungan)", page: "/get-involved" },
   { id: "merch", label: "Merchandise (halaman Dukung kami)", page: "/support/merchandise" },
   { id: "transparency", label: "Transparansi", page: "/transparency" },
   { id: "team", label: "Halaman tim lengkap", page: "/about/team" },

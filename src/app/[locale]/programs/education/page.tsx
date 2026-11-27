@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ActivityList, type Activity } from "@/components/ActivityList";
 import { ExtLink } from "@/components/ExtLink";
+import { MailButton } from "@/components/MailButton";
+import { Ph } from "@/components/Ph";
 import { Gallery } from "@/components/Gallery";
 import { NewsletterBand } from "@/components/NewsletterBand";
 import { MenuIntro } from "@/components/MenuIntro";
@@ -34,22 +36,56 @@ export default async function EducationPage({ params }: PageProps<"/[locale]/pro
 
   const subStyle = { display: "grid", gap: "1.25rem", marginTop: "0.5rem" } as const;
 
+  const hasPh = (text: string) => text.includes("[");
+  const Steps = ({ items }: { items: string[] }) => (
+    <ol style={{ margin: "0.5rem 0 1rem", paddingLeft: "1.4rem", display: "grid", gap: "0.35rem" }}>
+      {items.map((step) => (
+        <li key={step}>{step}</li>
+      ))}
+    </ol>
+  );
+
   const activities: Activity[] = [
-    { id: "tumbuh", title: it.tumbuh.title, body: it.tumbuh.body, ph: true, photo: photos.educationItems.tumbuh },
-    { id: "lokawaya", title: it.lokawaya.title, body: it.lokawaya.body, ph: true, photo: photos.educationItems.lokawaya },
-    { id: "sapa", title: it.sapa.title, body: it.sapa.body, ph: true },
+    {
+      id: "tumbuh",
+      title: it.tumbuh.title,
+      body: it.tumbuh.body,
+      photo: photos.educationItems.tumbuh,
+      children: (
+        <div style={subStyle}>
+          <p className="num" style={{ fontSize: "1.2rem" }}>
+            {it.tumbuh.tagline}
+          </p>
+          <p>
+            <MailButton locale={locale} mail="visit">
+              {it.tumbuh.visit}
+            </MailButton>
+          </p>
+        </div>
+      ),
+    },
+    { id: "lokawaya", title: it.lokawaya.title, body: it.lokawaya.body, photo: photos.educationItems.lokawaya },
+    {
+      id: "sapa",
+      title: it.sapa.title,
+      body: it.sapa.body,
+      children: (
+        <p className="num" style={{ fontSize: "1.2rem" }}>
+          {it.sapa.tagline}
+        </p>
+      ),
+    },
     {
       id: "residency",
       title: it.residency.title,
       body: it.residency.body,
-      ph: true,
       children: (
         <div style={subStyle}>
           <div>
             <h4 className="num" style={{ fontSize: "1.5rem" }}>
               {it.residency.edutour.title}
             </h4>
-            <p style={{ color: "var(--muted)" }}>{it.residency.edutour.body}</p>
+            <p style={{ color: "var(--muted)" }}>{hasPh(it.residency.edutour.body) ? <Ph on>{it.residency.edutour.body}</Ph> : it.residency.edutour.body}</p>
             <p style={{ marginTop: "0.75rem" }}>
               <ExtLink link={edutourCatalog} locale={locale} className="btn btn--ghost" />
             </p>
@@ -58,7 +94,7 @@ export default async function EducationPage({ params }: PageProps<"/[locale]/pro
             <h4 className="num" style={{ fontSize: "1.5rem" }}>
               {it.residency.storylab.title}
             </h4>
-            <p style={{ color: "var(--muted)" }}>{it.residency.storylab.body}</p>
+            <p style={{ color: "var(--muted)" }}>{hasPh(it.residency.storylab.body) ? <Ph on>{it.residency.storylab.body}</Ph> : it.residency.storylab.body}</p>
           </div>
         </div>
       ),
@@ -67,6 +103,7 @@ export default async function EducationPage({ params }: PageProps<"/[locale]/pro
       id: "outreach",
       title: it.outreach.title,
       body: it.outreach.body,
+      ph: hasPh(it.outreach.body),
       children: (
         <StatRow
           size="md"
@@ -77,7 +114,25 @@ export default async function EducationPage({ params }: PageProps<"/[locale]/pro
         />
       ),
     },
-    { id: "volunteering", title: it.volunteering.title, body: it.volunteering.body, ph: true },
+    {
+      id: "volunteering",
+      title: it.volunteering.title,
+      body: it.volunteering.body,
+      ph: hasPh(it.volunteering.body),
+      children: (
+        <div style={subStyle}>
+          <h4 className="num" style={{ fontSize: "1.5rem" }}>
+            {it.volunteering.applyTitle}
+          </h4>
+          <Steps items={it.volunteering.steps} />
+          <p>
+            <MailButton locale={locale} mail="volunteer">
+              {it.volunteering.cta}
+            </MailButton>
+          </p>
+        </div>
+      ),
+    },
   ];
 
   return (

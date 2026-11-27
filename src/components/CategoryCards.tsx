@@ -7,6 +7,7 @@ import { site } from "@/data/site";
 import { catOrder, wildCats, wildTotals, type WildCat } from "@/data/wildlife";
 import { fill, num, pct } from "@/lib/format";
 import type { Locale } from "@/lib/i18n";
+import { mailto } from "@/lib/mailto";
 import s from "./Wildlife.module.css";
 
 function Card({ cat, locale, copy }: { cat: WildCat; locale: Locale; copy: AdoptCopy }) {
@@ -16,9 +17,8 @@ function Card({ cat, locale, copy }: { cat: WildCat; locale: Locale; copy: Adopt
   const qShare = cat.inCare > 0 ? (cat.quarantine / cat.inCare) * 100 : 0;
   const share = wildTotals.inCare > 0 ? (cat.inCare / wildTotals.inCare) * 100 : 0;
   const a = cat.ambassador;
-  const mail = `mailto:${site.email.v}?subject=${encodeURIComponent(
-    fill(t.mailSubject, { name: a.species, category: name }),
-  )}&body=${encodeURIComponent(fill(t.mailBody, { name: a.species, category: name }))}`;
+  const pick = `${a.species} (${name})`;
+  const mail = mailto(locale, "adopt", { "[animal or category]": pick, "[nama satwa atau kategori]": pick });
 
   const flows: [string, number][] = [
     [t.entered, cat.entered],

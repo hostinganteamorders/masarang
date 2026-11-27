@@ -1,0 +1,83 @@
+.journey {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: 1.5rem clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pillar {
+  display: grid;
+  align-content: start;
+  gap: 0.9rem;
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-top: 8px solid var(--c);
+  border-radius: var(--r-md);
+  background: var(--white);
+  color: var(--dark);
+}
+
+.place {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted-on-light);
+}
+
+.pillarName {
+  margin: 0;
+  font-size: 1.7rem;
+}
+
+.lede {
+  margin: 0;
+}
+
+.field {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: 1.5rem clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.storiesTitle {
+  margin: 0 0 0.5rem;
+  font-size: 1.3rem;
+}
+
+.stories {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.story {
+  padding: 1rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.storyMeta {
+  margin: 0 0 0.25rem;
+  font-size: 0.9rem;
+  color: var(--muted-on-light);
+}
+
+.storyTitle {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+@media (max-width: 52rem) {
+  .journey,
+  .field {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

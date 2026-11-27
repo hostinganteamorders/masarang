@@ -13,13 +13,25 @@ export const site = cmsValues("site", {
   /** Isi NEXT_PUBLIC_SITE_URL di lingkungan produksi (mis. https://masarangfoundation.org). */
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
 
-  email: { v: "info@masarangfoundation.org", ph: true } as Fact<string>,
+  email: { v: "info@masarangfoundation.org" } as Fact<string>,
   /** Nomor WhatsApp untuk bukti transfer, format internasional tanpa +, mis. 6281234567890. */
   whatsapp: { v: "[628xxxxxxxxxx]", ph: true } as Fact<string>,
   address: {
-    en: "Tomohon, North Sulawesi, Indonesia",
-    id: "Tomohon, Sulawesi Utara, Indonesia",
+    en: "Jl. Nimawanua, Amphitheater Woloan, Woloan I Utara, Tomohon Barat, Kota Tomohon, Sulawesi Utara 95421, Indonesia",
+    id: "Jl. Nimawanua, Amphitheater Woloan, Woloan I Utara, Tomohon Barat, Kota Tomohon, Sulawesi Utara 95421, Indonesia",
   } satisfies L10n,
+  /** Media sosial. Alamat kosong = tampil sebagai teks tanpa tautan. */
+  social: {
+    instagramHandle: "@masarang.id",
+    instagram: "https://www.instagram.com/masarang.id",
+    linkedinName: "Masarang Foundation",
+    linkedin: "",
+  },
+  /** Data hukum untuk kaki situs. */
+  legal: {
+    decree: "Keputusan Menteri Hukum dan HAM RI No. AHU-4600.AH.01.04 Tahun 2010",
+    npwp: "02.868.592.3-821.000",
+  },
 
   /** Tanggal data terakhir diperbarui (ISO). */
   lastUpdated: "2026-09-30",
