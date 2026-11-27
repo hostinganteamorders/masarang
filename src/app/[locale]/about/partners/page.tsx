@@ -3,7 +3,6 @@ import Link from "next/link";
 import { PartnersRow } from "@/components/PartnersRow";
 import { SectionHead } from "@/components/SectionHead";
 import { NewsletterBand } from "@/components/NewsletterBand";
-import { MenuIntro } from "@/components/MenuIntro";
 import { PageHero } from "@/components/PageHero";
 import { about } from "@/content/about";
 import { common } from "@/content/common";
@@ -31,7 +30,6 @@ export default async function PartnersPage({ params }: PageProps<"/[locale]/abou
         crumbs={[{ text: common[locale].nav.about, href: localePath(locale, "/about") }, { text: t.partners.title }]}
       />
 
-      <MenuIntro locale={locale} id="partners" />
 
       {/* Our Partners */}
       <section id="partners" className="section on-light" aria-labelledby="partners-title">

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import "../globals.css";
 import { CountUp } from "@/components/CountUp";
 import { Intro } from "@/components/Intro";
+import { MENU_INTRO } from "@/lib/menuIntro";
 import { DraftBanner } from "@/components/DraftBanner";
 import { Ribbon } from "@/components/Ribbon";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -25,7 +26,11 @@ const kanit = localFont({
   display: "swap",
 });
 
-const INTRO_SCRIPT = `try{if(!sessionStorage.getItem("masarang-intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("intro-on");sessionStorage.setItem("masarang-intro","1")}}catch(e){}`;
+/**
+ * Sebelum cat pertama: tentukan apakah intro diputar. Beranda: salam pembuka sekali per sesi. Menu di navbar:
+ * intro menu setiap kali dibuka. Tidak diputar bila gerak dikurangi.
+ */
+const INTRO_SCRIPT = `try{var h=document.documentElement,p=location.pathname.replace(/^\\/(en|id)(?=\\/|$)/,"").replace(/\\/+$/,"");if(!matchMedia("(prefers-reduced-motion: reduce)").matches){if(p===""){if(!sessionStorage.getItem("masarang-intro")){h.classList.add("intro-on");sessionStorage.setItem("masarang-intro","1")}}else if(${JSON.stringify(Object.keys(MENU_INTRO))}.indexOf(p)>-1){h.classList.add("intro-on")}}}catch(e){}`;
 
 export const dynamicParams = false;
 

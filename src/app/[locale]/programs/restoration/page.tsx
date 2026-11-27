@@ -8,7 +8,6 @@ import { DroneCompare } from "@/components/DroneCompare";
 import { SiteViews } from "@/components/SiteViews";
 import { Milestones } from "@/components/Milestones";
 import { NewsletterBand } from "@/components/NewsletterBand";
-import { MenuIntro } from "@/components/MenuIntro";
 import { PageHero } from "@/components/PageHero";
 import { Ph } from "@/components/Ph";
 import { Photo } from "@/components/Photo";
@@ -68,7 +67,6 @@ export default async function RestorationPage({ params }: PageProps<"/[locale]/p
         <ProgramTabs locale={locale} current="restoration" />
       </PageHero>
 
-      <MenuIntro locale={locale} id="restoration" />
 
       {/* Pengantar program */}
       <section className="section on-soft" aria-labelledby="intro-title">

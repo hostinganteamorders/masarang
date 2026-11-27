@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { NewsletterBand } from "@/components/NewsletterBand";
-import { MenuIntro } from "@/components/MenuIntro";
 import { PageHero } from "@/components/PageHero";
 import { Ph } from "@/components/Ph";
 import { SectionHead } from "@/components/SectionHead";
@@ -40,7 +39,6 @@ export default async function SitesPage({ params }: PageProps<"/[locale]/about/s
         crumbs={[{ text: common[locale].nav.about, href: localePath(locale, "/about") }, { text: t.title }]}
       />
 
-      <MenuIntro locale={locale} id="sites" />
 
       <section id="sites" className="section on-light" aria-labelledby="sites-title">
         <div className="container">

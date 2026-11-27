@@ -235,12 +235,6 @@ Tabel tahunan (mulai 2021) ada di Admin > Data > "Satwa per tahun dan kategori (
 pasangan tahun dan kategori. Kolom "rata-rata yang direhabilitasi" adalah rata-rata hitungan bulanan; untuk 2026 dihitung
 dari Januari sampai Oktober (Excel menghitung 12 bulan, termasuk November dan Desember yang hanya mengulang Oktober).
 
-## Video pembuka tiap menu
-
-Tiap menu di navbar (Tentang Kami, Program, Restorasi, Konservasi, Edukasi, Terlibat, Updates) punya blok video pembuka
-tepat di bawah judul halaman, seperti video di Beranda (`src/components/MenuIntro.tsx`). Tempel alamat YouTube/Vimeo atau
-berkas .mp4 di Admin > Pengaturan > "Video & tautan luar"; kosong = kotak penanda tempat.
-
 ## Halaman yang disembunyikan
 
 `features` di `src/data/site.ts`: `team: false` dan `transparency: false`. Halaman Transparansi (`/transparency`) tidak
@@ -382,9 +376,9 @@ subjek, dan isi sudah terisi (`mailto:`). Teks EN/ID ada di `src/content/mail.ts
 tautannya dibuat oleh `src/lib/mailto.ts`, dan `src/components/MailButton.tsx` menampilkan alamat email sebagai teks biasa di samping
 tombol (tidak semua pengunjung punya aplikasi email). Pada kartu Adopsi, `[animal or category]` otomatis diisi nama satwa.
 
-## Video pembuka menu
+## Intro menu
 
-Setiap menu di navbar dan setiap subhalamannya (About Us, Program, Get Involved, Support, Updates) punya video pembuka tepat di bawah judul halaman (`src/components/MenuIntro.tsx`).
-Videonya diputar otomatis tanpa suara, tanpa tombol jeda, dan dijeda sendiri saat keluar dari layar atau tab disembunyikan, lalu dilanjutkan saat terlihat lagi.
-Bila pengunjung memilih "kurangi gerak" di perangkatnya, kontrol bawaan ditampilkan dan tidak diputar otomatis.
-Alamatnya diisi di Admin > Video (YouTube/Vimeo atau .mp4); kosong = kotak penanda tempat. Daftar id ada di `src/data/media.ts` (`menuVideos`).
+Seperti salam pembuka di Beranda (lambang, sapaan, lalu memudar membuka halaman), setiap menu di navbar dan subhalamannya punya intro singkat (±2,5 detik):
+lambang, nama menu, dan satu kalimat pengantar. Diputar setiap kali menu dibuka, dapat dilewati dengan klik atau tombol "Skip intro", dan tidak diputar bila pengunjung
+memilih "kurangi gerak". Beranda tetap memutar salam pembukanya sekali per sesi (dan lagi saat logo/Home ditekan).
+Daftar halaman ada di `src/lib/menuIntro.ts`; kalimat pengantar EN/ID ada di `src/content/common.ts` (`intro.menus`, bisa diedit di Admin > Teks > "Menu, footer, tombol, dan teks umum").

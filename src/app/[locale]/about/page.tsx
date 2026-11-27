@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { LinkCards } from "@/components/LinkCards";
-import { MenuIntro } from "@/components/MenuIntro";
 import { NewsletterBand } from "@/components/NewsletterBand";
 import { PageHero } from "@/components/PageHero";
 import { SectionHead } from "@/components/SectionHead";
@@ -31,7 +30,6 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
     <>
       <PageHero locale={locale} title={t.hero.title} lede={t.hero.lede} image={photos.heroes.about} />
 
-      <MenuIntro locale={locale} id="about" />
 
       <section className="section on-light" aria-labelledby="overview-title">
         <div className="container">

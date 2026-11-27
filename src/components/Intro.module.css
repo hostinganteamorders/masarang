@@ -139,3 +139,44 @@
     opacity: 0;
   }
 }
+
+/* ---------- Intro menu: lebih singkat dari salam pembuka Home, diputar tiap menu dibuka ---------- */
+:global(html.intro-on) .root[data-kind="menu"] {
+  animation: fade 0.6s ease-in-out 2.1s forwards;
+}
+
+:global(html.intro-on) .root[data-kind="menu"] .center,
+:global(html.intro-on) .root[data-kind="menu"] .skip {
+  animation: fade 0.4s ease 1.7s forwards;
+}
+
+.root[data-kind="menu"] .emblem {
+  height: clamp(4rem, 11vw, 6rem);
+  animation-duration: 0.7s;
+  animation-delay: 0.05s;
+}
+
+.root[data-kind="menu"] .greeting {
+  font-size: clamp(2.2rem, 1.1rem + 4.6vw, 4.5rem);
+  text-wrap: balance;
+}
+
+.root[data-kind="menu"] .greetingText {
+  animation-duration: 0.6s;
+  animation-delay: 0.4s;
+}
+
+.root[data-kind="menu"] .rule {
+  animation-duration: 0.6s;
+  animation-delay: 0.8s;
+}
+
+.tagline {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--muted-on-dark);
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+  text-wrap: balance;
+  opacity: 0;
+  animation: show 0.6s ease 1s forwards;
+}

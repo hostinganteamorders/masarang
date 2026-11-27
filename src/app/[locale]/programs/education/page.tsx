@@ -6,7 +6,6 @@ import { MailButton } from "@/components/MailButton";
 import { Ph } from "@/components/Ph";
 import { Gallery } from "@/components/Gallery";
 import { NewsletterBand } from "@/components/NewsletterBand";
-import { MenuIntro } from "@/components/MenuIntro";
 import { PageHero } from "@/components/PageHero";
 import { ProgramTabs } from "@/components/ProgramTabs";
 import { SectionHead } from "@/components/SectionHead";
@@ -148,7 +147,6 @@ export default async function EducationPage({ params }: PageProps<"/[locale]/pro
         <ProgramTabs locale={locale} current="education" />
       </PageHero>
 
-      <MenuIntro locale={locale} id="education" />
 
       {/* Pengantar program */}
       <section className="section on-soft" aria-labelledby="intro-title">

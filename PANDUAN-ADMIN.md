@@ -11,9 +11,9 @@ Alamat: **situs-kita.org/admin**. Masuk dengan **nama pengguna** (bukan email) d
 
 Kalau salah, tekan **Kembalikan** (per teks, foto, atau daftar) sebelum menerbitkan.
 
-## Video pembuka menu
+## Intro menu
 
-Di menu **Video** ada kolom untuk setiap menu dan subhalaman. Tempel alamat YouTube/Vimeo atau berkas .mp4. Video diputar otomatis tanpa suara dan tanpa tombol jeda, serta berhenti sendiri saat halaman digulir menjauh.
+Tiap menu punya intro singkat berisi nama menu dan satu kalimat pengantar. Kalimatnya diubah di **Teks > Menu, footer, tombol, dan teks umum** (bagian "intro > menus"), per bahasa.
 
 ## Mengubah teks
 

@@ -5,7 +5,6 @@ import { GiveBand } from "@/components/GiveBand";
 import { GivingCards } from "@/components/GivingCards";
 import { NewsletterBand } from "@/components/NewsletterBand";
 import { MailButton } from "@/components/MailButton";
-import { MenuIntro } from "@/components/MenuIntro";
 import { PageHero } from "@/components/PageHero";
 import { Ph } from "@/components/Ph";
 import { Pillars } from "@/components/Pillars";
@@ -41,7 +40,6 @@ export default async function SupportPage({ params }: PageProps<"/[locale]/suppo
         lede={t.hero.lede}
       />
 
-      <MenuIntro locale={locale} id="donation" />
 
       {/* Pilih tujuan donasi */}
       <section className="section on-light" aria-labelledby="ways-title">

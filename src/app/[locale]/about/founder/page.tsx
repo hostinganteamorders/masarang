@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { NewsletterBand } from "@/components/NewsletterBand";
-import { MenuIntro } from "@/components/MenuIntro";
 import { PageHero } from "@/components/PageHero";
 import { Ph } from "@/components/Ph";
 import { Portrait } from "@/components/Portrait";
@@ -33,7 +32,6 @@ export default async function FounderPage({ params }: PageProps<"/[locale]/about
         crumbs={[{ text: common[locale].nav.about, href: localePath(locale, "/about") }, { text: t.founder.title }]}
       />
 
-      <MenuIntro locale={locale} id="founder" />
 
       {/* Our Founder */}
       <section id="founder" className="section on-light" aria-labelledby="founder-title">

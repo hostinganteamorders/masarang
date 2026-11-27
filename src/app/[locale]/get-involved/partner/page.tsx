@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import { MailButton } from "@/components/MailButton";
 import { NewsletterBand } from "@/components/NewsletterBand";
-import { MenuIntro } from "@/components/MenuIntro";
 import { PageHero } from "@/components/PageHero";
 import { SectionHead } from "@/components/SectionHead";
 import { common } from "@/content/common";
@@ -35,7 +34,6 @@ export default async function Page({ params }: PageProps<"/[locale]/get-involved
         lede={t.hero.lede}
       />
 
-      <MenuIntro locale={locale} id="partner" />
       <section className="section on-light" aria-labelledby="list-title">
         <div className="container">
           <SectionHead id="list-title" title={t.who.title} />

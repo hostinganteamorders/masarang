@@ -4,7 +4,6 @@ import { Pillars } from "@/components/Pillars";
 import { SectionHead } from "@/components/SectionHead";
 import { VisionBand } from "@/components/VisionBand";
 import { NewsletterBand } from "@/components/NewsletterBand";
-import { MenuIntro } from "@/components/MenuIntro";
 import { PageHero } from "@/components/PageHero";
 import { about } from "@/content/about";
 import { common } from "@/content/common";
@@ -40,7 +39,6 @@ export default async function VisionPage({ params }: PageProps<"/[locale]/about/
         crumbs={[{ text: common[locale].nav.about, href: localePath(locale, "/about") }, { text: t.vision.title }]}
       />
 
-      <MenuIntro locale={locale} id="vision" />
 
       {/* Our Vision */}
       <VisionBand title={t.vision.ourVision.title} statement={t.vision.ourVision.body} />
