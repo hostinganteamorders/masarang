@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { NewsletterBand } from "@/components/NewsletterBand";
+import { MenuIntro } from "@/components/MenuIntro";
 import { PageHero } from "@/components/PageHero";
 import { Photo } from "@/components/Photo";
 import { Split } from "@/components/Split";
@@ -28,6 +29,8 @@ export default async function StoryPage({ params }: PageProps<"/[locale]/about/s
         image={photos.heroes.about}
         crumbs={[{ text: common[locale].nav.about, href: localePath(locale, "/about") }, { text: t.title }]}
       />
+
+      <MenuIntro locale={locale} id="story" />
 
       <section id="story" className="section on-light" aria-labelledby="story-title">
         <div className="container">

@@ -33,7 +33,7 @@ export default async function FounderPage({ params }: PageProps<"/[locale]/about
         crumbs={[{ text: common[locale].nav.about, href: localePath(locale, "/about") }, { text: t.founder.title }]}
       />
 
-      <MenuIntro locale={locale} id="about" />
+      <MenuIntro locale={locale} id="founder" />
 
       {/* Our Founder */}
       <section id="founder" className="section on-light" aria-labelledby="founder-title">

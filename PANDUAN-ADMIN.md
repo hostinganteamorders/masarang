@@ -11,6 +11,10 @@ Alamat: **situs-kita.org/admin**. Masuk dengan **nama pengguna** (bukan email) d
 
 Kalau salah, tekan **Kembalikan** (per teks, foto, atau daftar) sebelum menerbitkan.
 
+## Video pembuka menu
+
+Di menu **Video** ada kolom untuk setiap menu dan subhalaman. Tempel alamat YouTube/Vimeo atau berkas .mp4. Video diputar otomatis tanpa suara dan tanpa tombol jeda, serta berhenti sendiri saat halaman digulir menjauh.
+
 ## Mengubah teks
 
 Pesan email siap pakai untuk tombol Hubungi, Relawan, Mitra, Donasi, Adopsi, dan Kunjungan ada di grup teks **Pesan email siap pakai**. Teks dalam [kurung siku] sengaja dibiarkan agar pengunjung yang melengkapinya.

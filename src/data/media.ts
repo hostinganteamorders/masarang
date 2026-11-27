@@ -29,18 +29,32 @@ export const edutourCatalog: ExternalLink = cmsValues("media.edutourCatalog", {
 
 /**
  * Video pembuka tiap menu di navbar (seperti video di Beranda). Tempel alamat YouTube/Vimeo atau berkas .mp4
- * lewat Admin > Pengaturan > Video; kosong = kotak penanda tempat.
+ * lewat Admin > Video; kosong = kotak penanda tempat.
  */
-export type MenuVideoId = "about" | "programs" | "restoration" | "conservation" | "education" | "involved" | "updates";
+export type MenuVideoId =
+  | "about" | "founder" | "story" | "vision" | "sites" | "partners"
+  | "programs" | "restoration" | "conservation" | "education"
+  | "involved" | "adopt" | "donation" | "merch" | "partner" | "volunteer"
+  | "updates";
 
 const menuTitle = (en: string, id: string) => ({ url: undefined as string | undefined, title: { en: `Video: ${en}`, id: `Video: ${id}` } });
 
 export const menuVideos: Record<MenuVideoId, { url?: string; title: L10n }> = {
   about: cmsValues("media.menu.about", menuTitle("About us", "Tentang kami")),
+  founder: cmsValues("media.menu.founder", menuTitle("Our Founder", "Pendiri kami")),
+  story: cmsValues("media.menu.story", menuTitle("Our Story", "Kisah kami")),
+  vision: cmsValues("media.menu.vision", menuTitle("Vision & Approach", "Visi & Pendekatan")),
+  sites: cmsValues("media.menu.sites", menuTitle("Our Sites", "Lokasi kami")),
+  partners: cmsValues("media.menu.partners", menuTitle("Our Partners", "Mitra kami")),
   programs: cmsValues("media.menu.programs", menuTitle("Our programs", "Program kami")),
   restoration: cmsValues("media.menu.restoration", menuTitle("Restoration", "Restorasi")),
   conservation: cmsValues("media.menu.conservation", menuTitle("Conservation", "Konservasi")),
   education: cmsValues("media.menu.education", menuTitle("Education", "Edukasi")),
   involved: cmsValues("media.menu.involved", menuTitle("Get involved", "Terlibat")),
+  adopt: cmsValues("media.menu.adopt", menuTitle("Adopt an animal", "Adopsi satwa")),
+  donation: cmsValues("media.menu.donation", menuTitle("Donation", "Donasi")),
+  merch: cmsValues("media.menu.merch", menuTitle("Merchandise", "Merchandise")),
+  partner: cmsValues("media.menu.partner", menuTitle("Become a partner", "Jadi mitra")),
+  volunteer: cmsValues("media.menu.volunteer", menuTitle("Volunteer", "Relawan")),
   updates: cmsValues("media.menu.updates", menuTitle("Updates", "Kabar")),
 };

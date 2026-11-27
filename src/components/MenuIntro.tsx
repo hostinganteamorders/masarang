@@ -9,7 +9,7 @@ export function MenuIntro({ locale, id }: { locale: Locale; id: MenuVideoId }) {
     <section className="section on-dark" aria-label={v.title[locale]} style={{ paddingBlock: "clamp(2rem, 4vw, 3.5rem)" }}>
       <div className="container">
         <div style={{ maxWidth: "60rem", marginInline: "auto" }}>
-          <VideoSlot url={v.url} title={v.title[locale]} locale={locale} />
+          <VideoSlot url={v.url} title={v.title[locale]} locale={locale} intro />
         </div>
       </div>
     </section>

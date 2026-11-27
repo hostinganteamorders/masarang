@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CategoryCards } from "@/components/CategoryCards";
 import { NewsletterBand } from "@/components/NewsletterBand";
+import { MenuIntro } from "@/components/MenuIntro";
 import { PageHero } from "@/components/PageHero";
 import { Ph } from "@/components/Ph";
 import { SectionHead } from "@/components/SectionHead";
@@ -53,6 +54,8 @@ export default async function AdoptPage({ params }: PageProps<"/[locale]/program
         title={a.hero.title}
         lede={a.hero.lede}
       />
+
+      <MenuIntro locale={locale} id="adopt" />
 
       {/* Jumlah keseluruhan */}
       <section className="section on-light" aria-labelledby="totals-title">

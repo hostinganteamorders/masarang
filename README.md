@@ -381,3 +381,10 @@ Tombol Hubungi, Relawan, Mitra, Konfirmasi donasi, Adopsi satwa, Rencanakan kunj
 subjek, dan isi sudah terisi (`mailto:`). Teks EN/ID ada di `src/content/mail.ts` (scope "mail", bisa diedit di Admin > Teks);
 tautannya dibuat oleh `src/lib/mailto.ts`, dan `src/components/MailButton.tsx` menampilkan alamat email sebagai teks biasa di samping
 tombol (tidak semua pengunjung punya aplikasi email). Pada kartu Adopsi, `[animal or category]` otomatis diisi nama satwa.
+
+## Video pembuka menu
+
+Setiap menu di navbar dan setiap subhalamannya (About Us, Program, Get Involved, Support, Updates) punya video pembuka tepat di bawah judul halaman (`src/components/MenuIntro.tsx`).
+Videonya diputar otomatis tanpa suara, tanpa tombol jeda, dan dijeda sendiri saat keluar dari layar atau tab disembunyikan, lalu dilanjutkan saat terlihat lagi.
+Bila pengunjung memilih "kurangi gerak" di perangkatnya, kontrol bawaan ditampilkan dan tidak diputar otomatis.
+Alamatnya diisi di Admin > Video (YouTube/Vimeo atau .mp4); kosong = kotak penanda tempat. Daftar id ada di `src/data/media.ts` (`menuVideos`).
