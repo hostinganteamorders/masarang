@@ -12,7 +12,7 @@
   background: var(--dark);
   color: var(--light);
   /* Tulisan memudar lebih dulu (lihat .center), lalu lapisan gelap memudar hingga situs terlihat. */
-  animation: fade 0.9s ease-in-out 3.3s forwards;
+  animation: fade 1s ease-in-out 4.1s forwards;
 }
 
 .root[data-skip] {
@@ -29,7 +29,7 @@
 
 :global(html.intro-on) .center,
 :global(html.intro-on) .skip {
-  animation: fade 0.5s ease 2.8s forwards;
+  animation: fade 0.7s ease 3.9s forwards;
 }
 
 .emblem {
@@ -142,12 +142,12 @@
 
 /* ---------- Intro menu: lebih singkat dari salam pembuka Home, diputar tiap menu dibuka ---------- */
 :global(html.intro-on) .root[data-kind="menu"] {
-  animation: fade 0.6s ease-in-out 2.1s forwards;
+  animation: fade 1s ease-in-out 3s forwards;
 }
 
 :global(html.intro-on) .root[data-kind="menu"] .center,
 :global(html.intro-on) .root[data-kind="menu"] .skip {
-  animation: fade 0.4s ease 1.7s forwards;
+  animation: fade 0.7s ease 2.8s forwards;
 }
 
 .root[data-kind="menu"] .emblem {

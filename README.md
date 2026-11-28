@@ -277,6 +277,7 @@ Salin `.env.example` menjadi `.env.local` (lokal) atau isi di pengaturan hosting
 | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | Alamat publik tanpa garis miring di akhir, mis. `https://masarangfoundation.org`. Dipakai untuk `canonical`, `hreflang`, `sitemap.xml`, dan `robots.txt`. Bawaan `http://localhost:3000`. |
 | `ADMIN_USERNAME`, `ADMIN_PASSWORD` | Akun pemilik admin (masuk dengan nama pengguna, tanpa email; `ADMIN_EMAIL` lama masih terbaca). Wajib agar `/admin` bisa dipakai. |
+| `ADMIN_FORCE_ENV` | Isi `1` bila lupa sandi pemilik: akun dari ADMIN_USERNAME/ADMIN_PASSWORD berlaku lagi (mengabaikan akun yang diganti di dalam admin). Hapus lagi setelah masuk. |
 | `ADMIN_SECRET` | Kunci penanda masuk admin, acak, minimal 16 karakter. Wajib di produksi. |
 | `KV_REST_API_URL`, `KV_REST_API_TOKEN` | Penyimpanan draf/terbit (Upstash Redis). Terisi otomatis dari Vercel Marketplace. |
 | `BLOB_READ_WRITE_TOKEN` | Penyimpanan foto dan PDF unggahan (Vercel Blob). Terisi otomatis. |
@@ -378,7 +379,13 @@ tombol (tidak semua pengunjung punya aplikasi email). Pada kartu Adopsi, `[anima
 
 ## Intro menu
 
-Seperti salam pembuka di Beranda (lambang, sapaan, lalu memudar membuka halaman), setiap menu di navbar dan subhalamannya punya intro singkat (±2,5 detik):
+Seperti salam pembuka di Beranda (lambang, sapaan, lalu memudar membuka halaman), setiap menu di navbar dan subhalamannya punya intro singkat (±4 detik):
 lambang, nama menu, dan satu kalimat pengantar. Diputar setiap kali menu dibuka, dapat dilewati dengan klik atau tombol "Skip intro", dan tidak diputar bila pengunjung
 memilih "kurangi gerak". Beranda tetap memutar salam pembukanya sekali per sesi (dan lagi saat logo/Home ditekan).
 Daftar halaman ada di `src/lib/menuIntro.ts`; kalimat pengantar EN/ID ada di `src/content/common.ts` (`intro.menus`, bisa diedit di Admin > Teks > "Menu, footer, tombol, dan teks umum").
+
+## Akun pemilik
+
+Akun awal pemilik datang dari `ADMIN_USERNAME` dan `ADMIN_PASSWORD`. Setelah masuk, pemilik bisa mengganti nama pengguna dan sandinya di Admin > Pengguna
+("Ganti nama pengguna dan sandi saya"); sesudahnya akun yang tersimpan itulah yang berlaku dan sandi awal dari Vercel tidak dipakai lagi.
+Penyimpanan memakai Upstash Redis dan Vercel Blob di Vercel (atau berkas lokal di `.cms-data/`), bukan Supabase.

@@ -60,10 +60,41 @@ export async function saveUsers(users: User[]) {
   await writeDoc("users", users);
 }
 
+/**
+ * Akun pemilik yang diganti dari dalam admin (nama pengguna dan sandi baru). Bila ada, akun ini menggantikan
+ * ADMIN_USERNAME/ADMIN_PASSWORD. Lupa sandi: isi ADMIN_FORCE_ENV=1 di Vercel agar akun dari variabel lingkungan berlaku lagi.
+ */
+type OwnerOverride = { username: string; hash: string };
+async function ownerOverride(): Promise<OwnerOverride | null> {
+  if (process.env.ADMIN_FORCE_ENV === "1") return null;
+  const doc = await readDoc<OwnerOverride | null>("owner", null);
+  return doc?.username && doc.hash ? doc : null;
+}
+
 async function findUser(username: string): Promise<User | null> {
-  const owner = envOwner();
-  if (owner && owner.username === username) return { username, role: "owner" };
+  const override = await ownerOverride();
+  if (override) {
+    if (override.username === username) return { username, role: "owner" };
+  } else {
+    const owner = envOwner();
+    if (owner && owner.username === username) return { username, role: "owner" };
+  }
   return (await listUsers()).find((u) => u.username === username) ?? null;
+}
+
+/** Periksa sandi akun pemilik saat ini (dari dalam admin atau variabel lingkungan). */
+export async function checkOwnerPassword(username: string, password: string): Promise<boolean> {
+  const override = await ownerOverride();
+  if (override) return override.username === username && (await checkHash(password, override.hash));
+  const owner = envOwner();
+  return Boolean(owner && owner.username === username && same(owner.password, password));
+}
+
+/** Ganti akun pemilik. Mengembalikan pesan galat atau null. */
+export async function setOwnerAccount(current: string, nextUsername: string, nextPassword: string): Promise<string | null> {
+  if (nextUsername !== current && (await listUsers()).some((u) => u.username === nextUsername)) return "Nama pengguna itu sudah dipakai editor.";
+  await writeDoc("owner", { username: nextUsername, hash: await hashPassword(nextPassword) } satisfies OwnerOverride);
+  return null;
 }
 
 const sign = (payload: string) => createHmac("sha256", secret()).update(payload).digest("base64url");
@@ -76,9 +107,7 @@ export async function login(usernameRaw: string, password: string): Promise<stri
   const key = `login:${username}:${ip}`;
   if ((await bump(key, 15 * 60)) > 8) return "Terlalu banyak percobaan. Coba lagi dalam 15 menit.";
 
-  let ok = false;
-  const owner = envOwner();
-  if (owner && owner.username === username) ok = same(owner.password, password);
+  let ok = await checkOwnerPassword(username, password);
   if (!ok) {
     const user = (await listUsers()).find((u) => u.username === username);
     if (user?.hash) ok = await checkHash(password, user.hash);
@@ -88,6 +117,12 @@ export async function login(usernameRaw: string, password: string): Promise<stri
     return "Nama pengguna atau sandi salah.";
   }
   await clearBump(key);
+  await startSession(username);
+  return null;
+}
+
+/** Pasang cookie sesi untuk nama pengguna ini. */
+export async function startSession(username: string) {
   const payload = Buffer.from(JSON.stringify({ e: username, x: Math.floor(Date.now() / 1000) + MAX_AGE })).toString("base64url");
   (await cookies()).set(COOKIE, `${payload}.${sign(payload)}`, {
     httpOnly: true,
@@ -96,7 +131,6 @@ export async function login(usernameRaw: string, password: string): Promise<stri
     path: "/admin",
     maxAge: MAX_AGE,
   });
-  return null;
 }
 
 export async function logout() {

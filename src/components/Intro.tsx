@@ -4,12 +4,10 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { common } from "@/content/common";
-import { playIntro } from "@/lib/intro";
+import { armIntroFallback, leaveIntro, playIntro } from "@/lib/intro";
 import type { Locale } from "@/lib/i18n";
 import { MENU_INTRO, barePath } from "@/lib/menuIntro";
 import s from "./Intro.module.css";
-
-const leave = () => document.documentElement.classList.remove("intro-on");
 
 /**
  * Salam pembukaan: lambang, sapaan, lalu seluruh lapisan memudar membuka situs. Diputar ulang saat Home atau logo ditekan (`HomeLink`). Diputar sekali per sesi (keputusan diambil
@@ -31,7 +29,7 @@ export function Intro({ locale }: { locale: Locale }) {
   useEffect(() => {
     if (lastPath.current === pathname) return;
     lastPath.current = pathname;
-    if (menu) playIntro();
+    if (menu) playIntro({ restart: true });
   }, [pathname, menu]);
 
   useEffect(() => {
@@ -40,13 +38,10 @@ export function Intro({ locale }: { locale: Locale }) {
       if (!el || !document.documentElement.classList.contains("intro-on")) return;
       el.dataset.skip = "";
     };
-    // Cadangan bila peristiwa animasi tidak datang (mis. tab di latar belakang).
-    const fallback = window.setTimeout(leave, 5000);
+    // Intro muat awal dipasang oleh skrip di layout; pasang cadangannya di sini.
+    if (document.documentElement.classList.contains("intro-on")) armIntroFallback();
     window.addEventListener("keydown", skip);
-    return () => {
-      window.clearTimeout(fallback);
-      window.removeEventListener("keydown", skip);
-    };
+    return () => window.removeEventListener("keydown", skip);
   }, []);
 
   return (
@@ -60,7 +55,7 @@ export function Intro({ locale }: { locale: Locale }) {
         event.stopPropagation();
       }}
       onAnimationEnd={(event) => {
-        if (event.target === event.currentTarget) leave();
+        if (event.target === event.currentTarget) leaveIntro();
       }}
     >
       <div className={s.center}>

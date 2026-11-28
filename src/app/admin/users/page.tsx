@@ -14,13 +14,13 @@ export default async function UsersPage() {
       {me.role === "owner" && (
         <>
           <p className="muted">
-            Pemilik ({me.username}) diatur lewat ADMIN_USERNAME dan ADMIN_PASSWORD di Vercel. Editor bisa mengubah semua isi, tetapi
-            tidak bisa mengelola pengguna.
+            Anda masuk sebagai pemilik ({me.username}). Nama pengguna dan sandi pemilik bisa diganti di bawah; sesudahnya akun
+            dari ADMIN_USERNAME dan ADMIN_PASSWORD tidak dipakai lagi. Editor bisa mengubah semua isi, tetapi tidak bisa mengelola pengguna.
           </p>
           <table>
             <thead>
               <tr>
-                <th>Email</th>
+                <th>Nama pengguna</th>
                 <th>Peran</th>
                 <th />
               </tr>
@@ -51,7 +51,7 @@ export default async function UsersPage() {
           </table>
         </>
       )}
-      <UserForms owner={me.role === "owner"} />
+      <UserForms owner={me.role === "owner"} username={me.username} />
     </>
   );
 }

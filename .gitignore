@@ -45,3 +45,8 @@ next-env.d.ts
 /.cms-data/
 /public/uploads/
 .env*.local
+
+# arsip foto mentah dan kiriman Claude (besar, jangan masuk git)
+/photo-archive/
+/Claude outputs/
+/_tmp_pack/

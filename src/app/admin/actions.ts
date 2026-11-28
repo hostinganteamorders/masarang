@@ -1,7 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { hashPassword, listUsers, login, logout, requireUser, saveUsers } from "@/cms/auth";
+import { checkOwnerPassword, hashPassword, listUsers, login, logout, requireUser, saveUsers, setOwnerAccount, startSession } from "@/cms/auth";
 import { publish, updateDraft } from "@/cms/content";
 import { flatten, placeholders } from "@/cms/walk";
 import { defaultsFor, scopeById } from "@/cms/scopes";
@@ -157,4 +157,22 @@ export async function saveValuesAction(groupId: string, _: FormState, form: Form
     }
   });
   return { ok: true, message: 'Draf tersimpan. Tekan "Terbitkan" di Beranda admin agar tayang.' };
+}
+
+/** Pemilik mengganti nama pengguna dan sandinya sendiri. */
+export async function changeOwnerAction(_: FormState, form: FormData): Promise<FormState> {
+  const me = await requireUser("owner");
+  const username = str(form.get("username")).trim().toLowerCase();
+  const current = str(form.get("current"));
+  const password = str(form.get("password"));
+  if (!/^[a-z0-9._-]{3,32}$/.test(username)) return { message: "Nama pengguna 3–32 karakter: huruf kecil, angka, titik, garis bawah, atau strip." };
+  if (password.length < 10) return { message: "Sandi baru minimal 10 karakter." };
+  if (!(await checkOwnerPassword(me.username, current))) {
+    await new Promise((r) => setTimeout(r, 500));
+    return { message: "Sandi saat ini salah." };
+  }
+  const error = await setOwnerAccount(me.username, username, password);
+  if (error) return { message: error };
+  await startSession(username);
+  return { ok: true, message: "Akun pemilik diganti. Gunakan nama pengguna dan sandi baru untuk masuk berikutnya." };
 }

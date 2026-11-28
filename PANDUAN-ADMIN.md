@@ -49,3 +49,8 @@ Menu **Video & tautan**. Untuk video besar: unggah dulu ke YouTube atau Vimeo, l
 - Jangan membagikan sandi lewat chat. Ganti sandi di menu **Pengguna** bila perlu.
 - Keluar (tombol di kanan atas) bila memakai komputer bersama.
 - Percobaan masuk yang salah berulang akan dikunci sementara.
+
+## Mengganti akun pemilik
+
+Masuk dengan akun awal, buka **Pengguna**, lalu isi "Ganti nama pengguna dan sandi saya" (sandi saat ini, nama pengguna baru, sandi baru minimal 10 karakter).
+Setelah disimpan, akun awal tidak berlaku lagi. Lupa sandi baru? Isi `ADMIN_FORCE_ENV=1` di Vercel, deploy ulang, masuk dengan akun awal, ganti lagi, lalu hapus variabel itu.
