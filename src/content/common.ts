@@ -3,8 +3,6 @@ import type { Locale } from "@/lib/i18n";
 
 const en = {
   skip: "Skip to content",
-  draftBanner:
-    "Draft site. Figures with a dotted underline are placeholders. Replace them before going live.",
   placeholderHint: "Placeholder. Replace before publishing.",
   brand: { name: "Yayasan Masarang", place: "Tomohon" },
   nav: {
@@ -134,8 +132,6 @@ const en = {
 
 const id: typeof en = {
   skip: "Langsung ke isi halaman",
-  draftBanner:
-    "Draf situs. Angka dengan garis bawah titik-titik masih contoh. Ganti sebelum dipublikasikan.",
   placeholderHint: "Contoh. Ganti sebelum dipublikasikan.",
   brand: { name: "Yayasan Masarang", place: "Tomohon" },
   nav: {

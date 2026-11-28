@@ -5,7 +5,6 @@ import "../globals.css";
 import { CountUp } from "@/components/CountUp";
 import { Intro } from "@/components/Intro";
 import { MENU_INTRO } from "@/lib/menuIntro";
-import { DraftBanner } from "@/components/DraftBanner";
 import { Ribbon } from "@/components/Ribbon";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -68,7 +67,6 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
         <a className="skip-link" href="#main">
           {c.skip}
         </a>
-        <DraftBanner locale={locale} />
         <Ribbon />
         <SiteHeader locale={locale} nav={c.nav} />
         <main id="main">{children}</main>
