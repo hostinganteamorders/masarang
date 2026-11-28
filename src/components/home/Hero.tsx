@@ -33,7 +33,7 @@ export function Hero({ locale }: { locale: Locale }) {
           </div>
         </div>
         {/* Video besar tepat di bawah slogan. */}
-        <VideoSlot url={apingVideo.url} poster={apingVideo.poster} title={apingVideo.title[locale]} locale={locale} className={s.video} autoplay />
+        <VideoSlot url={apingVideo.url} poster={apingVideo.poster} title={apingVideo.title[locale]} locale={locale} className={s.video} />
       </div>
 
     </section>

@@ -389,3 +389,9 @@ Daftar halaman ada di `src/lib/menuIntro.ts`; kalimat pengantar EN/ID ada di `sr
 Akun awal pemilik datang dari `ADMIN_USERNAME` dan `ADMIN_PASSWORD`. Setelah masuk, pemilik bisa mengganti nama pengguna dan sandinya di Admin > Pengguna
 ("Ganti nama pengguna dan sandi saya"); sesudahnya akun yang tersimpan itulah yang berlaku dan sandi awal dari Vercel tidak dipakai lagi.
 Penyimpanan memakai Upstash Redis dan Vercel Blob di Vercel (atau berkas lokal di `.cms-data/`), bukan Supabase.
+
+## Video
+
+Semua video situs (Beranda, Founder, perbandingan drone di Restoration, dan video yang diisi lewat Admin) diputar otomatis tanpa suara, tanpa tombol putar atau kontrol,
+berulang, dan dijeda otomatis saat keluar dari layar atau tab ditinggalkan (dilanjutkan saat terlihat lagi; `src/components/VideoPlayer.tsx`, `src/lib/useVideoActive.ts`).
+Pengunjung yang memilih "kurangi gerak" mendapat kontrol biasa tanpa putar otomatis. Di perbandingan drone hanya tersisa tombol "Ulang keduanya" untuk menyejajarkan kedua video.

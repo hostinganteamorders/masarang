@@ -22,7 +22,7 @@ function embedUrl(url: string): string | null {
 }
 
 /**
- * Tempat video. Tanpa `url`, kotak penanda tempat ditampilkan. Dengan `url`: YouTube/Vimeo disematkan
+ * Tempat video (diputar otomatis tanpa kontrol, jeda sendiri saat tidak terlihat; lihat `VideoPlayer`). Tanpa `url`, kotak penanda tempat ditampilkan. Dengan `url`: YouTube/Vimeo disematkan
  * (tanpa cookie pelacak sebelum diputar), berkas .mp4/.webm diputar langsung.
  */
 export function VideoSlot({
@@ -30,15 +30,12 @@ export function VideoSlot({
   title,
   locale,
   className,
-  autoplay,
   poster,
 }: {
   url?: string;
   title: string;
   locale: Locale;
   className?: string;
-  /** Putar otomatis (tanpa suara) setelah salam pembuka selesai. */
-  autoplay?: boolean;
   /** Gambar sampul untuk berkas video (bukan YouTube/Vimeo). */
   poster?: string;
 }) {
@@ -49,7 +46,7 @@ export function VideoSlot({
     <figure className={`${s.slot} ${className ?? ""}`}>
       <div className={s.frame}>
         {url ? (
-          <VideoPlayer embed={embed} url={url} title={title} autoplay={autoplay} poster={poster} />
+          <VideoPlayer embed={embed} url={url} title={title} poster={poster} />
         ) : (
           <div className={s.empty}>
             <svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true" focusable="false">

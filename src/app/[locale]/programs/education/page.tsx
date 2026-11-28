@@ -20,6 +20,16 @@ import { localePath } from "@/lib/i18n";
 import { resolveLocale } from "@/lib/locale";
 import { pageMetadata } from "@/lib/seo";
 
+function Steps({ items }: { items: string[] }) {
+  return (
+    <ol style={{ margin: "0.5rem 0 1rem", paddingLeft: "1.4rem", display: "grid", gap: "0.35rem" }}>
+      {items.map((step) => (
+        <li key={step}>{step}</li>
+      ))}
+    </ol>
+  );
+}
+
 export async function generateMetadata({
   params,
 }: PageProps<"/[locale]/programs/education">): Promise<Metadata> {
@@ -36,13 +46,6 @@ export default async function EducationPage({ params }: PageProps<"/[locale]/pro
   const subStyle = { display: "grid", gap: "1.25rem", marginTop: "0.5rem" } as const;
 
   const hasPh = (text: string) => text.includes("[");
-  const Steps = ({ items }: { items: string[] }) => (
-    <ol style={{ margin: "0.5rem 0 1rem", paddingLeft: "1.4rem", display: "grid", gap: "0.35rem" }}>
-      {items.map((step) => (
-        <li key={step}>{step}</li>
-      ))}
-    </ol>
-  );
 
   const activities: Activity[] = [
     {

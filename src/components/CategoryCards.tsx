@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Ph } from "@/components/Ph";
 import { ZoomButton } from "@/components/ZoomPhoto";
 import type { AdoptCopy } from "@/content/adopt";
-import { site } from "@/data/site";
 import { catOrder, wildCats, wildTotals, type WildCat } from "@/data/wildlife";
 import { fill, num, pct } from "@/lib/format";
 import type { Locale } from "@/lib/i18n";

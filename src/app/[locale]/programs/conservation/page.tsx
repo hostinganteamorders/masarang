@@ -23,7 +23,6 @@ import { wildFlows, wildTotals, wildlifeAsOf } from "@/data/wildlife";
 import { sponsorFrom } from "@/data/organisation";
 import { photos } from "@/data/photos";
 import { forestProtection, homeImpact, tasikoki } from "@/data/programs";
-import { site } from "@/data/site";
 import { updates } from "@/data/updates";
 import { fill, fullDate, idrAuto, monthYear, num } from "@/lib/format";
 import { fillNode } from "@/lib/node";

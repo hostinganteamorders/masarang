@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useVideoActive } from "@/lib/useVideoActive";
 import type { DroneCopy } from "@/content/drone";
 import type { DroneVideo } from "@/data/drone";
 import { fill } from "@/lib/format";
@@ -22,6 +23,8 @@ function Pane({
   copy,
   locale,
   videoRef,
+  reduced,
+  onReady,
 }: {
   legend: string;
   list: DroneVideo[];
@@ -30,6 +33,8 @@ function Pane({
   copy: DroneCopy;
   locale: Locale;
   videoRef: React.RefObject<HTMLVideoElement | null>;
+  reduced: boolean;
+  onReady: () => void;
 }) {
   const cur = list.find((v) => v.id === value) ?? list[0];
   const years = [...new Set(list.map(yearOf))];
@@ -71,11 +76,15 @@ function Pane({
         <video
           key={cur.id}
           ref={videoRef}
-          controls
           muted
+          loop
           playsInline
           preload="metadata"
           poster={cur.poster || undefined}
+          controls={reduced}
+          tabIndex={reduced ? undefined : -1}
+          style={reduced ? undefined : { pointerEvents: "none" }}
+          onLoadedData={onReady}
           aria-label={fill(copy.videoLabel, { date: labelOf(cur, locale) })}
         >
           <source src={cur.video} type="video/mp4" />
@@ -91,40 +100,37 @@ export function DroneCompare({ locale, copy, videos }: { locale: Locale; copy: D
   const list = [...videos].sort((a, b) => a.date.localeCompare(b.date));
   const [left, setLeft] = useState(list[0]?.id ?? "");
   const [right, setRight] = useState(list[list.length - 1]?.id ?? "");
-  const [playing, setPlaying] = useState(false);
+  const wrap = useRef<HTMLDivElement>(null);
   const a = useRef<HTMLVideoElement>(null);
   const b = useRef<HTMLVideoElement>(null);
-
-  if (list.length === 0) return null;
+  const { active, reduced } = useVideoActive(wrap);
   const all = () => [a.current, b.current].filter((v): v is HTMLVideoElement => Boolean(v));
 
-  const toggle = () => {
-    if (playing) {
-      all().forEach((v) => v.pause());
-      setPlaying(false);
-    } else {
-      all().forEach((v) => void v.play().catch(() => {}));
-      setPlaying(true);
-    }
-  };
+  // Kedua video diputar otomatis saat terlihat dan dijeda saat tidak terlihat.
+  useEffect(() => {
+    all().forEach((v) => (active ? void v.play().catch(() => {}) : v.pause()));
+  }, [active, left, right]);
+
+  if (list.length === 0) return null;
+
+  // Ganti bulan: mulai dari awal agar kedua sisi tetap sejajar.
   const restart = () => {
     all().forEach((v) => {
       v.currentTime = 0;
-      void v.play().catch(() => {});
+      if (active) void v.play().catch(() => {});
     });
-    setPlaying(true);
+  };
+  const onReady = () => {
+    if (active) all().forEach((v) => void v.play().catch(() => {}));
   };
 
   return (
-    <div className={s.wrap}>
+    <div className={s.wrap} ref={wrap}>
       <div className={s.panes}>
-        <Pane legend={copy.left} list={list} value={left} onChange={(v) => { setLeft(v); setPlaying(false); }} copy={copy} locale={locale} videoRef={a} />
-        <Pane legend={copy.right} list={list} value={right} onChange={(v) => { setRight(v); setPlaying(false); }} copy={copy} locale={locale} videoRef={b} />
+        <Pane legend={copy.left} list={list} value={left} onChange={(v) => { setLeft(v); window.setTimeout(restart, 0); }} copy={copy} locale={locale} videoRef={a} reduced={reduced} onReady={onReady} />
+        <Pane legend={copy.right} list={list} value={right} onChange={(v) => { setRight(v); window.setTimeout(restart, 0); }} copy={copy} locale={locale} videoRef={b} reduced={reduced} onReady={onReady} />
       </div>
       <div className={s.actions}>
-        <button type="button" className="btn" onClick={toggle} aria-pressed={playing}>
-          {playing ? copy.pauseBoth : copy.playBoth}
-        </button>
         <button type="button" className="btn btn--ghost" onClick={restart}>
           {copy.restart}
         </button>
