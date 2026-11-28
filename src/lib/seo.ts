@@ -2,6 +2,16 @@ import type { Metadata } from "next";
 import { site } from "@/data/site";
 import { localePath, locales, type Locale } from "./i18n";
 
+/** Gambar pratinjau saat tautan dibagikan (WhatsApp, LinkedIn, Instagram, X), 1200×630, per bahasa. */
+export function shareImage(locale: Locale) {
+  return {
+    url: `/og/masarang-${locale}.png`,
+    width: 1200,
+    height: 630,
+    alt: locale === "id" ? "Yayasan Masarang: Melestarikan Alam melalui Pemberdayaan Masyarakat Lokal" : "Masarang Foundation: Preserving Nature Through the Empowerment of Local People",
+  };
+}
+
 /** Metadata per halaman: judul, deskripsi, canonical, dan hreflang untuk kedua bahasa. */
 export function pageMetadata(
   locale: Locale,
@@ -23,7 +33,15 @@ export function pageMetadata(
       url: localePath(locale, path),
       siteName: site.name,
       locale: locale === "id" ? "id_ID" : "en_US",
+      alternateLocale: locale === "id" ? "en_US" : "id_ID",
       type: "website",
+      images: [shareImage(locale)],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: meta.title,
+      description: meta.description,
+      images: [shareImage(locale).url],
     },
   };
 }

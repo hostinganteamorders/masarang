@@ -3,9 +3,9 @@ import type { Locale } from "@/lib/i18n";
 
 const en = {
   meta: {
-    title: "Updates",
+    title: "Updates and Quarterly Reports",
     description:
-      "Quarterly Reports from Yayasan Masarang and field updates from Temboan and Tasikoki. Each entry names the evidence behind it.",
+      "Quarterly Reports and field updates from Masarang Foundation's work at Temboan and Tasikoki in North Sulawesi. Every note names its supporting evidence.",
   },
   hero: {
     title: "Quarterly Reports and field updates",
@@ -23,9 +23,9 @@ const en = {
 
 const id: typeof en = {
   meta: {
-    title: "Kabar",
+    title: "Kabar dan Laporan Triwulan",
     description:
-      "Quarterly Report Yayasan Masarang dan kabar lapangan dari Temboan dan Tasikoki. Setiap catatan menyebutkan bukti pendukungnya.",
+      "Quarterly Report dan kabar lapangan dari kerja Yayasan Masarang di Temboan dan Tasikoki, Sulawesi Utara. Setiap catatan menyebutkan bukti pendukungnya.",
   },
   hero: {
     title: "Quarterly Report dan kabar lapangan",

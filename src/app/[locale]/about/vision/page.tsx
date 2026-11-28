@@ -22,7 +22,7 @@ const PILLAR_STYLE: Record<string, { color: string; photo: Pic }> = {
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/about/vision">): Promise<Metadata> {
   const locale = await resolveLocale(params);
-  return pageMetadata(locale, "/about/vision", { ...about[locale].meta, title: about[locale].vision.title });
+  return pageMetadata(locale, "/about/vision", about[locale].vision.meta);
 }
 
 export default async function VisionPage({ params }: PageProps<"/[locale]/about/vision">) {

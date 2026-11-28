@@ -3,8 +3,9 @@ import type { Locale } from "@/lib/i18n";
 
 const en = {
   meta: {
-    title: "Merchandise",
-    description: "Bags, shirts and village products that fund Yayasan Masarang's field work.",
+    title: "Merchandise: Bags, Shirts and Village Products",
+    description:
+      "Bags, shirts and village products that fund the field work of Masarang Foundation in North Sulawesi. Every purchase supports conservation.",
   },
   hero: {
     title: "Take a piece of Masarang home",
@@ -31,8 +32,9 @@ const en = {
 
 const id: typeof en = {
   meta: {
-    title: "Merchandise",
-    description: "Tas, kaos, dan produk desa yang mendanai kerja lapangan Yayasan Masarang.",
+    title: "Merchandise: Tas, Kaos, dan Produk Desa",
+    description:
+      "Tas, kaos, dan produk desa yang mendanai kerja lapangan Yayasan Masarang di Sulawesi Utara. Setiap pembelian mendukung konservasi.",
   },
   hero: {
     title: "Bawa pulang sepotong Masarang",

@@ -3,9 +3,9 @@ import type { Locale } from "@/lib/i18n";
 
 const en = {
   meta: {
-    title: "Support the work",
+    title: "Donate to Support Conservation",
     description:
-      "Give to a specific program, sponsor an animal, or partner with us. We report back on what you funded.",
+      "Donate to Masarang Foundation to fund forest restoration, wildlife rescue at Tasikoki, sea turtle protection and environmental education in North Sulawesi.",
   },
   hero: {
     title: "Fund a specific piece of the work",
@@ -67,9 +67,9 @@ const en = {
 
 const id: typeof en = {
   meta: {
-    title: "Dukung kerja kami",
+    title: "Donasi untuk Konservasi Alam",
     description:
-      "Berdonasi untuk program tertentu, dukung satwa, atau bermitra dengan kami. Kami melaporkan apa yang Anda danai.",
+      "Berdonasi untuk Yayasan Masarang: mendanai restorasi hutan, penyelamatan satwa di Tasikoki, perlindungan penyu, dan edukasi lingkungan di Sulawesi Utara.",
   },
   hero: {
     title: "Danai bagian kerja yang Anda pilih",

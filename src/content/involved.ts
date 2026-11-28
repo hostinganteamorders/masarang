@@ -3,8 +3,9 @@ import type { Locale } from "@/lib/i18n";
 
 const en = {
   meta: {
-    title: "Get involved",
-    description: "Adopt an animal, donate, partner with us or volunteer. Four ways to take part in the work of Yayasan Masarang.",
+    title: "Get Involved: Volunteer, Partner or Donate",
+    description:
+      "Take part in conservation in North Sulawesi: adopt an animal, donate, partner with Masarang Foundation or volunteer in restoration, wildlife care and education.",
   },
   hero: {
     title: "Get involved",
@@ -35,8 +36,9 @@ const en = {
   },
   partner: {
     meta: {
-      title: "Become a partner",
-      description: "Institutions, companies, funders and research bodies working with Yayasan Masarang.",
+      title: "Become a Partner of Masarang Foundation",
+      description:
+        "Institutions, companies, funders and research bodies working with Masarang Foundation to restore forests, protect wildlife and educate communities in North Sulawesi.",
     },
     hero: {
       title: "Become a partner",
@@ -61,8 +63,9 @@ const en = {
   },
   volunteer: {
     meta: {
-      title: "Volunteer",
-      description: "Volunteer with Yayasan Masarang in restoration, animal care and education.",
+      title: "Volunteer in Conservation in North Sulawesi",
+      description:
+        "Volunteer with Masarang Foundation in forest restoration, wildlife care at Tasikoki and environmental education in Tomohon. See how to apply.",
     },
     hero: {
       title: "Volunteer with us",
@@ -88,8 +91,9 @@ const en = {
 
 const id: typeof en = {
   meta: {
-    title: "Terlibat",
-    description: "Adopsi satwa, berdonasi, bermitra, atau menjadi relawan. Empat cara ikut serta dalam pekerjaan Yayasan Masarang.",
+    title: "Terlibat: Relawan, Mitra, atau Donasi",
+    description:
+      "Ikut menjaga alam Sulawesi Utara: adopsi satwa, berdonasi, bermitra dengan Yayasan Masarang, atau menjadi relawan di restorasi, perawatan satwa, dan edukasi.",
   },
   hero: {
     title: "Terlibat",
@@ -120,8 +124,9 @@ const id: typeof en = {
   },
   partner: {
     meta: {
-      title: "Jadi mitra",
-      description: "Institusi, perusahaan, lembaga pendana, dan lembaga riset yang bekerja bersama Yayasan Masarang.",
+      title: "Jadi Mitra Yayasan Masarang",
+      description:
+        "Institusi, perusahaan, lembaga pendana, dan lembaga riset yang bekerja bersama Yayasan Masarang memulihkan hutan, melindungi satwa, dan mendidik masyarakat di Sulawesi Utara.",
     },
     hero: {
       title: "Jadi mitra",
@@ -146,8 +151,9 @@ const id: typeof en = {
   },
   volunteer: {
     meta: {
-      title: "Jadi relawan",
-      description: "Menjadi relawan Yayasan Masarang di bidang restorasi, perawatan satwa, dan edukasi.",
+      title: "Jadi Relawan Konservasi di Sulawesi Utara",
+      description:
+        "Menjadi relawan Yayasan Masarang di restorasi hutan, perawatan satwa di Tasikoki, dan edukasi lingkungan di Tomohon. Cara mendaftar ada di halaman ini.",
     },
     hero: {
       title: "Jadi relawan bersama kami",

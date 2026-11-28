@@ -13,7 +13,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/about/partners">): Promise<Metadata> {
   const locale = await resolveLocale(params);
-  return pageMetadata(locale, "/about/partners", { ...about[locale].meta, title: about[locale].partners.title });
+  return pageMetadata(locale, "/about/partners", about[locale].partners.meta);
 }
 
 export default async function PartnersPage({ params }: PageProps<"/[locale]/about/partners">) {

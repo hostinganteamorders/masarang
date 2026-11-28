@@ -3,9 +3,9 @@ import type { Locale } from "@/lib/i18n";
 
 const en = {
   meta: {
-    title: "Animals in our care",
+    title: "Adopt a Wildlife Animal at Tasikoki",
     description:
-      "How many animals Tasikoki cares for in each category, how many are in quarantine, and the ambassador animal that speaks for each one.",
+      "Meet the animals in care at Tasikoki Wildlife Centre in North Sulawesi, by category and species, and support the care of one through Masarang Foundation.",
   },
   hero: {
     title: "Animals in our care, by category",
@@ -107,9 +107,9 @@ const en = {
 
 const id: typeof en = {
   meta: {
-    title: "Satwa dalam perawatan kami",
+    title: "Adopsi Satwa Liar di Tasikoki",
     description:
-      "Jumlah satwa yang dirawat Tasikoki di setiap kategori, berapa yang masih dikarantina, dan satwa duta yang mewakili masing-masing kategori.",
+      "Kenali satwa yang dirawat di Tasikoki Wildlife Centre, Sulawesi Utara, menurut kategori dan jenis, lalu dukung perawatan satu satwa lewat Yayasan Masarang.",
   },
   hero: {
     title: "Satwa dalam perawatan kami, per kategori",

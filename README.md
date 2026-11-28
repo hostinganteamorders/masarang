@@ -395,3 +395,8 @@ Penyimpanan memakai Upstash Redis dan Vercel Blob di Vercel (atau berkas lokal d
 Semua video situs (Beranda, Founder, perbandingan drone di Restoration, dan video yang diisi lewat Admin) diputar otomatis tanpa suara, tanpa tombol putar atau kontrol,
 berulang, dan dijeda otomatis saat keluar dari layar atau tab ditinggalkan (dilanjutkan saat terlihat lagi; `src/components/VideoPlayer.tsx`, `src/lib/useVideoActive.ts`).
 Pengunjung yang memilih "kurangi gerak" mendapat kontrol biasa tanpa putar otomatis. Di perbandingan drone hanya tersisa tombol "Ulang keduanya" untuk menyejajarkan kedua video.
+
+## SEO dan tayang
+
+Lihat `LAUNCH.md` (variabel Vercel, domain, pengalihan alamat lama, Search Console) dan jalankan `npm run launch-check`. Data terstruktur ada di `src/components/JsonLd.tsx`,
+gambar pratinjau di `public/og/`, dan daftar pengalihan di `src/data/redirects.ts`.

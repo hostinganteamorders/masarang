@@ -5,8 +5,11 @@ import type { L10n } from "@/lib/i18n";
 export type Fact<T = number> = { v: T; ph?: boolean };
 
 export const site = cmsValues("site", {
-  /** Set false sebelum dipublikasikan: menghilangkan banner draf dan garis bawah placeholder. */
-  draft: true,
+  /**
+   * Mode draf: mesin pencari dilarang mengindeks dan angka contoh bergaris bawah titik-titik.
+   * Saat tayang: isi NEXT_PUBLIC_SITE_DRAFT=false di Vercel (lalu deploy ulang). Kosong = draf.
+   */
+  draft: process.env.NEXT_PUBLIC_SITE_DRAFT !== "false",
 
   name: "Yayasan Masarang",
   shortName: "Masarang",

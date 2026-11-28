@@ -8,9 +8,9 @@ import type { Locale } from "@/lib/i18n";
 const en = {
   overview: {
     meta: {
-      title: "Programs",
+      title: "Programs: Restoration, Conservation and Education",
       description:
-        "Restoration, conservation and education: the three programs of Yayasan Masarang, reported the same way every quarter.",
+        "Three programs of Masarang Foundation in North Sulawesi: forest restoration at Temboan, wildlife conservation at Tasikoki, and environmental education at Titik Tumbuh.",
     },
     hero: {
       title: "Three programs, one way of reporting",
@@ -72,9 +72,9 @@ const en = {
 
   restoration: {
     meta: {
-      title: "Restoration",
+      title: "Forest Restoration and Agroforestry in Minahasa",
       description:
-        "The Temboan Restoration Project and Farmers Empowered: restoring degraded land in Minahasa with mixed agroforestry, together with the farmers who live next to it.",
+        "The Temboan Restoration Project and Farmers Empowered restore degraded land in Minahasa, North Sulawesi, with mixed agroforestry and the farmers who live beside it.",
     },
     hero: {
       title: "Restoration",
@@ -130,9 +130,9 @@ const en = {
 
   conservation: {
     meta: {
-      title: "Conservation",
+      title: "Wildlife Conservation: Tasikoki and Sea Turtles",
       description:
-        "Tasikoki rehabilitates animals seized from the illegal wildlife trade and releases them where it is safe. Sea turtles, forest protection and biodiversity data are part of the same program.",
+        "Tasikoki Wildlife Centre rehabilitates animals rescued from the illegal wildlife trade and releases them where it is safe. See our sea turtle project at Tulap and forest protection.",
     },
     hero: {
       title: "Conservation",
@@ -205,9 +205,9 @@ const en = {
 
   education: {
     meta: {
-      title: "Education",
+      title: "Environmental Education at Titik Tumbuh",
       description:
-        "Learning programs, a community market, residencies, outreach and volunteering run by Yayasan Masarang.",
+        "School visits, EduTour, art residencies, community outreach and volunteering at Titik Tumbuh in Tomohon, run by Masarang Foundation to connect people with nature.",
     },
     hero: {
       title: "Education",
@@ -277,9 +277,9 @@ const en = {
 const id: typeof en = {
   overview: {
     meta: {
-      title: "Program",
+      title: "Program: Restorasi, Konservasi, dan Edukasi",
       description:
-        "Restorasi, konservasi, dan edukasi: tiga program Yayasan Masarang, dilaporkan dengan cara yang sama setiap triwulan.",
+        "Tiga program Yayasan Masarang di Sulawesi Utara: restorasi hutan di Temboan, konservasi satwa di Tasikoki, dan edukasi lingkungan di Titik Tumbuh.",
     },
     hero: {
       title: "Tiga program, satu cara pelaporan",
@@ -340,9 +340,9 @@ const id: typeof en = {
 
   restoration: {
     meta: {
-      title: "Restorasi",
+      title: "Restorasi Hutan dan Agroforestri di Minahasa",
       description:
-        "Temboan Restoration Project dan Farmers Empowered: memulihkan lahan kritis di Minahasa dengan agroforestri campuran, bersama para petani yang tinggal di sekitarnya.",
+        "Temboan Restoration Project dan Farmers Empowered memulihkan lahan kritis di Minahasa, Sulawesi Utara, dengan agroforestri campuran bersama para petani di sekitarnya.",
     },
     hero: {
       title: "Restorasi",
@@ -398,9 +398,9 @@ const id: typeof en = {
 
   conservation: {
     meta: {
-      title: "Konservasi",
+      title: "Konservasi Satwa: Tasikoki dan Penyu Tulap",
       description:
-        "Tasikoki merehabilitasi satwa sitaan dari perdagangan ilegal dan melepasliarkannya bila aman. Penyu, perlindungan hutan, dan data keanekaragaman hayati bagian dari program yang sama.",
+        "Tasikoki Wildlife Centre merehabilitasi satwa sitaan dari perdagangan ilegal dan melepasliarkannya bila aman. Lihat juga proyek penyu di Tulap dan perlindungan hutan.",
     },
     hero: {
       title: "Konservasi",
@@ -473,9 +473,9 @@ const id: typeof en = {
 
   education: {
     meta: {
-      title: "Edukasi",
+      title: "Edukasi Lingkungan di Titik Tumbuh",
       description:
-        "Program belajar, pasar masyarakat, residensi, penjangkauan, dan kerja relawan yang dijalankan Yayasan Masarang.",
+        "Kunjungan sekolah, EduTour, residensi seni, penjangkauan masyarakat, dan kerja relawan di Titik Tumbuh, Tomohon, untuk menghubungkan masyarakat dengan alam.",
     },
     hero: {
       title: "Edukasi",

@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { oldPaths } from "./src/data/redirects";
 
 const nextConfig: NextConfig = {
   // Situs ini dirender statis per bahasa (/en dan /id), jadi tidak memakai Cache Components.
@@ -24,19 +25,31 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  // Alamat lama (sebelum struktur situs disusun ulang) dialihkan ke alamat baru.
+  // Alamat lama dialihkan permanen ke alamat baru (daftarnya di src/data/redirects.ts), dan www dialihkan ke alamat utama.
   async redirects() {
-    const moved: [string, string][] = [
-      ["/team", "/about/team"],
-      ["/programs/temboan", "/programs/restoration"],
-      ["/programs/tasikoki", "/programs/conservation"],
-      ["/adopt", "/programs/conservation/adopt"],
-    ];
-    return moved.map(([from, to]) => ({
-      source: `/:locale(en|id)${from}`,
-      destination: `/:locale${to}`,
-      permanent: true,
-    }));
+    const rules: Awaited<ReturnType<NonNullable<NextConfig["redirects"]>>> = [];
+
+    // Satu alamat utama saja: www.contoh.org -> contoh.org (bila NEXT_PUBLIC_SITE_URL berupa https tanpa www).
+    try {
+      const { protocol, hostname } = new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "");
+      if (protocol === "https:" && !hostname.startsWith("www.") && hostname.includes(".")) {
+        rules.push({
+          source: "/:path*",
+          has: [{ type: "host", value: `www.${hostname}` }],
+          destination: `https://${hostname}/:path*`,
+          permanent: true,
+        });
+      }
+    } catch {
+      /* NEXT_PUBLIC_SITE_URL belum diisi: lewati */
+    }
+
+    for (const [from, to] of oldPaths) {
+      // Alamat dengan awalan bahasa (/en/team) dan tanpa awalan (/about-us).
+      rules.push({ source: `/:locale(en|id)${from}`, destination: `/:locale${to === "/" ? "" : to}`, permanent: true });
+      if (from !== "/") rules.push({ source: from, destination: to, permanent: true });
+    }
+    return rules;
   },
 };
 

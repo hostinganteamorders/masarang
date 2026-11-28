@@ -61,7 +61,7 @@ export function Gallery({
                   >
                     <Image
                       src={p.src}
-                      alt=""
+                      alt={p.alt[locale]}
                       fill
                       sizes={`(max-width: 40rem) 100vw, ${Math.ceil((ratio / sum) * 92)}vw`}
                       className={s.image}

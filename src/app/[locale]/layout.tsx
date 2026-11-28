@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import "../globals.css";
 import { CountUp } from "@/components/CountUp";
 import { Intro } from "@/components/Intro";
+import { BreadcrumbsLd, OrganizationLd } from "@/components/JsonLd";
 import { MENU_INTRO } from "@/lib/menuIntro";
 import { Ribbon } from "@/components/Ribbon";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -43,6 +44,11 @@ export const metadata: Metadata = {
   applicationName: site.name,
   // Selama masih draf, minta mesin pencari tidak mengindeks.
   robots: site.draft ? { index: false, follow: false } : undefined,
+  // Kode verifikasi pemilik situs (Search Console / Bing Webmaster), diisi lewat variabel lingkungan di Vercel.
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.BING_SITE_VERIFICATION ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION } : undefined,
+  },
 };
 
 export const viewport: Viewport = {
@@ -62,6 +68,8 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
       <body>
         {/* Sebelum cat pertama: tentukan apakah salam pembukaan diputar (sekali per sesi, tidak bila gerak dikurangi). */}
         <script dangerouslySetInnerHTML={{ __html: INTRO_SCRIPT }} />
+        <OrganizationLd locale={locale} />
+        <BreadcrumbsLd locale={locale} />
         <Intro locale={locale} />
         <CountUp />
         <a className="skip-link" href="#main">

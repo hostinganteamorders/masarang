@@ -15,7 +15,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/about/founder">): Promise<Metadata> {
   const locale = await resolveLocale(params);
-  return pageMetadata(locale, "/about/founder", { ...about[locale].meta, title: about[locale].founder.title });
+  return pageMetadata(locale, "/about/founder", about[locale].founder.meta);
 }
 
 export default async function FounderPage({ params }: PageProps<"/[locale]/about/founder">) {

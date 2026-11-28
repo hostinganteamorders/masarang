@@ -16,7 +16,7 @@ import s from "./sites.module.css";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/about/sites">): Promise<Metadata> {
   const locale = await resolveLocale(params);
-  return pageMetadata(locale, "/about/sites", { ...about[locale].meta, title: about[locale].sites.title });
+  return pageMetadata(locale, "/about/sites", about[locale].sites.meta);
 }
 
 const PROGRAM_PATH: Record<string, string> = {

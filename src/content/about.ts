@@ -4,7 +4,7 @@ import type { Locale } from "@/lib/i18n";
 /** Halaman Tentang Kami (ringkasan + Founder, Story, Vision & Approach, Sites, Partners). Teks berkurung siku "[…]" adalah penanda tempat. */
 const en = {
   meta: {
-    title: "About Us",
+    title: "About Us: Nature Conservation in North Sulawesi",
     description:
       "Masarang Foundation connects nature conservation with the empowerment of local communities in North Sulawesi. Meet our founder, our story, our approach, our sites and our partners.",
   },
@@ -25,6 +25,11 @@ const en = {
     },
   },
   founder: {
+    meta: {
+      title: "Dr. Willie Smits, Founder of Masarang",
+      description:
+        "Dr. Willie Smits founded Masarang Foundation to restore forests, protect wildlife and support the people of North Sulawesi. Read about his work and recognition.",
+    },
     title: "Our Founder",
     subheader: "Three decades of restoring forests by empowering the people who live alongside them.",
     name: "Dr. Willie Smits",
@@ -43,6 +48,11 @@ const en = {
     video: "Video: Aping",
   },
   story: {
+    meta: {
+      title: "Our Story: How Masarang Began and Grew",
+      description:
+        "From a first reforestation effort on Mount Masarang to wildlife rescue at Tasikoki and education at Titik Tumbuh: the story of Masarang Foundation.",
+    },
     title: "Our Story",
     subheader: "From one mountain to a movement across North Sulawesi.",
     paragraphs: [
@@ -55,6 +65,11 @@ const en = {
     recognition: "BBC World Challenge Finalist (2007) · Sidhakarya Award · Paramakarya Award (2017, together with Pertamina)",
   },
   vision: {
+    meta: {
+      title: "Vision & Approach: Conserving Nature with Local People",
+      description:
+        "Why nature and people must be protected together, and how Masarang Foundation works: restoration, conservation and education with local communities.",
+    },
     title: "Vision & Approach",
     subheader: "Preserving Nature Through the Empowerment of Local People.",
     ourVision: {
@@ -94,6 +109,11 @@ const en = {
     },
   },
   sites: {
+    meta: {
+      title: "Our Sites: Where We Work in North Sulawesi",
+      description:
+        "Map and profiles of Masarang Foundation's sites: Mount Masarang, Temboan, Pulisan, Tasikoki, Tulap, Salimburung Island and Titik Tumbuh.",
+    },
     title: "Our Sites",
     subheader: "Where our work takes root.",
     lede: "From mountain forests to turtle-nesting beaches, each site plays a distinct role in our restoration, conservation, and education efforts.",
@@ -120,6 +140,11 @@ const en = {
     ],
   },
   partners: {
+    meta: {
+      title: "Our Partners and Network",
+      description:
+        "The network and partners of Masarang Foundation: Masarang EU, The Most Sustainable, Trees For All, World Parrot Trust, PGE and more.",
+    },
     title: "Our Partners",
     subheader: "Working together for people and nature.",
     lede: "Protecting nature and empowering communities require collaboration. We work with organizations, institutions, and companies that share our commitment to strengthening our programs, exchanging knowledge, and creating meaningful opportunities for collective action. Select a logo or name to visit the partner's website.",
@@ -147,7 +172,7 @@ const en = {
 
 const id: typeof en = {
   meta: {
-    title: "Tentang Kami",
+    title: "Tentang Kami: Konservasi Alam di Sulawesi Utara",
     description:
       "Yayasan Masarang menghubungkan pelestarian alam dengan pemberdayaan masyarakat lokal di Sulawesi Utara. Kenali pendiri, kisah, pendekatan, lokasi, dan mitra kami.",
   },
@@ -168,6 +193,11 @@ const id: typeof en = {
     },
   },
   founder: {
+    meta: {
+      title: "Dr. Willie Smits, Pendiri Masarang",
+      description:
+        "Dr. Willie Smits mendirikan Yayasan Masarang untuk memulihkan hutan, melindungi satwa, dan mendukung masyarakat Sulawesi Utara. Baca tentang kerja dan penghargaannya.",
+    },
     title: "Pendiri Kami",
     subheader: "Tiga dekade memulihkan hutan melalui pemberdayaan masyarakat yang hidup berdampingan dengannya.",
     name: "Dr. Willie Smits",
@@ -186,6 +216,11 @@ const id: typeof en = {
     video: "Video: Aping",
   },
   story: {
+    meta: {
+      title: "Kisah Kami: Awal Mula dan Perkembangan Masarang",
+      description:
+        "Dari upaya reforestasi pertama di Gunung Masarang hingga penyelamatan satwa di Tasikoki dan edukasi di Titik Tumbuh: kisah Yayasan Masarang.",
+    },
     title: "Kisah Kami",
     subheader: "Dari satu gunung menjadi gerakan di Sulawesi Utara.",
     paragraphs: [
@@ -198,6 +233,11 @@ const id: typeof en = {
     recognition: "Finalis BBC World Challenge (2007) · Sidhakarya Award · Paramakarya Award (2017, bersama Pertamina)",
   },
   vision: {
+    meta: {
+      title: "Visi & Pendekatan: Konservasi Bersama Masyarakat",
+      description:
+        "Mengapa alam dan manusia harus dijaga bersama, dan cara kerja Yayasan Masarang: restorasi, konservasi, dan edukasi bersama masyarakat lokal.",
+    },
     title: "Visi & Pendekatan",
     subheader: "Melestarikan Alam melalui Pemberdayaan Masyarakat Lokal.",
     ourVision: {
@@ -237,6 +277,11 @@ const id: typeof en = {
     },
   },
   sites: {
+    meta: {
+      title: "Lokasi Kami: Tempat Kami Bekerja di Sulawesi Utara",
+      description:
+        "Peta dan profil lokasi Yayasan Masarang: Gunung Masarang, Temboan, Pulisan, Tasikoki, Tulap, Pulau Salimburung, dan Titik Tumbuh.",
+    },
     title: "Lokasi Kami",
     subheader: "Tempat di mana upaya kami berakar dan bertumbuh.",
     lede: "Dari hutan pegunungan hingga pantai tempat penyu bertelur, setiap lokasi memiliki peran tersendiri dalam mendukung upaya restorasi, konservasi, dan edukasi kami.",
@@ -263,6 +308,11 @@ const id: typeof en = {
     ],
   },
   partners: {
+    meta: {
+      title: "Mitra dan Jaringan Kami",
+      description:
+        "Jaringan dan mitra Yayasan Masarang: Masarang EU, The Most Sustainable, Trees For All, World Parrot Trust, PGE, dan lainnya.",
+    },
     title: "Mitra Kami",
     subheader: "Bekerja bersama untuk manusia dan alam.",
     lede: "Melindungi alam dan memberdayakan masyarakat membutuhkan kolaborasi. Kami bekerja bersama berbagai organisasi, institusi, dan perusahaan yang memiliki komitmen serupa untuk memperkuat program, berbagi pengetahuan, dan menciptakan peluang kolaborasi yang bermakna. Pilih logo atau nama untuk mengunjungi situs mitra.",
